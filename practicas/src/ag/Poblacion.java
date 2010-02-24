@@ -16,12 +16,40 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pe;
+package ag;
 
-public class Main {
+import java.util.ArrayList;
 
-	public static void main(String[] args) {
-		// TODO: aquí el código :)
+public abstract class Poblacion {
+
+	private ArrayList<Cromosoma> m_poblacion;
+	private Problema             m_problema;
+
+	public Poblacion(Problema problema) {
+		m_poblacion = new ArrayList<Cromosoma>();
+		m_problema = problema;
+	}
+
+	public abstract Cromosoma genCromosomaAleatorio();
+
+	/**
+	 * @return La población actual.
+	 */
+	public ArrayList<Cromosoma> poblacion() {
+		return m_poblacion;
+	}
+
+	public Problema problema() {
+		return m_problema;
+	}
+
+	/**
+	 * Establece la población actual.
+	 * 
+	 * @param poblacion La población a establecer.
+	 */
+	public void setPoblacion(ArrayList<Cromosoma> poblacion) {
+		m_poblacion = poblacion;
 	}
 
 }

@@ -26,12 +26,12 @@ public abstract class Poblacion extends ag.Poblacion {
 		super(problema);
 	}
 
-	public double sumaValor() {
+	public double puntuacionTotal() {
 		double res = 0;
 		ListIterator<ag.Cromosoma> it = poblacion().listIterator();
 		while (it.hasNext()) {
 			final Cromosoma cromosoma = (Cromosoma) it.next();
-			res += cromosoma.valor();
+			res += cromosoma.aptitud();
 		}
 		return res;
 	}

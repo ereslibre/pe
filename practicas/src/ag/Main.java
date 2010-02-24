@@ -16,12 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package pe;
+package ag;
 
-public interface Problema {
+public class Main {
 
-	public int numMaxGen();
-
-	public int tamPoblacion();
+	public static void main(String[] args) {
+		// TODO: aquí el código :)
+	}
 
 }

@@ -34,12 +34,6 @@ public class Cromosoma extends agsimple.Cromosoma {
 	}
 
 	@Override
-	public double valor() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public double aptitud() {
 		// TODO Auto-generated method stub
 		return 0;

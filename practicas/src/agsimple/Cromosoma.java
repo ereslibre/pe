@@ -41,6 +41,8 @@ public abstract class Cromosoma extends ag.Cromosoma {
 		return m_tamCromosoma;
 	}
 
-	public abstract double valor();
+	public double puntuacion() {
+		return aptitud() / ((Poblacion) poblacion()).puntuacionTotal();
+	}
 
 }
