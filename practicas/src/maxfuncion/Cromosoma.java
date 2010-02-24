@@ -18,7 +18,7 @@
 
 package maxfuncion;
 
-import pe.Cruce;
+import ag.Cruce;
 
 /**
  * Cromosoma para el problema de maximizar el valor de y de la función:
@@ -46,7 +46,7 @@ public class Cromosoma extends agsimple.Cromosoma {
 	}
 
 	@Override
-	public Cruce cruzar(pe.Cromosoma cromosoma) {
+	public Cruce cruzar(ag.Cromosoma cromosoma) {
 		// TODO Auto-generated method stub
 		return null;
 	}

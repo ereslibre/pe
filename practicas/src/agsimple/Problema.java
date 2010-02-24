@@ -18,7 +18,7 @@
 
 package agsimple;
 
-public interface Problema extends pe.Problema {
+public interface Problema extends ag.Problema {
 
 	public int tamCromosoma();
 

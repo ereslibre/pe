@@ -18,7 +18,7 @@
 
 package agsimple;
 
-public abstract class Cromosoma extends pe.Cromosoma {
+public abstract class Cromosoma extends ag.Cromosoma {
 
 	int     m_tamCromosoma;
 	boolean m_cromosoma[];

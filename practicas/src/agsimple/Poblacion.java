@@ -20,7 +20,7 @@ package agsimple;
 
 import java.util.ListIterator;
 
-public abstract class Poblacion extends pe.Poblacion {
+public abstract class Poblacion extends ag.Poblacion {
 
 	public Poblacion(Problema problema) {
 		super(problema);
@@ -28,7 +28,7 @@ public abstract class Poblacion extends pe.Poblacion {
 
 	public double sumaValor() {
 		double res = 0;
-		ListIterator<pe.Cromosoma> it = poblacion().listIterator();
+		ListIterator<ag.Cromosoma> it = poblacion().listIterator();
 		while (it.hasNext()) {
 			final Cromosoma cromosoma = (Cromosoma) it.next();
 			res += cromosoma.valor();

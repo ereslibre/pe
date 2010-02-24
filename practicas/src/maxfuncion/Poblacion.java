@@ -18,8 +18,8 @@
 
 package maxfuncion;
 
+import ag.Cromosoma;
 import agsimple.Problema;
-import pe.Cromosoma;
 
 public class Poblacion extends agsimple.Poblacion {
 
