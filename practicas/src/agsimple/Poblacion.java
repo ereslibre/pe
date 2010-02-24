@@ -20,10 +20,42 @@ package agsimple;
 
 import java.util.ListIterator;
 
+import maxfuncion.Cromosoma;
+
 public abstract class Poblacion extends ag.Poblacion {
 
 	public Poblacion(Problema problema) {
 		super(problema);
+	}
+
+	@Override
+	public void anadeCromosomaAleatorio() {
+		Problema p = (Problema) problema();
+		Cromosoma res = new Cromosoma(p.tamCromosoma());
+		boolean cromosomaFactible = false;
+		while (!cromosomaFactible) {
+			boolean cromosoma[] = new boolean[p.tamCromosoma()];
+			for (int i = 0; i < p.tamCromosoma(); ++i) {
+				cromosoma[i] = (Math.random() < 0.5) ? false : true;
+			}
+			res.setCromosoma(cromosoma);
+			cromosomaFactible = res.esFactible();
+		}
+		res.setMadre(null);
+		res.setPadre(null);
+		res.setPoblacion(this);
+		poblacion().add(res);
+	}
+
+	@Override
+	public Cromosoma genCromosomaVacio() {
+		Problema p = (Problema) problema();
+		Cromosoma res = new Cromosoma(p.tamCromosoma());
+		res.setCromosoma(null);
+		res.setMadre(null);
+		res.setPadre(null);
+		res.setPoblacion(this);
+		return res;
 	}
 
 	public double puntuacionTotal() {

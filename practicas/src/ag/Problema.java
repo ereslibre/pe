@@ -24,4 +24,8 @@ public interface Problema {
 
 	public int tamPoblacion();
 
+	public double probCruce();
+
+	public double probMutacion();
+
 }

@@ -25,7 +25,7 @@ import ag.Cruce;
  * 
  * 		y = 3 * x + 5
  * 
- * para valores de x comprendidos entre [-10, 10].
+ * para valores de x comprendidos entre [0, 10].
  */
 public class Cromosoma extends agsimple.Cromosoma {
 
@@ -35,44 +35,75 @@ public class Cromosoma extends agsimple.Cromosoma {
 
 	@Override
 	public double aptitud() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 3 * ((Integer) fenotipo()) + 5;
 	}
 
 	@Override
 	public Cruce cruzar(ag.Cromosoma cromosoma) {
-		// TODO Auto-generated method stub
-		return null;
+		int posCruce = (int) Math.random() * (tamCromosoma() - 1);
+
+		Cromosoma hijo1 = (Cromosoma) poblacion().genCromosomaVacio();
+		boolean hijo1c[] = new boolean[tamCromosoma()];
+		for (int i = 0; i < tamCromosoma(); ++i) {
+			if (i <= posCruce) {
+				hijo1c[i] = ((boolean[]) genotipo())[i];
+			} else {
+				hijo1c[i] = ((boolean[]) cromosoma.genotipo())[i];
+			}
+		}
+		hijo1.setCromosoma(hijo1c);
+		hijo1.setMadre(this);
+		hijo1.setPadre(cromosoma);
+
+		Cromosoma hijo2 = (Cromosoma) poblacion().genCromosomaVacio();
+		boolean hijo2c[] = new boolean[tamCromosoma()];
+		for (int i = 0; i < tamCromosoma(); ++i) {
+			if (i <= posCruce) {
+				hijo2c[i] = ((boolean[]) cromosoma.genotipo())[i];
+			} else {
+				hijo2c[i] = ((boolean[]) genotipo())[i];
+			}
+		}
+		hijo2.setCromosoma(hijo1c);
+		hijo2.setMadre(this);
+		hijo2.setPadre(cromosoma);
+
+		return new Cruce(hijo1, hijo2);
 	}
 
 	@Override
 	public boolean esFactible() {
-		// TODO Auto-generated method stub
-		return false;
+		return ((Integer) fenotipo()) <= 30;
 	}
 
 	@Override
 	public double evaluacion() {
-		// TODO Auto-generated method stub
-		return 0;
+		return aptitud();
 	}
 
 	@Override
 	public Object fenotipo() {
-		// TODO Auto-generated method stub
-		return null;
+		int res = 0;
+		boolean genotipo[] = (boolean[]) genotipo();
+		for (int i = 0; i < tamCromosoma(); ++i) {
+			res += genotipo[i] ? Math.pow(2, i) : 0;
+		}
+		return res;
 	}
 
 	@Override
 	public Object genotipo() {
-		// TODO Auto-generated method stub
-		return null;
+		return cromosoma();
 	}
 
 	@Override
 	public void mutar() {
-		// TODO Auto-generated method stub
-		
+		boolean genotipo[] = (boolean[]) genotipo();
+		for (int i = 0; i < tamCromosoma(); ++i) {
+			if (Math.random() < poblacion().problema().probMutacion()) {
+				genotipo[i] = genotipo[i] ? false : true;
+			}
+		}
 	}
 
 }

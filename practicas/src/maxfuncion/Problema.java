@@ -22,19 +22,27 @@ public class Problema implements agsimple.Problema {
 
 	@Override
 	public int tamCromosoma() {
-		return 15;
+		return 5;
 	}
 
 	@Override
 	public int numMaxGen() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 10;
+	}
+
+	@Override
+	public double probCruce() {
+		return 0.7;
+	}
+
+	@Override
+	public double probMutacion() {
+		return 0.2;
 	}
 
 	@Override
 	public int tamPoblacion() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 100;
 	}
 
 }

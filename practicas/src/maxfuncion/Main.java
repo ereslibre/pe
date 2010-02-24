@@ -16,12 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ag;
+package maxfuncion;
 
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO: aquí el código :)
+		Problema problema = new Problema();
+		Poblacion poblacion = new Poblacion(problema);
+		poblacion.genPoblacionInicial();
+		int numGen = 0;
+		while (numGen < problema.numMaxGen()) {
+			
+			++numGen;
+		}
 	}
 
 }

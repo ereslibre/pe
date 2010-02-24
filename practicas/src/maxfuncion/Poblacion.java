@@ -18,19 +18,12 @@
 
 package maxfuncion;
 
-import ag.Cromosoma;
 import agsimple.Problema;
 
 public class Poblacion extends agsimple.Poblacion {
 
 	public Poblacion(Problema problema) {
 		super(problema);
-	}
-
-	@Override
-	public Cromosoma genCromosomaAleatorio() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

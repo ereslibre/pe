@@ -30,7 +30,15 @@ public abstract class Poblacion {
 		m_problema = problema;
 	}
 
-	public abstract Cromosoma genCromosomaAleatorio();
+	protected abstract void anadeCromosomaAleatorio();
+
+	public abstract Cromosoma genCromosomaVacio();
+
+	public void genPoblacionInicial() {
+		for (int i = 0; i < problema().tamPoblacion(); ++i) {
+			anadeCromosomaAleatorio();
+		}
+	}
 
 	/**
 	 * @return La población actual.
