@@ -16,28 +16,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package agsimple;
+package vista;
 
-public abstract class Cromosoma extends ag.Cromosoma {
+import javax.swing.*;
+import org.math.plot.*;
 
-	boolean m_cromosoma[];
+public class Main {
 
-	public Cromosoma() {
-		super();
-		Problema p = (Problema) poblacion().problema();
-		m_cromosoma = new boolean[p.tamCromosoma()];
-	}
-
-	public boolean[] cromosoma() {
-		return m_cromosoma;
-	}
-
-	public void setCromosoma(boolean[] cromosoma) {
-		m_cromosoma = cromosoma;
-	}
-
-	public double puntuacion() {
-		return aptitud() / ((Poblacion) poblacion()).puntuacionTotal();
+	public static void main(String[] args) {
+		double[] x = {1, 2, 3, 4, 5, 6, 7, 8};
+		double[] y = {1, 2, 3, 4, 5, 6, 7, 8};
+		Plot2DPanel plot = new Plot2DPanel();
+		plot.addLinePlot("my plot", x, y);
+		JFrame frame = new JFrame("a plot panel");
+		frame.setContentPane(plot);
+		frame.setVisible(true);
 	}
 
 }

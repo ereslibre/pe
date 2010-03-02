@@ -27,6 +27,7 @@ public abstract class Cromosoma {
 	public Cromosoma() {
 		m_madre = null;
 		m_padre = null;
+		m_poblacion = null;
 	}
 
 	/**
