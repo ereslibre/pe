@@ -28,16 +28,16 @@ public abstract class Cromosoma extends ag.Cromosoma {
 		m_cromosoma = new boolean[p.tamCromosoma()];
 	}
 
+	public Object clone() {
+		return this;
+	}
+
 	public boolean[] cromosoma() {
 		return m_cromosoma;
 	}
 
 	public void setCromosoma(boolean[] cromosoma) {
 		m_cromosoma = cromosoma;
-	}
-
-	public double puntuacion() {
-		return aptitud() / ((Poblacion) poblacion()).puntuacionTotal();
 	}
 
 }

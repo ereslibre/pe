@@ -30,14 +30,30 @@ public abstract class Poblacion {
 		m_problema = problema;
 	}
 
+	/**
+	 * Añade a la población un cromosoma generado aleatoriamente.
+	 */
 	protected abstract void anadeCromosomaAleatorio();
 
+	/**
+     * @return Genera un cromosoma vacío.
+     */
 	public abstract Cromosoma genCromosomaVacio();
 
+	/**
+     * Genera una población inicial.
+     */
 	public void genPoblacionInicial() {
 		for (int i = 0; i < problema().tamPoblacion(); ++i) {
 			anadeCromosomaAleatorio();
 		}
+	}
+
+	/**
+     * Añade un cromosoma a la población.
+     */
+	public void anadeCromosoma(Cromosoma cromosoma) {
+		m_poblacion.add(cromosoma);
 	}
 
 	/**

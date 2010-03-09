@@ -18,19 +18,12 @@
 
 package vista;
 
-import javax.swing.*;
-import org.math.plot.*;
-
 public class Main {
 
+	static VentanaPrincipal m_ventanaPrincipal = new VentanaPrincipal();
+
 	public static void main(String[] args) {
-		double[] x = {1, 2, 3, 4, 5, 6, 7, 8};
-		double[] y = {1, 2, 3, 4, 5, 6, 7, 8};
-		Plot2DPanel plot = new Plot2DPanel();
-		plot.addLinePlot("my plot", x, y);
-		JFrame frame = new JFrame("a plot panel");
-		frame.setContentPane(plot);
-		frame.setVisible(true);
+		m_ventanaPrincipal.setVisible(true);
 	}
 
 }

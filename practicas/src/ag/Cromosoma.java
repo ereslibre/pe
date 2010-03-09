@@ -18,6 +18,8 @@
 
 package ag;
 
+import agsimple.Poblacion;
+
 public abstract class Cromosoma {
 
 	private Cromosoma m_madre;
@@ -34,6 +36,10 @@ public abstract class Cromosoma {
 	 * @return El valor de fitness o adaptación de este individuo.
 	 */
 	public abstract double aptitud();
+
+	public Object clone() {
+		return this;
+	}
 
 	/**
 	 * Cruza el cromosoma actual con el cromosoma dado.
@@ -86,6 +92,13 @@ public abstract class Cromosoma {
 	 */
 	public Poblacion poblacion() {
 		return m_poblacion;
+	}
+
+	/**
+	 * @return La puntuación de este cromosoma.
+	 */
+	public double puntuacion() {
+		return aptitud() / ((Poblacion) poblacion()).puntuacionTotal();
 	}
 
 	/**

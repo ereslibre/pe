@@ -18,10 +18,33 @@
 
 package ag;
 
+import java.util.ArrayList;
+import java.util.ListIterator;
+
 public class Seleccion {
 
-	static public Poblacion ruleta(Poblacion poblacion) {
-		return null;
+	static public void ruleta(Poblacion poblacion, Poblacion res) {
+		ArrayList<Double> puntAcum = new ArrayList<Double>();
+		double punt = 0;
+		ListIterator<Cromosoma> it = poblacion.poblacion().listIterator();
+		while (it.hasNext()) {
+			final Cromosoma c = it.next();
+			punt += c.puntuacion();
+			puntAcum.add(punt);
+		}
+		for (int i = 0; i < poblacion.problema().tamPoblacion(); ++i) {
+			final double r = Math.random();
+			ListIterator<Double> it2 = puntAcum.listIterator();
+			int k = 0;
+			while (it2.hasNext()) {
+				final Double j = it2.next();
+				if (r <= j) {
+					res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(k).clone());
+					break;
+				}
+				++k;
+			}
+		}
 	}
 
 }
