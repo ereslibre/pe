@@ -21,9 +21,9 @@ public class VentanaPrincipal extends JFrame {
 		super();
 		m_tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		m_tabbedPane.addTab("Problema", problema());
-		m_tabbedPane.addTab("Gráfica (Máximo/Mínimo algoritmo)", grafica1());
-		m_tabbedPane.addTab("Gráfica (Media/Máxima aptitud)", grafica2());
-		m_tabbedPane.addTab("Gráfica (Presión Selectiva)", grafica3());
+		m_tabbedPane.addTab("Algoritmo", grafica1());
+		m_tabbedPane.addTab("Aptitud", grafica2());
+		m_tabbedPane.addTab("Presión Selectiva", grafica3());
 		setLayout(new GridLayout(1, 1));
 		add(m_tabbedPane);
 		setSize(640, 480);
