@@ -20,16 +20,12 @@ package agsimple;
 
 public abstract class Cromosoma extends ag.Cromosoma {
 
-	boolean m_cromosoma[];
+	protected boolean m_cromosoma[];
 
 	public Cromosoma() {
 		super();
 		Problema p = (Problema) poblacion().problema();
 		m_cromosoma = new boolean[p.tamCromosoma()];
-	}
-
-	public Object clone() {
-		return this;
 	}
 
 	public boolean[] cromosoma() {

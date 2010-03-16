@@ -22,9 +22,9 @@ import agsimple.Poblacion;
 
 public abstract class Cromosoma {
 
-	private Cromosoma m_madre;
-	private Cromosoma m_padre;
-	private Poblacion m_poblacion;
+	protected Cromosoma m_madre;
+	protected Cromosoma m_padre;
+	protected Poblacion m_poblacion;
 
 	public Cromosoma() {
 		m_madre = null;
@@ -37,9 +37,7 @@ public abstract class Cromosoma {
 	 */
 	public abstract double aptitud();
 
-	public Object clone() {
-		return this;
-	}
+	public abstract Object clone();
 
 	/**
 	 * Cruza el cromosoma actual con el cromosoma dado.

@@ -19,21 +19,89 @@
 package ag;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 public abstract class Poblacion {
 
 	private ArrayList<Cromosoma> m_poblacion;
 	private Problema             m_problema;
+	private ArrayList<Double>    m_puntuacionesAcumuladas;
+	private Cromosoma            m_mejor;
 
 	public Poblacion(Problema problema) {
 		m_poblacion = new ArrayList<Cromosoma>();
 		m_problema = problema;
+		m_mejor = null;
+	}
+
+	/**
+     * Añade un cromosoma a la población.
+     */
+	public void anadeCromosoma(Cromosoma cromosoma) {
+		m_poblacion.add(cromosoma);
 	}
 
 	/**
 	 * Añade a la población un cromosoma generado aleatoriamente.
 	 */
 	protected abstract void anadeCromosomaAleatorio();
+
+	public void cruzar() {
+		ArrayList<Cromosoma> cruce = new ArrayList<Cromosoma>();
+		do {
+			cruce.clear();
+			ListIterator<Cromosoma> it = m_poblacion.listIterator();
+			while (it.hasNext()) {
+				Cromosoma c = it.next();
+				if (Math.random() < problema().probCruce()) {
+					cruce.add(c);
+				}
+			}
+			if (cruce.size() % 2 != 0) {
+				cruce.remove(0);
+			}
+		} while (cruce.size() == 0);
+		ListIterator<Cromosoma> it = cruce.listIterator();
+		while (it.hasNext()) {
+			Cromosoma c1 = it.next();
+			Cromosoma c2 = it.next();
+			Cruce resultado = null;
+			do {
+				resultado = c1.cruzar(c2);
+				m_poblacion.set(m_poblacion.indexOf(c1), resultado.a());
+				m_poblacion.set(m_poblacion.indexOf(c2), resultado.b());
+			} while(!resultado.a().esFactible() || !resultado.b().esFactible());
+		}
+	}
+
+	public void mutar() {
+		ListIterator<Cromosoma> it = m_poblacion.listIterator();
+		while (it.hasNext()) {
+			Cromosoma c = it.next();
+			if (Math.random() < problema().probMutacion()) {
+				Cromosoma cc = null;
+				do {
+					cc = (Cromosoma) c.clone();
+					cc.mutar();
+				} while (!cc.esFactible());
+				c = cc;
+			}
+		}
+	}
+
+	public void evaluarPoblacion() {
+		m_puntuacionesAcumuladas = new ArrayList<Double>();
+		double punt = 0;
+		ListIterator<Cromosoma> it = m_poblacion.listIterator();
+		while (it.hasNext()) {
+			final Cromosoma c = it.next();
+			if (m_mejor == null || m_mejor.aptitud() < c.aptitud()) {
+				m_mejor = (Cromosoma) c.clone();
+			}
+			punt += c.puntuacion();
+			m_puntuacionesAcumuladas.add(punt);
+		}
+	}
 
 	/**
      * @return Genera un cromosoma vacío.
@@ -49,11 +117,12 @@ public abstract class Poblacion {
 		}
 	}
 
-	/**
-     * Añade un cromosoma a la población.
-     */
-	public void anadeCromosoma(Cromosoma cromosoma) {
-		m_poblacion.add(cromosoma);
+	public Cromosoma getMejor() {
+		return m_mejor;
+	}
+
+	public ArrayList<Double> getPuntuacionesAcumuladas() {
+		return m_puntuacionesAcumuladas;
 	}
 
 	/**

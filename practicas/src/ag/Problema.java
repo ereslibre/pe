@@ -28,4 +28,6 @@ public interface Problema {
 
 	public double probMutacion();
 
+	public void lanzar();
+
 }

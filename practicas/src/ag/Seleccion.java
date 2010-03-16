@@ -24,14 +24,8 @@ import java.util.ListIterator;
 public class Seleccion {
 
 	static public void ruleta(Poblacion poblacion, Poblacion res) {
-		ArrayList<Double> puntAcum = new ArrayList<Double>();
-		double punt = 0;
-		ListIterator<Cromosoma> it = poblacion.poblacion().listIterator();
-		while (it.hasNext()) {
-			final Cromosoma c = it.next();
-			punt += c.puntuacion();
-			puntAcum.add(punt);
-		}
+		ArrayList<Double> puntAcum = poblacion.getPuntuacionesAcumuladas();
+		
 		for (int i = 0; i < poblacion.problema().tamPoblacion(); ++i) {
 			final double r = Math.random();
 			ListIterator<Double> it2 = puntAcum.listIterator();
