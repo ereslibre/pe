@@ -18,16 +18,21 @@
 
 package ag;
 
-public interface Problema {
+public abstract class Problema extends Thread {
 
-	public int numMaxGen();
+	public abstract int numMaxGen();
 
-	public int tamPoblacion();
+	public abstract int tamPoblacion();
 
-	public double probCruce();
+	public abstract double probCruce();
 
-	public double probMutacion();
+	public abstract double probMutacion();
 
-	public void lanzar();
+	protected abstract void lanzar();
+
+	@Override
+	public void run() {
+		lanzar();
+	}
 
 }

@@ -24,9 +24,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		m_ventanaPrincipal.setVisible(true);
-
-		practica1.ProblemaF1 p = new practica1.ProblemaF1();
-		p.lanzar();
 	}
 
 }

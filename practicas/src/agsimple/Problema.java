@@ -18,8 +18,8 @@
 
 package agsimple;
 
-public interface Problema extends ag.Problema {
+public abstract class Problema extends ag.Problema {
 
-	public int tamCromosoma();
+	public abstract int tamCromosoma();
 
 }
