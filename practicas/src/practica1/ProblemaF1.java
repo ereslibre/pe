@@ -6,12 +6,12 @@ public class ProblemaF1 implements agsimple.Problema {
 
 	@Override
 	public int tamCromosoma() {
-		return (int) Math.ceil(Math.log(1.0 + (1.0 - 0) / 8.0) / Math.log(2));
+		return (int) Math.ceil(Math.log(1.0 + (1.0 - 0) / 0.00000001) / Math.log(2));
 	}
 
 	@Override
 	public int numMaxGen() {
-		return 100;
+		return 30;
 	}
 
 	@Override
@@ -21,12 +21,12 @@ public class ProblemaF1 implements agsimple.Problema {
 
 	@Override
 	public double probMutacion() {
-		return 0.2;
+		return 0.05;
 	}
 
 	@Override
 	public int tamPoblacion() {
-		return 20;
+		return 100;
 	}
 
 	@Override
@@ -45,6 +45,7 @@ public class ProblemaF1 implements agsimple.Problema {
 			++gen;
 		}
 		System.out.println("El mejor es " + p.getMejor().fenotipo());
+		System.out.println("Aptitud es " + p.getMejor().aptitud());
 	}
 
 }

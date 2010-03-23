@@ -10,7 +10,7 @@ public class Poblacion extends agsimple.Poblacion {
 
 	@Override
 	public Cromosoma generaCromosoma() {
-		return new Cromosoma();
+		return new Cromosoma(this);
 	}
 
 }

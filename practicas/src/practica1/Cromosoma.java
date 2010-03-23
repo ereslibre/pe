@@ -4,6 +4,10 @@ import ag.Cruce;
 
 public class Cromosoma extends agsimple.Cromosoma {
 
+	Cromosoma(Poblacion poblacion) {
+		super(poblacion);
+	}
+
 	@Override
 	public double aptitud() {
 		Double x = (Double) fenotipo();
@@ -12,10 +16,9 @@ public class Cromosoma extends agsimple.Cromosoma {
 
 	@Override
 	public Object clone() {
-		Cromosoma res = new Cromosoma();
+		Cromosoma res = new Cromosoma((Poblacion) m_poblacion);
 		res.m_madre = m_madre;
 		res.m_padre = m_padre;
-		res.m_poblacion = m_poblacion;
 		res.m_cromosoma = new boolean[m_cromosoma.length];
 		for (int i = 0; i < m_cromosoma.length; ++i) {
 			res.m_cromosoma[i] = m_cromosoma[i];

@@ -26,10 +26,10 @@ public abstract class Cromosoma {
 	protected Cromosoma m_padre;
 	protected Poblacion m_poblacion;
 
-	public Cromosoma() {
+	public Cromosoma(Poblacion poblacion) {
 		m_madre = null;
 		m_padre = null;
-		m_poblacion = null;
+		m_poblacion = poblacion;
 	}
 
 	/**

@@ -22,9 +22,9 @@ public abstract class Cromosoma extends ag.Cromosoma {
 
 	protected boolean m_cromosoma[];
 
-	public Cromosoma() {
-		super();
-		Problema p = (Problema) poblacion().problema();
+	public Cromosoma(Poblacion poblacion) {
+		super(poblacion);
+		Problema p = (Problema) poblacion.problema();
 		m_cromosoma = new boolean[p.tamCromosoma()];
 	}
 
