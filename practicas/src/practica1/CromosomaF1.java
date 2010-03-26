@@ -71,7 +71,7 @@ public class CromosomaF1 extends agsimple.Cromosoma {
 				hijo2c[i] = ((boolean[]) genotipo())[i];
 			}
 		}
-		hijo2.setCromosoma(hijo1c);
+		hijo2.setCromosoma(hijo2c);
 		hijo2.setMadre(this);
 		hijo2.setPadre(cromosoma);
 

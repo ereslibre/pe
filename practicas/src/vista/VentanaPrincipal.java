@@ -158,8 +158,19 @@ public class VentanaPrincipal extends JFrame {
 						problema.start();
 						break;
 					}
+					case 3: {
+						practica1.ProblemaF4 problema = new practica1.ProblemaF4();
+						problema.setVentanaPrincipal(v);
+						problema.start();
+						break;
+					}
+					case 4: {
+						practica1.ProblemaF5 problema = new practica1.ProblemaF5();
+						problema.setVentanaPrincipal(v);
+						problema.start();
+						break;
+					}
 					default:
-						System.out.println("NYI");
 						break;
 				}
 			}
