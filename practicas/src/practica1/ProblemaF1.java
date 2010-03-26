@@ -53,6 +53,9 @@ public class ProblemaF1 extends agsimple.Problema {
 		p.genPoblacionInicial();
 		p.evaluarPoblacion();
 		int gen = 0;
+
+		ventanaPrincipal().progressBar().setMinimum(0);
+		ventanaPrincipal().progressBar().setMaximum(numMaxGen() - 1);
 		while (gen < numMaxGen()) {
 			Poblacion res = new Poblacion(this);
 			Seleccion.ruleta(p, res);
@@ -60,6 +63,7 @@ public class ProblemaF1 extends agsimple.Problema {
 			res.mutar();
 			res.evaluarPoblacion();
 			p = res;
+			ventanaPrincipal().progressBar().setValue(gen);
 			++gen;
 		}
 		System.out.println("El mejor es " + p.getMejor().fenotipo());

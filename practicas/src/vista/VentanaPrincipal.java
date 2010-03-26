@@ -18,9 +18,9 @@
 
 package vista;
 
+import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +32,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 
@@ -40,11 +41,12 @@ import org.math.plot.Plot2DPanel;
 public class VentanaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JTabbedPane m_tabbedPane = new JTabbedPane();
-	private Plot2DPanel m_grafica1 = new Plot2DPanel();
-	private Plot2DPanel m_grafica2 = new Plot2DPanel();
-	private Plot2DPanel m_grafica3 = new Plot2DPanel();
-	private JComboBox   m_problema = new JComboBox();
+	private JTabbedPane   m_tabbedPane = new JTabbedPane();
+	private Plot2DPanel   m_grafica1 = new Plot2DPanel();
+	private Plot2DPanel   m_grafica2 = new Plot2DPanel();
+	private Plot2DPanel   m_grafica3 = new Plot2DPanel();
+	private JComboBox     m_problema = new JComboBox();
+	private JProgressBar  m_progressBar = new JProgressBar();
 
 	VentanaPrincipal() {
 		super();
@@ -53,11 +55,16 @@ public class VentanaPrincipal extends JFrame {
 		m_tabbedPane.addTab("Algoritmo", grafica1());
 		m_tabbedPane.addTab("Aptitud", grafica2());
 		m_tabbedPane.addTab("Presión Selectiva", grafica3());
-		setLayout(new GridLayout(1, 1));
-		add(m_tabbedPane);
+		setLayout(new BorderLayout());
+		add(m_tabbedPane, BorderLayout.CENTER);
+		add(m_progressBar, BorderLayout.SOUTH);
 		setSize(640, 480);
 		setLocationRelativeTo(getRootPane());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+
+	public JProgressBar progressBar() {
+		return m_progressBar;
 	}
 
 	JComponent problema() {
@@ -116,12 +123,14 @@ public class VentanaPrincipal extends JFrame {
 		JButton lanzar = new JButton("Lanzar");
 		p.add(lanzar, gridBagConstraints);
 
+		final VentanaPrincipal v = this;
 		lanzar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				switch (m_problema.getSelectedIndex()) {
 					case 0:
 						practica1.ProblemaF1 problema = new practica1.ProblemaF1();
+						problema.setVentanaPrincipal(v);
 						problema.start();
 						break;
 					default:

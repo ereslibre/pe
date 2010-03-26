@@ -18,7 +18,11 @@
 
 package ag;
 
+import vista.VentanaPrincipal;
+
 public abstract class Problema extends Thread {
+
+	private VentanaPrincipal m_ventanaPrincipal = null;
 
 	public abstract int numMaxGen();
 
@@ -33,6 +37,14 @@ public abstract class Problema extends Thread {
 	@Override
 	public void run() {
 		lanzar();
+	}
+
+	public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
+		m_ventanaPrincipal = ventanaPrincipal;
+	}
+
+	public VentanaPrincipal ventanaPrincipal() {
+		return m_ventanaPrincipal;
 	}
 
 }
