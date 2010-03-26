@@ -55,9 +55,19 @@ public class ProblemaF2 extends agsimple.Problema {
 		p.evaluarPoblacion();
 		int gen = 0;
 
+		ventanaPrincipal().grafica1().removeAllPlots();
 		ventanaPrincipal().progressBar().setMinimum(1);
 		ventanaPrincipal().progressBar().setMaximum(numMaxGen());
+		double[] grafica1xMejorAlgoritmo = new double[numMaxGen()];
+		double[] grafica1yMejorAlgoritmo = new double[numMaxGen()];
+		double[] grafica1xMejorGeneracion = new double[numMaxGen()];
+		double[] grafica1yMejorGeneracion = new double[numMaxGen()];
 		while (gen < numMaxGen()) {
+			grafica1xMejorAlgoritmo[gen] = gen;
+			grafica1yMejorAlgoritmo[gen] = getMejor().evaluacion();
+			grafica1xMejorGeneracion[gen] = gen;
+			grafica1yMejorGeneracion[gen] = p.getMejor().evaluacion();
+
 			PoblacionF2 res = new PoblacionF2(this);
 			Seleccion.ruleta(p, res);
 			res.cruzar();
@@ -67,8 +77,10 @@ public class ProblemaF2 extends agsimple.Problema {
 			++gen;
 			ventanaPrincipal().progressBar().setValue(gen);
 		}
-		System.out.println("El mejor es " + p.getMejor().fenotipo());
-		System.out.println("Evaluación es " + p.getMejor().evaluacion());
+		ventanaPrincipal().grafica1().addLinePlot("Algoritmo", grafica1xMejorAlgoritmo, grafica1yMejorAlgoritmo);
+		ventanaPrincipal().grafica1().addLinePlot("Generación", grafica1xMejorGeneracion, grafica1yMejorGeneracion);
+		System.out.println("El mejor es " + getMejor().fenotipo());
+		System.out.println("Evaluación es " + getMejor().evaluacion());
 	}
 
 }

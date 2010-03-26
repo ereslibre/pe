@@ -52,9 +52,9 @@ public class VentanaPrincipal extends JFrame {
 		super();
 		m_tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		m_tabbedPane.addTab("Problema", problema());
-		m_tabbedPane.addTab("Algoritmo", grafica1());
-		m_tabbedPane.addTab("Aptitud", grafica2());
-		m_tabbedPane.addTab("Presión Selectiva", grafica3());
+		m_tabbedPane.addTab("Algoritmo", generaGrafica1());
+		m_tabbedPane.addTab("Aptitud", generaGrafica2());
+		m_tabbedPane.addTab("Presión Selectiva", generaGrafica3());
 		setLayout(new BorderLayout());
 		add(m_tabbedPane, BorderLayout.CENTER);
 		add(m_progressBar, BorderLayout.SOUTH);
@@ -65,6 +65,18 @@ public class VentanaPrincipal extends JFrame {
 
 	public JProgressBar progressBar() {
 		return m_progressBar;
+	}
+
+	public Plot2DPanel grafica1() {
+		return m_grafica1;
+	}
+
+	public Plot2DPanel grafica2() {
+		return m_grafica2;
+	}
+
+	public Plot2DPanel grafica3() {
+		return m_grafica1;
 	}
 
 	JComponent problema() {
@@ -156,21 +168,24 @@ public class VentanaPrincipal extends JFrame {
 		return p;
 	}
 
-	JComponent grafica1() {
+	JComponent generaGrafica1() {
 		m_grafica1.setAxisLabel(0, "Generación");
 		m_grafica1.setAxisLabel(1, "Máximo/Mínimo");
+		m_grafica1.setLegendOrientation(Plot2DPanel.EAST);
 		return m_grafica1;
 	}
 
-	JComponent grafica2() {
+	JComponent generaGrafica2() {
 		m_grafica2.setAxisLabel(0, "Generación");
 		m_grafica2.setAxisLabel(1, "Media/Máxima");
+		m_grafica2.setLegendOrientation(Plot2DPanel.EAST);
 		return m_grafica2;
 	}
 
-	JComponent grafica3() {
+	JComponent generaGrafica3() {
 		m_grafica3.setAxisLabel(0, "Generación");
 		m_grafica3.setAxisLabel(1, "Presión selectiva");
+		m_grafica3.setLegendOrientation(Plot2DPanel.EAST);
 		return m_grafica3;
 	}
 

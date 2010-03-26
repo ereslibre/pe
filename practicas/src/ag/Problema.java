@@ -22,6 +22,7 @@ import vista.VentanaPrincipal;
 
 public abstract class Problema extends Thread {
 
+	private Cromosoma        m_mejor = null;
 	private VentanaPrincipal m_ventanaPrincipal = null;
 
 	public abstract int numMaxGen();
@@ -33,6 +34,14 @@ public abstract class Problema extends Thread {
 	public abstract double probMutacion();
 
 	protected abstract void lanzar();
+
+	public Cromosoma getMejor() {
+		return m_mejor;
+	}
+
+	public void setMejor(Cromosoma mejor) {
+		m_mejor = mejor;
+	}
 
 	@Override
 	public void run() {

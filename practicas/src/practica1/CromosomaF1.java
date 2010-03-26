@@ -47,7 +47,7 @@ public class CromosomaF1 extends agsimple.Cromosoma {
 	@Override
 	public Cruce cruzar(ag.Cromosoma cromosoma) {
 		final int tamCromosoma = ((ProblemaF1) poblacion().problema()).tamCromosoma();
-		int posCruce = (int) Math.random() * tamCromosoma - 1;
+		int posCruce = (int) ((Math.random() * (double) tamCromosoma) - 1.0);
 
 		CromosomaF1 hijo1 = (CromosomaF1) poblacion().genCromosomaVacio();
 		boolean hijo1c[] = new boolean[tamCromosoma];

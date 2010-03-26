@@ -117,6 +117,9 @@ public abstract class Poblacion {
 				if (m_mejor == null || m_mejor.aptitud() < c.aptitud()) {
 					m_mejor = (Cromosoma) c.clone();
 				}
+				if (problema().getMejor() == null || problema().getMejor().aptitud() < c.aptitud()) {
+					problema().setMejor((Cromosoma) c.clone());
+				}
 				punt += c.puntuacion();
 				m_puntuacionesAcumuladas.add(punt);
 			}
