@@ -128,11 +128,24 @@ public class VentanaPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				switch (m_problema.getSelectedIndex()) {
-					case 0:
+					case 0: {
 						practica1.ProblemaF1 problema = new practica1.ProblemaF1();
 						problema.setVentanaPrincipal(v);
 						problema.start();
 						break;
+					}
+					case 1: {
+						practica1.ProblemaF2 problema = new practica1.ProblemaF2();
+						problema.setVentanaPrincipal(v);
+						problema.start();
+						break;
+					}
+					case 2: {
+						practica1.ProblemaF3 problema = new practica1.ProblemaF3();
+						problema.setVentanaPrincipal(v);
+						problema.start();
+						break;
+					}
 					default:
 						System.out.println("NYI");
 						break;

@@ -27,11 +27,20 @@ public abstract class Poblacion {
 	private Problema             m_problema;
 	private ArrayList<Double>    m_puntuacionesAcumuladas;
 	private Cromosoma            m_mejor;
+	private Double               m_evaluacionMaxima;
 
 	public Poblacion(Problema problema) {
 		m_poblacion = new ArrayList<Cromosoma>();
 		m_problema = problema;
 		m_mejor = null;
+	}
+
+	/**
+	 * @return La evaluación máxima de esta población. Útil para convertir problemas de minimización
+	 *         en problemas de maximización.
+	 */
+	public Double evaluacionMaxima() {
+		return m_evaluacionMaxima;
 	}
 
 	/**
@@ -90,16 +99,27 @@ public abstract class Poblacion {
 	}
 
 	public void evaluarPoblacion() {
-		m_puntuacionesAcumuladas = new ArrayList<Double>();
-		double punt = 0;
-		ListIterator<Cromosoma> it = m_poblacion.listIterator();
-		while (it.hasNext()) {
-			final Cromosoma c = it.next();
-			if (m_mejor == null || m_mejor.aptitud() < c.aptitud()) {
-				m_mejor = (Cromosoma) c.clone();
+		{
+			m_evaluacionMaxima = 0.0;
+			ListIterator<Cromosoma> it = m_poblacion.listIterator();
+			while (it.hasNext()) {
+				final Cromosoma c = it.next();
+				m_evaluacionMaxima = Math.max(m_evaluacionMaxima, c.evaluacion());
 			}
-			punt += c.puntuacion();
-			m_puntuacionesAcumuladas.add(punt);
+			m_evaluacionMaxima *= 1.05;
+		}
+		{
+			m_puntuacionesAcumuladas = new ArrayList<Double>();
+			double punt = 0;
+			ListIterator<Cromosoma> it = m_poblacion.listIterator();
+			while (it.hasNext()) {
+				final Cromosoma c = it.next();
+				if (m_mejor == null || m_mejor.aptitud() < c.aptitud()) {
+					m_mejor = (Cromosoma) c.clone();
+				}
+				punt += c.puntuacion();
+				m_puntuacionesAcumuladas.add(punt);
+			}
 		}
 	}
 

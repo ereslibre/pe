@@ -20,11 +20,12 @@ package practica1;
 
 import ag.Seleccion;
 
-public class ProblemaF1 extends agsimple.Problema {
+public class ProblemaF2 extends agsimple.Problema {
 
 	@Override
 	public int tamCromosoma() {
-		return (int) Math.ceil(Math.log(1.0 + (1.0 - 0) / 0.00000001) / Math.log(2));
+		return (int) Math.ceil(Math.log(1.0 + (12.1 - (-3.0)) / 0.001) / Math.log(2)) +
+		       (int) Math.ceil(Math.log(1.0 + (5.8 - 4.1) / 0.001) / Math.log(2));
 	}
 
 	@Override
@@ -39,7 +40,7 @@ public class ProblemaF1 extends agsimple.Problema {
 
 	@Override
 	public double probMutacion() {
-		return 0.1;
+		return 0.2;
 	}
 
 	@Override
@@ -49,7 +50,7 @@ public class ProblemaF1 extends agsimple.Problema {
 
 	@Override
 	public void lanzar() {
-		PoblacionF1 p = new PoblacionF1(this);
+		PoblacionF2 p = new PoblacionF2(this);
 		p.genPoblacionInicial();
 		p.evaluarPoblacion();
 		int gen = 0;
@@ -57,7 +58,7 @@ public class ProblemaF1 extends agsimple.Problema {
 		ventanaPrincipal().progressBar().setMinimum(1);
 		ventanaPrincipal().progressBar().setMaximum(numMaxGen());
 		while (gen < numMaxGen()) {
-			PoblacionF1 res = new PoblacionF1(this);
+			PoblacionF2 res = new PoblacionF2(this);
 			Seleccion.ruleta(p, res);
 			res.cruzar();
 			res.mutar();

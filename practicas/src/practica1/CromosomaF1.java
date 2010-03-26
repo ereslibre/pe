@@ -20,9 +20,9 @@ package practica1;
 
 import ag.Cruce;
 
-public class Cromosoma extends agsimple.Cromosoma {
+public class CromosomaF1 extends agsimple.Cromosoma {
 
-	Cromosoma(Poblacion poblacion) {
+	CromosomaF1(PoblacionF1 poblacion) {
 		super(poblacion);
 	}
 
@@ -34,7 +34,7 @@ public class Cromosoma extends agsimple.Cromosoma {
 
 	@Override
 	public Object clone() {
-		Cromosoma res = new Cromosoma((Poblacion) m_poblacion);
+		CromosomaF1 res = new CromosomaF1((PoblacionF1) m_poblacion);
 		res.m_madre = m_madre;
 		res.m_padre = m_padre;
 		res.m_cromosoma = new boolean[m_cromosoma.length];
@@ -49,7 +49,7 @@ public class Cromosoma extends agsimple.Cromosoma {
 		final int tamCromosoma = ((ProblemaF1) poblacion().problema()).tamCromosoma();
 		int posCruce = (int) Math.random() * tamCromosoma - 1;
 
-		Cromosoma hijo1 = (Cromosoma) poblacion().genCromosomaVacio();
+		CromosomaF1 hijo1 = (CromosomaF1) poblacion().genCromosomaVacio();
 		boolean hijo1c[] = new boolean[tamCromosoma];
 		for (int i = 0; i < tamCromosoma; ++i) {
 			if (i <= posCruce) {
@@ -62,7 +62,7 @@ public class Cromosoma extends agsimple.Cromosoma {
 		hijo1.setMadre(this);
 		hijo1.setPadre(cromosoma);
 
-		Cromosoma hijo2 = (Cromosoma) poblacion().genCromosomaVacio();
+		CromosomaF1 hijo2 = (CromosomaF1) poblacion().genCromosomaVacio();
 		boolean hijo2c[] = new boolean[tamCromosoma];
 		for (int i = 0; i < tamCromosoma; ++i) {
 			if (i <= posCruce) {
@@ -93,7 +93,7 @@ public class Cromosoma extends agsimple.Cromosoma {
 	@Override
 	public Object fenotipo() {
 		final int tamCromosoma = ((ProblemaF1) poblacion().problema()).tamCromosoma();
-		return bin2dec(m_cromosoma) * (1.0 / (Math.pow(2, tamCromosoma) - 1));
+		return bin2dec(m_cromosoma) * (1.0 / (Math.pow(2, tamCromosoma) - 1.0));
 	}
 
 	public Double bin2dec(boolean[] m_cromosoma) {

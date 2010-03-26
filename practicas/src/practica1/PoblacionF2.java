@@ -20,15 +20,15 @@ package practica1;
 
 import agsimple.Problema;
 
-public class Poblacion extends agsimple.Poblacion {
+public class PoblacionF2 extends agsimple.Poblacion {
 
-	public Poblacion(Problema problema) {
+	public PoblacionF2(Problema problema) {
 		super(problema);
 	}
 
 	@Override
-	public Cromosoma generaCromosoma() {
-		return new Cromosoma(this);
+	public CromosomaF2 generaCromosoma() {
+		return new CromosomaF2(this);
 	}
 
 }
