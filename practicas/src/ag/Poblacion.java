@@ -28,6 +28,7 @@ public abstract class Poblacion {
 	private ArrayList<Double>    m_puntuacionesAcumuladas;
 	private Cromosoma            m_mejor;
 	private Double               m_evaluacionMaxima;
+	private Double               m_aptitudMedia;
 
 	public Poblacion(Problema problema) {
 		m_poblacion = new ArrayList<Cromosoma>();
@@ -98,15 +99,22 @@ public abstract class Poblacion {
 		}
 	}
 
+	public Double aptitudMedia() {
+		return m_aptitudMedia;
+	}
+
 	public void evaluarPoblacion() {
 		{
 			m_evaluacionMaxima = 0.0;
+			m_aptitudMedia = 0.0;
 			ListIterator<Cromosoma> it = m_poblacion.listIterator();
 			while (it.hasNext()) {
 				final Cromosoma c = it.next();
 				m_evaluacionMaxima = Math.max(m_evaluacionMaxima, c.evaluacion());
+				m_aptitudMedia += c.aptitud();
 			}
 			m_evaluacionMaxima *= 1.05;
+			m_aptitudMedia /= problema().tamPoblacion();
 		}
 		{
 			m_puntuacionesAcumuladas = new ArrayList<Double>();

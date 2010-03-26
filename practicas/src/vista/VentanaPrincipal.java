@@ -76,7 +76,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public Plot2DPanel grafica3() {
-		return m_grafica1;
+		return m_grafica3;
 	}
 
 	JComponent problema() {

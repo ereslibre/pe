@@ -55,18 +55,27 @@ public class ProblemaF2 extends agsimple.Problema {
 		p.evaluarPoblacion();
 		int gen = 0;
 
-		ventanaPrincipal().grafica1().removeAllPlots();
 		ventanaPrincipal().progressBar().setMinimum(1);
 		ventanaPrincipal().progressBar().setMaximum(numMaxGen());
-		double[] grafica1xMejorAlgoritmo = new double[numMaxGen()];
+
+		ventanaPrincipal().grafica1().removeAllPlots();
+		ventanaPrincipal().grafica2().removeAllPlots();
+		ventanaPrincipal().grafica3().removeAllPlots();
+		double[] ejex = new double[numMaxGen()];
+		for (int i = 0; i < numMaxGen(); ++i) {
+			ejex[i] = i;
+		}
 		double[] grafica1yMejorAlgoritmo = new double[numMaxGen()];
-		double[] grafica1xMejorGeneracion = new double[numMaxGen()];
 		double[] grafica1yMejorGeneracion = new double[numMaxGen()];
+		double[] grafica2yMediaAptitud = new double[numMaxGen()];
+		double[] grafica2yMaximaAptitud = new double[numMaxGen()];
+		double[] grafica3yPresionSelectiva = new double[numMaxGen()];
 		while (gen < numMaxGen()) {
-			grafica1xMejorAlgoritmo[gen] = gen;
 			grafica1yMejorAlgoritmo[gen] = getMejor().evaluacion();
-			grafica1xMejorGeneracion[gen] = gen;
 			grafica1yMejorGeneracion[gen] = p.getMejor().evaluacion();
+			grafica2yMediaAptitud[gen] = p.aptitudMedia();
+			grafica2yMaximaAptitud[gen] = p.getMejor().aptitud();
+			grafica3yPresionSelectiva[gen] = p.getMejor().aptitud() / p.aptitudMedia();
 
 			PoblacionF2 res = new PoblacionF2(this);
 			Seleccion.ruleta(p, res);
@@ -77,8 +86,11 @@ public class ProblemaF2 extends agsimple.Problema {
 			++gen;
 			ventanaPrincipal().progressBar().setValue(gen);
 		}
-		ventanaPrincipal().grafica1().addLinePlot("Algoritmo", grafica1xMejorAlgoritmo, grafica1yMejorAlgoritmo);
-		ventanaPrincipal().grafica1().addLinePlot("Generación", grafica1xMejorGeneracion, grafica1yMejorGeneracion);
+		ventanaPrincipal().grafica1().addLinePlot("Algoritmo", ejex, grafica1yMejorAlgoritmo);
+		ventanaPrincipal().grafica1().addLinePlot("Generación", ejex, grafica1yMejorGeneracion);
+		ventanaPrincipal().grafica2().addLinePlot("Aptitud Media", ejex, grafica2yMediaAptitud);
+		ventanaPrincipal().grafica2().addLinePlot("Aptitud Máxima", ejex, grafica2yMaximaAptitud);
+		ventanaPrincipal().grafica3().addLinePlot("Presión Selectiva", ejex, grafica3yPresionSelectiva);
 		System.out.println("El mejor es " + getMejor().fenotipo());
 		System.out.println("Evaluación es " + getMejor().evaluacion());
 	}
