@@ -39,6 +39,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -515,7 +516,8 @@ public class VentanaPrincipal extends JFrame {
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.weighty = 10;
 		gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-		p.add(m_resultado, gridBagConstraints);
+		JScrollPane resultado = new JScrollPane(m_resultado, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		p.add(resultado, gridBagConstraints);
 
 		gridBagConstraints.gridy = 11;
 		gridBagConstraints.gridx = 0;

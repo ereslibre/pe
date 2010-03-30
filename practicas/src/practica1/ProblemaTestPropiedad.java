@@ -126,7 +126,12 @@ public class ProblemaTestPropiedad extends agsimple.Problema {
 		ventanaPrincipal().grafica1().removeAllPlots();
 		ventanaPrincipal().grafica2().removeAllPlots();
 		ventanaPrincipal().grafica3().removeAllPlots();
-	
+
+		int k = 0;
+		int mejor = -1;
+		ag.Cromosoma mejorCromosoma = null;
+		String resString = new String();
+
 		while (m_pasoActual <= m_total) {
 			Poblacion p = genPoblacionVacia();
 			p.genPoblacionInicial();
@@ -163,18 +168,29 @@ public class ProblemaTestPropiedad extends agsimple.Problema {
 			++act;
 			ventanaPrincipal().progressBar().setValue(act);
 
+			if ((mejor == -1) || (getMejor().aptitud() > mejorCromosoma.aptitud())) {
+				mejor = k;
+				mejorCromosoma = getMejor();
+			}
+
 			ventanaPrincipal().grafica1().addLinePlot("Global (" + atributo + String.valueOf(m_pasoActual) + ")", ejex, grafica1yMejorAlgoritmo);
 			ventanaPrincipal().grafica1().addLinePlot("Generación Actual (" + atributo + String.valueOf(m_pasoActual) + ")", ejex, grafica1yMejorGeneracion);
 			ventanaPrincipal().grafica2().addLinePlot("Media por Generación (" + atributo + String.valueOf(m_pasoActual) + ")", ejex, grafica2yMediaAptitud);
 			ventanaPrincipal().grafica2().addLinePlot("Máxima por Generación (" + atributo + String.valueOf(m_pasoActual) + ")", ejex, grafica2yMaximaAptitud);
 			ventanaPrincipal().grafica3().addLinePlot("Presión Selectiva (" + atributo + String.valueOf(m_pasoActual) + ")", ejex, grafica3yPresionSelectiva);
 
+			resString += "\tIteración " + k + ":\tEl mejor es:\t" + getMejor().fenotipo();
+			resString += "\n\t\tEvaluación:\t" + getMejor().evaluacion() + "\n\n";
+
 			m_pasoActual += m_paso;
+			++k;
 		}
 
 		ventanaPrincipal().terminado();
-		ventanaPrincipal().resultado().setText("\tEl mejor es:\t" + getMejor().fenotipo());
-		ventanaPrincipal().resultado().append("\n\tEvaluación:\t" + getMejor().evaluacion());
+		resString += "\tGeneral:\tEl mejor es:\t" + mejorCromosoma.fenotipo();
+		resString += "\n\t\tIteración:\t" + mejor;
+		resString += "\n\t\tEvaluación:\t" + mejorCromosoma.evaluacion();
+		ventanaPrincipal().resultado().setText(resString);
 	}
 
 	@Override
