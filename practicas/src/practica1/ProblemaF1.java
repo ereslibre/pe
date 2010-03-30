@@ -26,7 +26,7 @@ public class ProblemaF1 extends agsimple.Problema {
 	public int tamCromosoma() {
 		return (int) Math.ceil(Math.log(1.0 + 1.0 / precision()) / Math.log(2));
 	}
-
+	
 	@Override
 	protected Poblacion genPoblacionVacia() {
 		return new PoblacionF1(this);

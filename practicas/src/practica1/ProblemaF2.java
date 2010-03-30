@@ -27,8 +27,6 @@ public class ProblemaF2 extends agsimple.Problema {
 		return (int) Math.ceil(Math.log(1.0 + 15.1 / precision()) / Math.log(2)) +
 		       (int) Math.ceil(Math.log(1.0 + (5.8 - 4.1) / precision()) / Math.log(2));
 	}
-
-	@Override
 	protected Poblacion genPoblacionVacia() {
 		return new PoblacionF2(this);
 	}
