@@ -35,18 +35,36 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 
 import org.math.plot.Plot2DPanel;
 
 public class VentanaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JTabbedPane   m_tabbedPane = new JTabbedPane();
-	private Plot2DPanel   m_grafica1 = new Plot2DPanel();
-	private Plot2DPanel   m_grafica2 = new Plot2DPanel();
-	private Plot2DPanel   m_grafica3 = new Plot2DPanel();
-	private JComboBox     m_problema = new JComboBox();
-	private JProgressBar  m_progressBar = new JProgressBar();
+	private JTabbedPane  m_tabbedPane    = new JTabbedPane();
+	private Plot2DPanel  m_grafica1      = new Plot2DPanel();
+	private Plot2DPanel  m_grafica2      = new Plot2DPanel();
+	private Plot2DPanel  m_grafica3      = new Plot2DPanel();
+	private JComboBox    m_problema      = new JComboBox();
+	private JProgressBar m_progressBar   = new JProgressBar();
+	private JTextField   m_maxGen        = new JTextField();
+	private JTextField   m_probCruce     = new JTextField();
+	private JTextField   m_probMutacion  = new JTextField();
+	private JTextField   m_tamPoblacion  = new JTextField();
+	private JTextField   m_precision     = new JTextField();
+	private JTextField   m_maxGen2       = new JTextField();
+	private JTextField   m_probCruce2    = new JTextField();
+	private JTextField   m_probMutacion2 = new JTextField();
+	private JTextField   m_tamPoblacion2 = new JTextField();
+	private JTextField   m_precision2    = new JTextField();
+	private JTextField   m_maxGenp       = new JTextField();
+	private JTextField   m_probCrucep    = new JTextField();
+	private JTextField   m_probMutacionp = new JTextField();
+	private JTextField   m_tamPoblacionp = new JTextField();
+	private JTextField   m_precisionp    = new JTextField();
+	private JTextField   m_prob5N        = new JTextField();
+	private JButton      m_lanzar        = new JButton();
 
 	VentanaPrincipal() {
 		super();
@@ -61,6 +79,26 @@ public class VentanaPrincipal extends JFrame {
 		setSize(640, 480);
 		setLocationRelativeTo(getRootPane());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+		m_maxGen.setText("100");
+		m_probCruce.setText("0.6");
+		m_probMutacion.setText("0.1");
+		m_tamPoblacion.setText("100");
+		m_precision.setText("0.000001");
+
+		m_maxGen2.setText("200");
+		m_probCruce2.setText("0.8");
+		m_probMutacion2.setText("0.2");
+		m_tamPoblacion2.setText("200");
+		m_precision2.setText("0.0000001");
+
+		m_maxGenp.setText("25");
+		m_probCrucep.setText("0.5");
+		m_probMutacionp.setText("0.025");
+		m_tamPoblacionp.setText("25");
+		m_precisionp.setText("0.000000025");
+
+		m_prob5N.setText("1.0");
 	}
 
 	public JProgressBar progressBar() {
@@ -79,100 +117,185 @@ public class VentanaPrincipal extends JFrame {
 		return m_grafica3;
 	}
 
+	public int maxGen() {
+		return Integer.valueOf(m_maxGen.getText());
+	}
+
+	public double probCruce() {
+		return Double.valueOf(m_probCruce.getText());
+	}
+
+	public double probMutacion() {
+		return Double.valueOf(m_probMutacion.getText());
+	}
+
+	public int tamPoblacion() {
+		return Integer.valueOf(m_tamPoblacion.getText());
+	}
+
+	public double precision() {
+		return Double.valueOf(m_precision.getText());
+	}
+
+	public double n() {
+		return Double.valueOf(m_prob5N.getText());
+	}
+
+	public void terminado() {
+		m_lanzar.setEnabled(true);
+	}
+
 	JComponent problema() {
         JPanel p = new JPanel();
 		p.setLayout(new GridBagLayout());
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.fill = GridBagConstraints.BOTH;
+		gridBagConstraints.weightx = 10;
 		gridBagConstraints.insets = new Insets(3, 3, 3, 3);
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 0;
 
 		gridBagConstraints.gridwidth = 5;
-		final String[] nombreProblemas = { "Problema 1", "Problema 2", "Problema 3", "Problema 4", "Problema 5"};
+		final String[] nombreProblemas = { "Problema 1", "Problema 2", "Problema 3", "Problema 4", "Problema 5" };
 		m_problema = new JComboBox(nombreProblemas);
 		p.add(m_problema, gridBagConstraints);
 
 		gridBagConstraints.gridy = 1;
 		p.add(new JCheckBox("Rangos"), gridBagConstraints);
 
-		gridBagConstraints.gridwidth = 1;
 		gridBagConstraints.gridy = 2;
-		p.add(new JRadioButton(), gridBagConstraints);
+		gridBagConstraints.gridx = 2;
+		p.add(new JLabel("De"), gridBagConstraints);
+		gridBagConstraints.gridx = 3;
+		p.add(new JLabel("A"), gridBagConstraints);
+		gridBagConstraints.gridx = 4;
+		p.add(new JLabel("Paso"), gridBagConstraints);
 
-		gridBagConstraints.gridx = 1;
-		p.add(new JLabel("Tamaño de Población"), gridBagConstraints);
-
+		gridBagConstraints.gridwidth = 1;
 		gridBagConstraints.gridy = 3;
 		gridBagConstraints.gridx = 0;
 		p.add(new JRadioButton(), gridBagConstraints);
 
 		gridBagConstraints.gridx = 1;
-		p.add(new JLabel("Número Máximo de Generaciones"), gridBagConstraints);
+		p.add(new JLabel("Tamaño de Población"), gridBagConstraints);
+
+		gridBagConstraints.gridx = 2;
+		p.add(m_tamPoblacion, gridBagConstraints);
+
+		gridBagConstraints.gridx = 3;
+		p.add(m_tamPoblacion2, gridBagConstraints);
+
+		gridBagConstraints.gridx = 4;
+		p.add(m_tamPoblacionp, gridBagConstraints);
 
 		gridBagConstraints.gridy = 4;
 		gridBagConstraints.gridx = 0;
 		p.add(new JRadioButton(), gridBagConstraints);
 
 		gridBagConstraints.gridx = 1;
-		p.add(new JLabel("Porcentaje de Cruce"), gridBagConstraints);
+		p.add(new JLabel("Número Máximo de Generaciones"), gridBagConstraints);
+
+		gridBagConstraints.gridx = 2;
+		p.add(m_maxGen, gridBagConstraints);
+
+		gridBagConstraints.gridx = 3;
+		p.add(m_maxGen2, gridBagConstraints);
+
+		gridBagConstraints.gridx = 4;
+		p.add(m_maxGenp, gridBagConstraints);
 
 		gridBagConstraints.gridy = 5;
 		gridBagConstraints.gridx = 0;
 		p.add(new JRadioButton(), gridBagConstraints);
 
 		gridBagConstraints.gridx = 1;
-		p.add(new JLabel("Porcentaje de Mutación"), gridBagConstraints);
+		p.add(new JLabel("Probabilidad de Cruce"), gridBagConstraints);
+
+		gridBagConstraints.gridx = 2;
+		p.add(m_probCruce, gridBagConstraints);
+
+		gridBagConstraints.gridx = 3;
+		p.add(m_probCruce2, gridBagConstraints);
+
+		gridBagConstraints.gridx = 4;
+		p.add(m_probCrucep, gridBagConstraints);
 
 		gridBagConstraints.gridy = 6;
 		gridBagConstraints.gridx = 0;
 		p.add(new JRadioButton(), gridBagConstraints);
 
 		gridBagConstraints.gridx = 1;
-		p.add(new JLabel("Precisión"), gridBagConstraints);
+		p.add(new JLabel("Probabilidad de Mutación"), gridBagConstraints);
+
+		gridBagConstraints.gridx = 2;
+		p.add(m_probMutacion, gridBagConstraints);
+
+		gridBagConstraints.gridx = 3;
+		p.add(m_probMutacion2, gridBagConstraints);
+
+		gridBagConstraints.gridx = 4;
+		p.add(m_probMutacionp, gridBagConstraints);
 
 		gridBagConstraints.gridy = 7;
 		gridBagConstraints.gridx = 0;
-		JButton lanzar = new JButton("Lanzar");
-		p.add(lanzar, gridBagConstraints);
+		p.add(new JRadioButton(), gridBagConstraints);
+
+		gridBagConstraints.gridx = 1;
+		p.add(new JLabel("Precisión"), gridBagConstraints);
+
+		gridBagConstraints.gridx = 2;
+		p.add(m_precision, gridBagConstraints);
+
+		gridBagConstraints.gridx = 3;
+		p.add(m_precision2, gridBagConstraints);
+
+		gridBagConstraints.gridx = 4;
+		p.add(m_precisionp, gridBagConstraints);
+
+		gridBagConstraints.gridy = 8;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.weighty = 10;
+		p.add(new JLabel(), gridBagConstraints);
+
+		gridBagConstraints.weighty = 0;
+
+		gridBagConstraints.gridy = 9;
+		gridBagConstraints.gridx = 4;
+		m_lanzar = new JButton("Lanzar");
+		p.add(m_lanzar, gridBagConstraints);
 
 		final VentanaPrincipal v = this;
-		lanzar.addActionListener(new ActionListener() {
+		m_lanzar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				m_lanzar.setEnabled(false);
+				ag.Problema p = null;
 				switch (m_problema.getSelectedIndex()) {
 					case 0: {
-						practica1.ProblemaF1 problema = new practica1.ProblemaF1();
-						problema.setVentanaPrincipal(v);
-						problema.start();
+						p = new practica1.ProblemaF1();
 						break;
 					}
 					case 1: {
-						practica1.ProblemaF2 problema = new practica1.ProblemaF2();
-						problema.setVentanaPrincipal(v);
-						problema.start();
+						p = new practica1.ProblemaF2();
 						break;
 					}
 					case 2: {
-						practica1.ProblemaF3 problema = new practica1.ProblemaF3();
-						problema.setVentanaPrincipal(v);
-						problema.start();
+						p = new practica1.ProblemaF3();
 						break;
 					}
 					case 3: {
-						practica1.ProblemaF4 problema = new practica1.ProblemaF4();
-						problema.setVentanaPrincipal(v);
-						problema.start();
+						p = new practica1.ProblemaF4();
 						break;
 					}
 					case 4: {
-						practica1.ProblemaF5 problema = new practica1.ProblemaF5();
-						problema.setVentanaPrincipal(v);
-						problema.start();
+						p = new practica1.ProblemaF5();
 						break;
 					}
 					default:
 						break;
 				}
+				p.setVentanaPrincipal(v);
+				p.start();
 			}
         });
 
@@ -181,21 +304,21 @@ public class VentanaPrincipal extends JFrame {
 
 	JComponent generaGrafica1() {
 		m_grafica1.setAxisLabel(0, "Generación");
-		m_grafica1.setAxisLabel(1, "Máximo/Mínimo");
+		m_grafica1.setAxisLabel(1, "Evaluación");
 		m_grafica1.setLegendOrientation(Plot2DPanel.EAST);
 		return m_grafica1;
 	}
 
 	JComponent generaGrafica2() {
 		m_grafica2.setAxisLabel(0, "Generación");
-		m_grafica2.setAxisLabel(1, "Media/Máxima");
+		m_grafica2.setAxisLabel(1, "Aptitud");
 		m_grafica2.setLegendOrientation(Plot2DPanel.EAST);
 		return m_grafica2;
 	}
 
 	JComponent generaGrafica3() {
 		m_grafica3.setAxisLabel(0, "Generación");
-		m_grafica3.setAxisLabel(1, "Presión selectiva");
+		m_grafica3.setAxisLabel(1, "Presión Selectiva");
 		m_grafica3.setLegendOrientation(Plot2DPanel.EAST);
 		return m_grafica3;
 	}

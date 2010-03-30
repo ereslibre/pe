@@ -125,7 +125,7 @@ public abstract class Poblacion {
 				m_aptitudMedia += c.aptitud();
 			}
 			m_evaluacionMaxima *= 1.05;
-			m_evaluacionMinima *= 1.05;
+			m_evaluacionMinima *= 0.95;
 			m_aptitudMedia /= problema().tamPoblacion();
 		}
 		{
