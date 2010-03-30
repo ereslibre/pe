@@ -163,16 +163,7 @@ public class VentanaPrincipal extends JFrame {
 		m_precisionRadio.addActionListener(listener);
 
 		m_tamPoblacionRadio.setSelected(true);
-		m_maxGen2.setEnabled(m_maxGenRadio.isSelected());
-		m_maxGenp.setEnabled(m_maxGenRadio.isSelected());
-		m_probCruce2.setEnabled(m_probCruceRadio.isSelected());
-		m_probCrucep.setEnabled(m_probCruceRadio.isSelected());
-		m_probMutacion2.setEnabled(m_probMutacionRadio.isSelected());
-		m_probMutacionp.setEnabled(m_probMutacionRadio.isSelected());
-		m_tamPoblacion2.setEnabled(m_tamPoblacionRadio.isSelected());
-		m_tamPoblacionp.setEnabled(m_tamPoblacionRadio.isSelected());
-		m_precision2.setEnabled(m_precisionRadio.isSelected());
-		m_precisionp.setEnabled(m_precisionRadio.isSelected());
+		trataIntervalos();
 	}
 
 	public JProgressBar progressBar() {
@@ -217,6 +208,7 @@ public class VentanaPrincipal extends JFrame {
 
 	public void terminado() {
 		activaODesactivaTodo(m_panelPrincipal, true);
+		trataIntervalos();
 	}
 
 	public void activaODesactivaTodo(Component c, boolean activa) {
@@ -229,7 +221,20 @@ public class VentanaPrincipal extends JFrame {
 		}
 	}
 
-	JComponent problema() {
+	private void trataIntervalos() {
+		m_maxGen2.setEnabled(m_maxGenRadio.isSelected());
+		m_maxGenp.setEnabled(m_maxGenRadio.isSelected());
+		m_probCruce2.setEnabled(m_probCruceRadio.isSelected());
+		m_probCrucep.setEnabled(m_probCruceRadio.isSelected());
+		m_probMutacion2.setEnabled(m_probMutacionRadio.isSelected());
+		m_probMutacionp.setEnabled(m_probMutacionRadio.isSelected());
+		m_tamPoblacion2.setEnabled(m_tamPoblacionRadio.isSelected());
+		m_tamPoblacionp.setEnabled(m_tamPoblacionRadio.isSelected());
+		m_precision2.setEnabled(m_precisionRadio.isSelected());
+		m_precisionp.setEnabled(m_precisionRadio.isSelected());
+	}
+
+	private JComponent problema() {
         JPanel p = new JPanel();
 		p.setLayout(new GridBagLayout());
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
