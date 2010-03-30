@@ -25,6 +25,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -128,6 +129,47 @@ public class VentanaPrincipal extends JFrame {
 		m_paso.setVisible(false);
 
 		m_prob5N.setText("1.0");
+
+		ButtonGroup group = new ButtonGroup();
+		group.add(m_maxGenRadio);
+		group.add(m_probCruceRadio);
+		group.add(m_probMutacionRadio);
+		group.add(m_tamPoblacionRadio);
+		group.add(m_precisionRadio);
+
+		ActionListener listener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				m_maxGen2.setEnabled(m_maxGenRadio.isSelected());
+				m_maxGenp.setEnabled(m_maxGenRadio.isSelected());
+				m_probCruce2.setEnabled(m_probCruceRadio.isSelected());
+				m_probCrucep.setEnabled(m_probCruceRadio.isSelected());
+				m_probMutacion2.setEnabled(m_probMutacionRadio.isSelected());
+				m_probMutacionp.setEnabled(m_probMutacionRadio.isSelected());
+				m_tamPoblacion2.setEnabled(m_tamPoblacionRadio.isSelected());
+				m_tamPoblacionp.setEnabled(m_tamPoblacionRadio.isSelected());
+				m_precision2.setEnabled(m_precisionRadio.isSelected());
+				m_precisionp.setEnabled(m_precisionRadio.isSelected());
+			}
+		};
+
+		m_maxGenRadio.addActionListener(listener);
+		m_probCruceRadio.addActionListener(listener);
+		m_probMutacionRadio.addActionListener(listener);
+		m_tamPoblacionRadio.addActionListener(listener);
+		m_precisionRadio.addActionListener(listener);
+
+		m_tamPoblacionRadio.setSelected(true);
+		m_maxGen2.setEnabled(m_maxGenRadio.isSelected());
+		m_maxGenp.setEnabled(m_maxGenRadio.isSelected());
+		m_probCruce2.setEnabled(m_probCruceRadio.isSelected());
+		m_probCrucep.setEnabled(m_probCruceRadio.isSelected());
+		m_probMutacion2.setEnabled(m_probMutacionRadio.isSelected());
+		m_probMutacionp.setEnabled(m_probMutacionRadio.isSelected());
+		m_tamPoblacion2.setEnabled(m_tamPoblacionRadio.isSelected());
+		m_tamPoblacionp.setEnabled(m_tamPoblacionRadio.isSelected());
+		m_precision2.setEnabled(m_precisionRadio.isSelected());
+		m_precisionp.setEnabled(m_precisionRadio.isSelected());
 	}
 
 	public JProgressBar progressBar() {
