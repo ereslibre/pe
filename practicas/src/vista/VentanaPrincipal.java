@@ -163,6 +163,9 @@ public class VentanaPrincipal extends JFrame {
 				m_precision2.setEnabled(m_precisionRadio.isSelected());
 				m_precisionp.setEnabled(m_precisionRadio.isSelected());
 				m_resultado.setText("\t(Resultado no generado)");
+				m_grafica1.removeAllPlots();
+				m_grafica2.removeAllPlots();
+				m_grafica3.removeAllPlots();
 			}
 		};
 
@@ -176,6 +179,9 @@ public class VentanaPrincipal extends JFrame {
 		m_resultado.setEditable(false);
 		m_resultado.setBackground(new Color(0,0,0,0));
 		m_resultado.setText("\t(Resultado no generado)");
+		m_grafica1.removeAllPlots();
+		m_grafica2.removeAllPlots();
+		m_grafica3.removeAllPlots();
 
 		m_tamPoblacionRadio.setSelected(true);
 		trataIntervalos();
@@ -381,6 +387,9 @@ public class VentanaPrincipal extends JFrame {
 				m_prob5N.setVisible(m_problema.getSelectedIndex() == 4);
 				m_prob5NLabel.setVisible(m_problema.getSelectedIndex() == 4);
 				m_resultado.setText("\t(Resultado no generado)");
+				m_grafica1.removeAllPlots();
+				m_grafica2.removeAllPlots();
+				m_grafica3.removeAllPlots();
 			}
         });
 
@@ -407,6 +416,9 @@ public class VentanaPrincipal extends JFrame {
 				m_a.setVisible(m_rangos.isSelected());
 				m_paso.setVisible(m_rangos.isSelected());
 				m_resultado.setText("\t(Resultado no generado)");
+				m_grafica1.removeAllPlots();
+				m_grafica2.removeAllPlots();
+				m_grafica3.removeAllPlots();
 			}
         });
 		p.add(m_rangos, gridBagConstraints);
