@@ -41,6 +41,10 @@ public abstract class Problema extends Thread {
 		return Double.valueOf(m_ventanaPrincipal.probMutacion());
 	}
 
+	public double precision() {
+		return Double.valueOf(m_ventanaPrincipal.precision());
+	}
+
 	protected abstract Poblacion genPoblacionVacia();
 
 	public Cromosoma getMejor() {
@@ -107,8 +111,8 @@ public abstract class Problema extends Thread {
 
 		if (limpiaAnterior) {
 			m_ventanaPrincipal.terminado();
-			System.out.println("El mejor es " + getMejor().fenotipo());
-			System.out.println("Evaluación es " + getMejor().evaluacion());
+			ventanaPrincipal().resultado().setText("\tEl mejor es:\t" + getMejor().fenotipo());
+			ventanaPrincipal().resultado().append("\n\tEvaluación:\t" + getMejor().evaluacion());
 		}
 	}
 

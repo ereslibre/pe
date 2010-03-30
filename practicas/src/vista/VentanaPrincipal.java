@@ -19,6 +19,7 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
@@ -39,6 +40,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import org.math.plot.Plot2DPanel;
@@ -73,6 +75,7 @@ public class VentanaPrincipal extends JFrame {
 	private JRadioButton m_probMutacionRadio = new JRadioButton();
 	private JRadioButton m_tamPoblacionRadio = new JRadioButton();
 	private JRadioButton m_precisionRadio    = new JRadioButton();
+	private JLabel       m_prob5NLabel       = new JLabel("N (Problema 5)");
 	private JTextField   m_prob5N            = new JTextField();
 	private JButton      m_lanzar            = new JButton();
 	private JLabel       m_de                = new JLabel("De");
@@ -80,6 +83,7 @@ public class VentanaPrincipal extends JFrame {
 	private JLabel       m_paso              = new JLabel("Paso");
 	private JPanel       m_panelPrincipal    = null;
 	private JCheckBox    m_rangos            = new JCheckBox("Rangos");
+	private JTextArea    m_resultado         = new JTextArea();
 
 	VentanaPrincipal() {
 		super();
@@ -133,7 +137,9 @@ public class VentanaPrincipal extends JFrame {
 		m_a.setVisible(false);
 		m_paso.setVisible(false);
 
-		m_prob5N.setText("1.0");
+		m_prob5NLabel.setVisible(false);
+		m_prob5N.setText("1");
+		m_prob5N.setVisible(false);
 
 		ButtonGroup group = new ButtonGroup();
 		group.add(m_maxGenRadio);
@@ -155,6 +161,7 @@ public class VentanaPrincipal extends JFrame {
 				m_tamPoblacionp.setEnabled(m_tamPoblacionRadio.isSelected());
 				m_precision2.setEnabled(m_precisionRadio.isSelected());
 				m_precisionp.setEnabled(m_precisionRadio.isSelected());
+				m_resultado.setText("\t(Resultado no generado)");
 			}
 		};
 
@@ -163,6 +170,11 @@ public class VentanaPrincipal extends JFrame {
 		m_probMutacionRadio.addActionListener(listener);
 		m_tamPoblacionRadio.addActionListener(listener);
 		m_precisionRadio.addActionListener(listener);
+
+		m_resultado.setOpaque(false);
+		m_resultado.setEditable(false);
+		m_resultado.setBackground(new Color(0,0,0,0));
+		m_resultado.setText("\t(Resultado no generado)");
 
 		m_tamPoblacionRadio.setSelected(true);
 		trataIntervalos();
@@ -246,6 +258,10 @@ public class VentanaPrincipal extends JFrame {
 
 	public double n() {
 		return Double.valueOf(m_prob5N.getText());
+	}
+
+	public JTextArea resultado() {
+		return m_resultado;
 	}
 
 	public void terminado() {
@@ -339,6 +355,8 @@ public class VentanaPrincipal extends JFrame {
 		m_tamPoblacionp.setEnabled(m_tamPoblacionRadio.isSelected());
 		m_precision2.setEnabled(m_precisionRadio.isSelected());
 		m_precisionp.setEnabled(m_precisionRadio.isSelected());
+		m_prob5N.setVisible(m_problema.getSelectedIndex() == 4);
+		m_prob5NLabel.setVisible(m_problema.getSelectedIndex() == 4);
 	}
 
 	private JComponent problema() {
@@ -355,6 +373,15 @@ public class VentanaPrincipal extends JFrame {
 		final String[] nombreProblemas = { "Problema 1", "Problema 2", "Problema 3", "Problema 4", "Problema 5" };
 		m_problema = new JComboBox(nombreProblemas);
 		p.add(m_problema, gridBagConstraints);
+
+		m_problema.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				m_prob5N.setVisible(m_problema.getSelectedIndex() == 4);
+				m_prob5NLabel.setVisible(m_problema.getSelectedIndex() == 4);
+				m_resultado.setText("\t(Resultado no generado)");
+			}
+        });
 
 		gridBagConstraints.gridy = 1;
 		m_rangos.addActionListener(new ActionListener() {
@@ -378,6 +405,7 @@ public class VentanaPrincipal extends JFrame {
 				m_de.setVisible(m_rangos.isSelected());
 				m_a.setVisible(m_rangos.isSelected());
 				m_paso.setVisible(m_rangos.isSelected());
+				m_resultado.setText("\t(Resultado no generado)");
 			}
         });
 		p.add(m_rangos, gridBagConstraints);
@@ -472,14 +500,26 @@ public class VentanaPrincipal extends JFrame {
 		p.add(m_precisionp, gridBagConstraints);
 
 		gridBagConstraints.gridy = 8;
-		gridBagConstraints.gridx = 0;
-		gridBagConstraints.weighty = 10;
-		p.add(new JLabel(), gridBagConstraints);
+		gridBagConstraints.gridx = 1;
+		p.add(m_prob5NLabel, gridBagConstraints);
 
-		gridBagConstraints.weighty = 0;
+		gridBagConstraints.gridx = 2;
+		p.add(m_prob5N, gridBagConstraints);
 
 		gridBagConstraints.gridy = 9;
-		gridBagConstraints.gridx = 4;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+		p.add(new JLabel("Resultado:"), gridBagConstraints);
+
+		gridBagConstraints.gridy = 10;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.weighty = 10;
+		gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+		p.add(m_resultado, gridBagConstraints);
+
+		gridBagConstraints.gridy = 11;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.weighty = 0;
 		m_lanzar = new JButton("Lanzar");
 		p.add(m_lanzar, gridBagConstraints);
 
@@ -487,6 +527,7 @@ public class VentanaPrincipal extends JFrame {
 		m_lanzar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				m_resultado.setText("\tGenerando resultado...");
 				activaODesactivaTodo(v.m_panelPrincipal, false);
 				ag.Problema p = null;
 				if (!m_rangos.isSelected()) {

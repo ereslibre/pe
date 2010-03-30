@@ -65,6 +65,14 @@ public class ProblemaTestPropiedad extends agsimple.Problema {
 		}
 	}
 
+	public double precision() {
+		if (ventanaPrincipal().rangoSeleccionado() == 4) {
+			return m_pasoActual;
+		} else {
+			return super.precision();
+		}
+	}
+
 	public void lanzar(boolean limpiaAnterior) {
 		String atributo = null;
 
@@ -165,9 +173,8 @@ public class ProblemaTestPropiedad extends agsimple.Problema {
 		}
 
 		ventanaPrincipal().terminado();
-
-		System.out.println("El mejor es " + getMejor().fenotipo());
-		System.out.println("Evaluación es " + getMejor().evaluacion());
+		ventanaPrincipal().resultado().setText("\tEl mejor es:\t" + getMejor().fenotipo());
+		ventanaPrincipal().resultado().append("\n\tEvaluación:\t" + getMejor().evaluacion());
 	}
 
 	@Override

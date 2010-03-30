@@ -24,7 +24,7 @@ public class ProblemaF3 extends agsimple.Problema {
 
 	@Override
 	public int tamCromosoma() {
-		return (int) Math.ceil(Math.log(1.0 + 25.0 / ventanaPrincipal().precision()) / Math.log(2));
+		return (int) Math.ceil(Math.log(1.0 + 25.0 / precision()) / Math.log(2));
 	}
 
 	@Override
