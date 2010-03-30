@@ -103,7 +103,7 @@ public class VentanaPrincipal extends JFrame {
 		m_probCruce.setText("0.6");
 		m_probMutacion.setText("0.1");
 		m_tamPoblacion.setText("100");
-		m_precision.setText("0.000001");
+		m_precision.setText("0.0000001");
 
 		m_maxGen2.setText("200");
 		m_maxGen2.setVisible(false);
@@ -113,7 +113,7 @@ public class VentanaPrincipal extends JFrame {
 		m_probMutacion2.setVisible(false);
 		m_tamPoblacion2.setText("200");
 		m_tamPoblacion2.setVisible(false);
-		m_precision2.setText("0.0000001");
+		m_precision2.setText("0.000001");
 		m_precision2.setVisible(false);
 
 		m_maxGenp.setText("25");
@@ -527,6 +527,7 @@ public class VentanaPrincipal extends JFrame {
 		m_lanzar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				m_progressBar.setValue(0);
 				m_resultado.setText("\tGenerando resultado...");
 				activaODesactivaTodo(v.m_panelPrincipal, false);
 				ag.Problema p = null;
