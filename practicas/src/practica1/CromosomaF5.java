@@ -57,7 +57,7 @@ public class CromosomaF5 extends agsimple.Cromosoma {
 
 	@Override
 	public Cruce cruzar(ag.Cromosoma cromosoma) {
-		final int tamCromosoma = ((ProblemaF5) poblacion().problema()).tamCromosoma();
+		final int tamCromosoma = ((agsimple.Problema) poblacion().problema()).tamCromosoma();
 		int posCruce = (int) ((Math.random() * (double) tamCromosoma) - 1.0);
 
 		CromosomaF5 hijo1 = (CromosomaF5) poblacion().genCromosomaVacio();
@@ -119,7 +119,7 @@ public class CromosomaF5 extends agsimple.Cromosoma {
 	@Override
 	public Object fenotipo() {
 		ArrayList<Double> res = new ArrayList<Double>();
-		final int tamCromosoma = ((ProblemaF5) poblacion().problema()).tamCromosoma();
+		final int tamCromosoma = ((agsimple.Problema) poblacion().problema()).tamCromosoma();
 		final int tamGen = (int) (Math.ceil(Math.log(1.0 + (Math.PI - 0) / 0.000001) / Math.log(2)));
 		for (int i = 0; i < tamCromosoma / tamGen; ++i) {
 			boolean[] gen = new boolean[tamGen];
@@ -148,7 +148,7 @@ public class CromosomaF5 extends agsimple.Cromosoma {
 	@Override
 	public void mutar() {
 		boolean genotipo[] = (boolean[]) genotipo();
-		for (int i = 0; i < ((ProblemaF5) poblacion().problema()).tamCromosoma(); ++i) {
+		for (int i = 0; i < ((agsimple.Problema) poblacion().problema()).tamCromosoma(); ++i) {
 			if (Math.random() < poblacion().problema().probMutacion()) {
 				genotipo[i] = !genotipo[i];
 			}

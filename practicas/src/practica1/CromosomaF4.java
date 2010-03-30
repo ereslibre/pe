@@ -57,7 +57,7 @@ public class CromosomaF4 extends agsimple.Cromosoma {
 
 	@Override
 	public Cruce cruzar(ag.Cromosoma cromosoma) {
-		final int tamCromosoma = ((ProblemaF4) poblacion().problema()).tamCromosoma();
+		final int tamCromosoma = ((agsimple.Problema) poblacion().problema()).tamCromosoma();
 		final int tamx = ((int) Math.ceil(Math.log(1.0 + (12.1 - (-3.0)) / 0.001) / Math.log(2)));
 		final int posCruceGen1 = (int) (Math.random() * (Double) Math.ceil(Math.log(1.0 + (12.1 - (-3.0)) / 0.001) / Math.log(2)));
 		final int posCruceGen2 = (int) (Math.random() * (Double) Math.ceil(Math.log(1.0 + (5.8 - 4.1) / 0.001) / Math.log(2)));
@@ -168,7 +168,7 @@ public class CromosomaF4 extends agsimple.Cromosoma {
 	@Override
 	public void mutar() {
 		boolean genotipo[] = (boolean[]) genotipo();
-		for (int i = 0; i < ((ProblemaF4) poblacion().problema()).tamCromosoma(); ++i) {
+		for (int i = 0; i < ((agsimple.Problema) poblacion().problema()).tamCromosoma(); ++i) {
 			if (Math.random() < poblacion().problema().probMutacion()) {
 				genotipo[i] = !genotipo[i];
 			}

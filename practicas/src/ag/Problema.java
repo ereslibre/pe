@@ -53,31 +53,34 @@ public abstract class Problema extends Thread {
 
 	@Override
 	public void run() {
-		lanzar();
+		lanzar(true);
 	}
 
-	private void lanzar() {
+	public void lanzar(boolean limpiaAnterior) {
 		Poblacion p = genPoblacionVacia();
 		p.genPoblacionInicial();
 		p.evaluarPoblacion();
 		int gen = 0;
 
-		m_ventanaPrincipal.progressBar().setMinimum(1);
-		m_ventanaPrincipal.progressBar().setMaximum(numMaxGen());
+		if (limpiaAnterior) {
+			m_ventanaPrincipal.progressBar().setMinimum(1);
+			m_ventanaPrincipal.progressBar().setMaximum(numMaxGen());
+			m_ventanaPrincipal.grafica1().removeAllPlots();
+			m_ventanaPrincipal.grafica2().removeAllPlots();
+			m_ventanaPrincipal.grafica3().removeAllPlots();
+		}
 
-		m_ventanaPrincipal.grafica1().removeAllPlots();
-		m_ventanaPrincipal.grafica2().removeAllPlots();
-		m_ventanaPrincipal.grafica3().removeAllPlots();
-		double[] ejex = new double[numMaxGen()];
-		for (int i = 0; i < numMaxGen(); ++i) {
+		double[] ejex = new double[numMaxGen() + 1];
+		for (int i = 0; i <= numMaxGen(); ++i) {
 			ejex[i] = i;
 		}
-		double[] grafica1yMejorAlgoritmo = new double[numMaxGen()];
-		double[] grafica1yMejorGeneracion = new double[numMaxGen()];
-		double[] grafica2yMediaAptitud = new double[numMaxGen()];
-		double[] grafica2yMaximaAptitud = new double[numMaxGen()];
-		double[] grafica3yPresionSelectiva = new double[numMaxGen()];
-		while (gen < numMaxGen()) {
+		double[] grafica1yMejorAlgoritmo = new double[numMaxGen() + 1];
+		double[] grafica1yMejorGeneracion = new double[numMaxGen() + 1];
+		double[] grafica2yMediaAptitud = new double[numMaxGen() + 1];
+		double[] grafica2yMaximaAptitud = new double[numMaxGen() + 1];
+		double[] grafica3yPresionSelectiva = new double[numMaxGen() + 1];
+
+		while (gen <= numMaxGen()) {
 			grafica1yMejorAlgoritmo[gen] = getMejor().evaluacion();
 			grafica1yMejorGeneracion[gen] = p.getMejor().evaluacion();
 			grafica2yMediaAptitud[gen] = p.aptitudMedia();
@@ -91,16 +94,22 @@ public abstract class Problema extends Thread {
 			res.evaluarPoblacion();
 			p = res;
 			++gen;
-			m_ventanaPrincipal.progressBar().setValue(gen);
+
+			if (limpiaAnterior) {
+				m_ventanaPrincipal.progressBar().setValue(gen);
+			}
 		}
 		m_ventanaPrincipal.grafica1().addLinePlot("Global", ejex, grafica1yMejorAlgoritmo);
 		m_ventanaPrincipal.grafica1().addLinePlot("Generación Actual", ejex, grafica1yMejorGeneracion);
 		m_ventanaPrincipal.grafica2().addLinePlot("Media por Generación", ejex, grafica2yMediaAptitud);
 		m_ventanaPrincipal.grafica2().addLinePlot("Máxima por Generación", ejex, grafica2yMaximaAptitud);
 		m_ventanaPrincipal.grafica3().addLinePlot("Presión Selectiva", ejex, grafica3yPresionSelectiva);
-		m_ventanaPrincipal.terminado();
-		System.out.println("El mejor es " + getMejor().fenotipo());
-		System.out.println("Evaluación es " + getMejor().evaluacion());
+
+		if (limpiaAnterior) {
+			m_ventanaPrincipal.terminado();
+			System.out.println("El mejor es " + getMejor().fenotipo());
+			System.out.println("Evaluación es " + getMejor().evaluacion());
+		}
 	}
 
 	public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {

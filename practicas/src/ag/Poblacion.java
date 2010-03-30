@@ -65,6 +65,10 @@ public abstract class Poblacion {
 	 */
 	protected abstract void anadeCromosomaAleatorio();
 
+	public void setProblema(Problema problema) {
+		m_problema = problema;
+	}
+
 	public void cruzar() {
 		ArrayList<Cromosoma> cruce = new ArrayList<Cromosoma>();
 		do {

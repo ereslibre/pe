@@ -26,6 +26,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -78,6 +79,7 @@ public class VentanaPrincipal extends JFrame {
 	private JLabel       m_a                 = new JLabel("A");
 	private JLabel       m_paso              = new JLabel("Paso");
 	private JPanel       m_panelPrincipal    = null;
+	private JCheckBox    m_rangos            = new JCheckBox("Rangos");
 
 	VentanaPrincipal() {
 		super();
@@ -186,20 +188,60 @@ public class VentanaPrincipal extends JFrame {
 		return Integer.valueOf(m_maxGen.getText());
 	}
 
+	public int maxGen2() {
+		return Integer.valueOf(m_maxGen2.getText());
+	}
+
+	public int maxGenp() {
+		return Integer.valueOf(m_maxGenp.getText());
+	}
+
 	public double probCruce() {
 		return Double.valueOf(m_probCruce.getText());
+	}
+
+	public double probCruce2() {
+		return Double.valueOf(m_probCruce2.getText());
+	}
+
+	public double probCrucep() {
+		return Double.valueOf(m_probCrucep.getText());
 	}
 
 	public double probMutacion() {
 		return Double.valueOf(m_probMutacion.getText());
 	}
 
+	public double probMutacion2() {
+		return Double.valueOf(m_probMutacion2.getText());
+	}
+
+	public double probMutacionp() {
+		return Double.valueOf(m_probMutacionp.getText());
+	}
+
 	public int tamPoblacion() {
 		return Integer.valueOf(m_tamPoblacion.getText());
 	}
 
+	public int tamPoblacion2() {
+		return Integer.valueOf(m_tamPoblacion2.getText());
+	}
+
+	public int tamPoblacionp() {
+		return Integer.valueOf(m_tamPoblacionp.getText());
+	}
+
 	public double precision() {
 		return Double.valueOf(m_precision.getText());
+	}
+
+	public double precision2() {
+		return Double.valueOf(m_precision2.getText());
+	}
+
+	public double precisionp() {
+		return Double.valueOf(m_precisionp.getText());
 	}
 
 	public double n() {
@@ -211,6 +253,10 @@ public class VentanaPrincipal extends JFrame {
 		trataIntervalos();
 	}
 
+	public int problemaSeleccionado() {
+		return m_problema.getSelectedIndex();
+	}
+
 	public void activaODesactivaTodo(Component c, boolean activa) {
 		c.setEnabled(activa);
 		if (c instanceof Container) {
@@ -219,6 +265,67 @@ public class VentanaPrincipal extends JFrame {
 				activaODesactivaTodo(arr[j], activa);
 			}
 		}
+	}
+
+	public int rangoSeleccionado() {
+		if (m_maxGenRadio.isSelected()) {
+			return 0;
+		}
+		if (m_probCruceRadio.isSelected()) {
+			return 1;
+		}
+		if (m_probMutacionRadio.isSelected()) {
+			return 2;
+		}
+		if (m_tamPoblacionRadio.isSelected()) {
+			return 3;
+		}
+		return 4;
+	}
+
+	public ArrayList<Double> rango() {
+		ArrayList<Double> res = new ArrayList<Double>();
+		double i = 0;
+		switch (rangoSeleccionado()) {
+			case 0:
+				i = maxGen();
+				while (i <= maxGen2()) {
+					res.add(i);
+					i += maxGenp();
+				}
+				break;
+			case 1:
+				i = probCruce();
+				while (i <= probCruce2()) {
+					res.add(i);
+					i += probCruce2();
+				}
+				break;
+			case 2:
+				i = probMutacion();
+				while (i <= probMutacion2()) {
+					res.add(i);
+					i += probMutacionp();
+				}
+				break;
+			case 3:
+				i = tamPoblacion();
+				while (i <= tamPoblacion2()) {
+					res.add(i);
+					i += tamPoblacionp();
+				}
+				break;
+			case 4:
+				i = precision();
+				while (i <= precision2()) {
+					res.add(i);
+					i += precisionp();
+				}
+				break;
+			 default:
+				 break;
+		}
+		return res;
 	}
 
 	private void trataIntervalos() {
@@ -250,31 +357,30 @@ public class VentanaPrincipal extends JFrame {
 		p.add(m_problema, gridBagConstraints);
 
 		gridBagConstraints.gridy = 1;
-		final JCheckBox rangos = new JCheckBox("Rangos");
-		rangos.addActionListener(new ActionListener() {
+		m_rangos.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				m_maxGen2.setVisible(rangos.isSelected());
-				m_probCruce2.setVisible(rangos.isSelected());
-				m_probMutacion2.setVisible(rangos.isSelected());
-				m_tamPoblacion2.setVisible(rangos.isSelected());
-				m_precision2.setVisible(rangos.isSelected());
-				m_maxGenp.setVisible(rangos.isSelected());
-				m_probCrucep.setVisible(rangos.isSelected());
-				m_probMutacionp.setVisible(rangos.isSelected());
-				m_tamPoblacionp.setVisible(rangos.isSelected());
-				m_precisionp.setVisible(rangos.isSelected());
-				m_maxGenRadio.setVisible(rangos.isSelected());
-				m_probCruceRadio.setVisible(rangos.isSelected());
-				m_probMutacionRadio.setVisible(rangos.isSelected());
-				m_tamPoblacionRadio.setVisible(rangos.isSelected());
-				m_precisionRadio.setVisible(rangos.isSelected());
-				m_de.setVisible(rangos.isSelected());
-				m_a.setVisible(rangos.isSelected());
-				m_paso.setVisible(rangos.isSelected());
+				m_maxGen2.setVisible(m_rangos.isSelected());
+				m_probCruce2.setVisible(m_rangos.isSelected());
+				m_probMutacion2.setVisible(m_rangos.isSelected());
+				m_tamPoblacion2.setVisible(m_rangos.isSelected());
+				m_precision2.setVisible(m_rangos.isSelected());
+				m_maxGenp.setVisible(m_rangos.isSelected());
+				m_probCrucep.setVisible(m_rangos.isSelected());
+				m_probMutacionp.setVisible(m_rangos.isSelected());
+				m_tamPoblacionp.setVisible(m_rangos.isSelected());
+				m_precisionp.setVisible(m_rangos.isSelected());
+				m_maxGenRadio.setVisible(m_rangos.isSelected());
+				m_probCruceRadio.setVisible(m_rangos.isSelected());
+				m_probMutacionRadio.setVisible(m_rangos.isSelected());
+				m_tamPoblacionRadio.setVisible(m_rangos.isSelected());
+				m_precisionRadio.setVisible(m_rangos.isSelected());
+				m_de.setVisible(m_rangos.isSelected());
+				m_a.setVisible(m_rangos.isSelected());
+				m_paso.setVisible(m_rangos.isSelected());
 			}
         });
-		p.add(rangos, gridBagConstraints);
+		p.add(m_rangos, gridBagConstraints);
 
 		gridBagConstraints.gridy = 2;
 		gridBagConstraints.gridx = 2;
@@ -383,29 +489,33 @@ public class VentanaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				activaODesactivaTodo(v.m_panelPrincipal, false);
 				ag.Problema p = null;
-				switch (m_problema.getSelectedIndex()) {
-					case 0: {
-						p = new practica1.ProblemaF1();
-						break;
+				if (!m_rangos.isSelected()) {
+					switch (m_problema.getSelectedIndex()) {
+						case 0: {
+							p = new practica1.ProblemaF1();
+							break;
+						}
+						case 1: {
+							p = new practica1.ProblemaF2();
+							break;
+						}
+						case 2: {
+							p = new practica1.ProblemaF3();
+							break;
+						}
+						case 3: {
+							p = new practica1.ProblemaF4();
+							break;
+						}
+						case 4: {
+							p = new practica1.ProblemaF5();
+							break;
+						}
+						default:
+							break;
 					}
-					case 1: {
-						p = new practica1.ProblemaF2();
-						break;
-					}
-					case 2: {
-						p = new practica1.ProblemaF3();
-						break;
-					}
-					case 3: {
-						p = new practica1.ProblemaF4();
-						break;
-					}
-					case 4: {
-						p = new practica1.ProblemaF5();
-						break;
-					}
-					default:
-						break;
+				} else {
+					p = new practica1.ProblemaTestPropiedad();
 				}
 				p.setVentanaPrincipal(v);
 				p.start();
