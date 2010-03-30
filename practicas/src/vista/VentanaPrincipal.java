@@ -19,6 +19,8 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -75,6 +77,7 @@ public class VentanaPrincipal extends JFrame {
 	private JLabel       m_de                = new JLabel("De");
 	private JLabel       m_a                 = new JLabel("A");
 	private JLabel       m_paso              = new JLabel("Paso");
+	private JPanel       m_panelPrincipal    = null;
 
 	VentanaPrincipal() {
 		super();
@@ -213,7 +216,17 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public void terminado() {
-		m_lanzar.setEnabled(true);
+		activaODesactivaTodo(m_panelPrincipal, true);
+	}
+
+	public void activaODesactivaTodo(Component c, boolean activa) {
+		c.setEnabled(activa);
+		if (c instanceof Container) {
+			Component [] arr = ((Container) c).getComponents();
+			for (int j = 0;j < arr.length; j++) {
+				activaODesactivaTodo(arr[j], activa);
+			}
+		}
 	}
 
 	JComponent problema() {
@@ -363,7 +376,7 @@ public class VentanaPrincipal extends JFrame {
 		m_lanzar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				m_lanzar.setEnabled(false);
+				activaODesactivaTodo(v.m_panelPrincipal, false);
 				ag.Problema p = null;
 				switch (m_problema.getSelectedIndex()) {
 					case 0: {
@@ -394,6 +407,7 @@ public class VentanaPrincipal extends JFrame {
 			}
         });
 
+		m_panelPrincipal = p;
 		return p;
 	}
 
