@@ -575,10 +575,8 @@ public class VentanaPrincipal extends JFrame {
 				} else {
 					if (m_maxGenRadio.isSelected()) {
 						if (Double.valueOf(m_maxGenp.getText()) < 0) {
-							if (Double.valueOf(m_maxGen2.getText()) > Double.valueOf(m_maxGen.getText())) {
-								JOptionPane.showMessageDialog(null, "No se puede llegar a ese número máximo de generaciones con un paso negativo", "Paso inválido", JOptionPane.WARNING_MESSAGE);
-								return;
-							}
+							JOptionPane.showMessageDialog(null, "Número Máximo de Generaciones (Paso) no puede ser negativo", "Paso inválido", JOptionPane.WARNING_MESSAGE);
+							return;
 						} else if (Double.valueOf(m_maxGenp.getText()) > 0) {
 							if (Double.valueOf(m_maxGen2.getText()) < Double.valueOf(m_maxGen.getText())) {
 								JOptionPane.showMessageDialog(null, "No se puede llegar a ese número máximo de generaciones con un paso positivo", "Paso inválido", JOptionPane.WARNING_MESSAGE);
@@ -590,12 +588,10 @@ public class VentanaPrincipal extends JFrame {
 						}
 					} else if (m_probCruceRadio.isSelected()) {
 						if (Double.valueOf(m_probCrucep.getText()) < 0) {
-							if (Double.valueOf(m_maxGen2.getText()) > Double.valueOf(m_maxGen.getText())) {
-								JOptionPane.showMessageDialog(null, "No se puede llegar a esa probabilidad de cruce con un paso negativo", "Paso inválido", JOptionPane.WARNING_MESSAGE);
-								return;
-							}
+							JOptionPane.showMessageDialog(null, "Probabilidad de Cruce (Paso) no puede ser negativa", "Paso inválido", JOptionPane.WARNING_MESSAGE);
+							return;
 						} else if (Double.valueOf(m_probCrucep.getText()) > 0) {
-							if (Double.valueOf(m_maxGen2.getText()) < Double.valueOf(m_maxGen.getText())) {
+							if (Double.valueOf(m_probCruce2.getText()) < Double.valueOf(m_probCruce.getText())) {
 								JOptionPane.showMessageDialog(null, "No se puede llegar a esa probabilidad de cruce con un paso positivo", "Paso inválido", JOptionPane.WARNING_MESSAGE);
 								return;
 							}
@@ -605,12 +601,10 @@ public class VentanaPrincipal extends JFrame {
 						}
 					} else if (m_probMutacionRadio.isSelected()) {
 						if (Double.valueOf(m_probMutacionp.getText()) < 0) {
-							if (Double.valueOf(m_maxGen2.getText()) > Double.valueOf(m_maxGen.getText())) {
-								JOptionPane.showMessageDialog(null, "No se puede llegar a esa probabilidad de mutación con un paso negativo", "Paso inválido", JOptionPane.WARNING_MESSAGE);
-								return;
-							}
+							JOptionPane.showMessageDialog(null, "Probabilidad de Mutación (Paso) no puede ser negativa", "Paso inválido", JOptionPane.WARNING_MESSAGE);
+							return;
 						} else if (Double.valueOf(m_probMutacionp.getText()) > 0) {
-							if (Double.valueOf(m_maxGen2.getText()) < Double.valueOf(m_maxGen.getText())) {
+							if (Double.valueOf(m_probMutacion2.getText()) < Double.valueOf(m_probMutacion.getText())) {
 								JOptionPane.showMessageDialog(null, "No se puede llegar a esa probabilidad de mutación con un paso positivo", "Paso inválido", JOptionPane.WARNING_MESSAGE);
 								return;
 							}
@@ -620,12 +614,10 @@ public class VentanaPrincipal extends JFrame {
 						}
 					} else if (m_tamPoblacionRadio.isSelected()) {
 						if (Double.valueOf(m_tamPoblacionp.getText()) < 0) {
-							if (Double.valueOf(m_maxGen2.getText()) > Double.valueOf(m_maxGen.getText())) {
-								JOptionPane.showMessageDialog(null, "No se puede llegar a ese tamaño de población con un paso negativo", "Paso inválido", JOptionPane.WARNING_MESSAGE);
-								return;
-							}
+							JOptionPane.showMessageDialog(null, "Tamaño de Población (Paso) no puede ser negativo", "Paso inválido", JOptionPane.WARNING_MESSAGE);
+							return;
 						} else if (Double.valueOf(m_tamPoblacionp.getText()) > 0) {
-							if (Double.valueOf(m_maxGen2.getText()) < Double.valueOf(m_maxGen.getText())) {
+							if (Double.valueOf(m_tamPoblacion2.getText()) < Double.valueOf(m_tamPoblacion.getText())) {
 								JOptionPane.showMessageDialog(null, "No se puede llegar a ese tamaño de población con un paso positivo", "Paso inválido", JOptionPane.WARNING_MESSAGE);
 								return;
 							}
@@ -635,12 +627,10 @@ public class VentanaPrincipal extends JFrame {
 						}
 					} else if (m_precisionRadio.isSelected()) {
 						if (Double.valueOf(m_precisionp.getText()) < 0) {
-							if (Double.valueOf(m_maxGen2.getText()) > Double.valueOf(m_maxGen.getText())) {
-								JOptionPane.showMessageDialog(null, "No se puede llegar a esa precisión con un paso negativo", "Paso inválido", JOptionPane.WARNING_MESSAGE);
-								return;
-							}
+							JOptionPane.showMessageDialog(null, "Precisión (Paso) no puede ser negativo", "Paso inválido", JOptionPane.WARNING_MESSAGE);
+							return;
 						} else if (Double.valueOf(m_precisionp.getText()) > 0) {
-							if (Double.valueOf(m_maxGen2.getText()) < Double.valueOf(m_maxGen.getText())) {
+							if (Double.valueOf(m_precision2.getText()) < Double.valueOf(m_precision.getText())) {
 								JOptionPane.showMessageDialog(null, "No se puede llegar a esa precisión con un paso positivo", "Paso inválido", JOptionPane.WARNING_MESSAGE);
 								return;
 							}

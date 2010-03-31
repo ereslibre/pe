@@ -118,7 +118,7 @@ public class ProblemaTestPropiedad extends agsimple.Problema {
 		}
 
 		int act = 0;
-		int total = (int) ((m_total - m_pasoActual) / m_paso) + 1;
+		int total = (int) (((m_total - m_pasoActual)) / m_paso) + 1;
 
 		ventanaPrincipal().progressBar().setMinimum(0);
 		ventanaPrincipal().progressBar().setMaximum(total);
@@ -132,8 +132,7 @@ public class ProblemaTestPropiedad extends agsimple.Problema {
 		ag.Cromosoma mejorCromosoma = null;
 		String resString = new String();
 
-		while ((m_pasoActual <= m_total && m_paso > 0) ||
-		       (m_pasoActual >= m_total && m_paso < 0)) {
+		while (m_pasoActual <= m_total) {
 			Poblacion p = genPoblacionVacia();
 			p.genPoblacionInicial();
 			p.evaluarPoblacion();
