@@ -132,7 +132,8 @@ public class ProblemaTestPropiedad extends agsimple.Problema {
 		ag.Cromosoma mejorCromosoma = null;
 		String resString = new String();
 
-		while (m_pasoActual <= m_total) {
+		while ((m_pasoActual <= m_total && m_paso > 0) ||
+		       (m_pasoActual >= m_total && m_paso < 0)) {
 			Poblacion p = genPoblacionVacia();
 			p.genPoblacionInicial();
 			p.evaluarPoblacion();
