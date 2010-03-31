@@ -71,6 +71,7 @@ public abstract class Poblacion {
 
 	public void cruzar() {
 		ArrayList<Cromosoma> cruce = new ArrayList<Cromosoma>();
+		int intentos = 0;
 		do {
 			cruce.clear();
 			ListIterator<Cromosoma> it = m_poblacion.listIterator();
@@ -83,7 +84,8 @@ public abstract class Poblacion {
 			if (cruce.size() % 2 != 0) {
 				cruce.remove(0);
 			}
-		} while (cruce.size() == 0);
+			++intentos;
+		} while (cruce.size() == 0 && intentos < 100);
 		ListIterator<Cromosoma> it = cruce.listIterator();
 		while (it.hasNext()) {
 			Cromosoma c1 = it.next();
