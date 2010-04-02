@@ -39,7 +39,7 @@
 \caption{Función 1.}
 \label{fig}
 \end{figure}
-	A continuación se muestran las diferentes gráficas para poder observar la evolución que sufre la función.
+	A continuación se muestran las diferentes gráficas para observar la evolución que sufre la función.
 
 \subsubsection*{Gráfica Evaluación}
 \begin{figure}[H]
@@ -74,7 +74,7 @@
 \caption{Función 2.}
 \label{fig}
 \end{figure}
-	A continuación se muestran las diferentes gráficas para poder observar la evolución que sufre la función.
+	A continuación se muestran las diferentes gráficas para observar la evolución que sufre la función.
 
 \subsubsection*{Gráfica Evaluación}
 \begin{figure}[H]
@@ -109,7 +109,7 @@
 \caption{Función 3.}
 \label{fig}
 \end{figure}
-	A continuación se muestran las diferentes gráficas para poder observar la evolución que sufre la función.
+	A continuación se muestran las diferentes gráficas para observar la evolución que sufre la función.
 
 \subsubsection*{Gráfica Evaluación}
 \begin{figure}[H]
@@ -137,14 +137,14 @@
 \newpage
 
 \subsection{Función 4}
-	La cuarta función presenta mínimos en de -184.8932 en -0.7714 y -7.71 como se puede observar en la figura.
+	La cuarta función presenta mínimos de -184.8932 en -0.7714 y -7.71 como se puede observar en la figura.
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.5]{graficas/F4inicial}
 \caption{Función 4.}
 \label{fig}
 \end{figure}
-	A continuación se muestran las diferentes gráficas para poder observar la evolución que sufre la función.
+	A continuación se muestran las diferentes gráficas para observar la evolución que sufre la función.
 
 \subsubsection*{Gráfica Evaluación}
 \begin{figure}[H]
@@ -179,7 +179,7 @@
 \caption{Función 5.}
 \label{fig}
 \end{figure}
-	A continuación se muestran las diferentes gráficas para poder observar la evolución que sufre la función.
+	A continuación se muestran las diferentes gráficas para observar la evolución que sufre la función.
 
 \subsubsection*{Gráfica Evaluación}
 \begin{figure}[H]
@@ -431,7 +431,7 @@ Precisión & Máximo Obtenido \\  \hline
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|cc|} \hline
-Tamaño Población & Máximo Obtenido \\  \hline
+Tamaño Población & Mínimo Obtenido \\  \hline
 10  & -0.269028 \\ 
 60  & -0.317650 \\ 
 110 & -0.316676 \\
@@ -453,7 +453,7 @@ Tamaño Población & Máximo Obtenido \\  \hline
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|cc|} \hline
-Número Máximo Generaciones & Máximo Obtenido \\  \hline
+Número Máximo Generaciones & Mínimo Obtenido \\  \hline
 10  & -0.318035 \\ 
 60  & -0.318071 \\ 
 110 & -0.318071 \\
@@ -473,7 +473,7 @@ Número Máximo Generaciones & Máximo Obtenido \\  \hline
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|cc|} \hline
-Probabilidad Cruce & Máximo Obtenido \\  \hline
+Probabilidad Cruce & Mínimo Obtenido \\  \hline
 0.1 & -0.317957 \\ 
 0.2 & -0.315544 \\ 
 0.3 & -0.318038 \\
@@ -493,7 +493,7 @@ Probabilidad Cruce & Máximo Obtenido \\  \hline
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|cc|} \hline
-Probabilidad Mutación & Máximo Obtenido \\  \hline
+Probabilidad Mutación & Mínimo Obtenido \\  \hline
 0.1 & -0.318067 \\ 
 0.2 & -0.317451 \\ 
 0.3 & -0.318071 \\
@@ -513,7 +513,7 @@ Probabilidad Mutación & Máximo Obtenido \\  \hline
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|cc|} \hline
-Precisión & Máximo Obtenido \\  \hline
+Precisión & Mínimo Obtenido \\  \hline
 0.00000001 & -0.318061 \\ 
 0.00000002 & -0.318043 \\ 
 0.00000003 & -0.318070 \\
@@ -535,7 +535,7 @@ Precisión & Máximo Obtenido \\  \hline
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|cc|} \hline
-Tamaño Población & Máximo Obtenido \\  \hline
+Tamaño Población & Mínimo Obtenido \\  \hline
 10  & -72.9491 \\ 
 60  & -111.6176 \\ 
 110 & -135.3392 \\
@@ -557,7 +557,7 @@ Tamaño Población & Máximo Obtenido \\  \hline
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|cc|} \hline
-Número Máximo Generaciones & Máximo Obtenido \\  \hline
+Número Máximo Generaciones & Mínimo Obtenido \\  \hline
 10  & -184.9346 \\ 
 60  & -92.6084 \\ 
 110 & -130.5393 \\
@@ -577,7 +577,7 @@ Número Máximo Generaciones & Máximo Obtenido \\  \hline
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|cc|} \hline
-Probabilidad Cruce & Máximo Obtenido \\  \hline
+Probabilidad Cruce & Mínimo Obtenido \\  \hline
 0.1 & -183.4316 \\ 
 0.2 & -185.9303 \\ 
 0.3 & -129.8455 \\
@@ -597,7 +597,7 @@ Probabilidad Cruce & Máximo Obtenido \\  \hline
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|cc|} \hline
-Probabilidad Mutación & Máximo Obtenido \\  \hline
+Probabilidad Mutación & Mínimo Obtenido \\  \hline
 0.1 & -181.7142 \\ 
 0.2 & -186.3339 \\ 
 0.3 & -184.8755 \\
@@ -617,7 +617,7 @@ Probabilidad Mutación & Máximo Obtenido \\  \hline
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|cc|} \hline
-Precisión & Máximo Obtenido \\  \hline
+Precisión & Mínimo Obtenido \\  \hline
 0.00000001 & -157.2270 \\ 
 0.00000002 & -100.5084 \\ 
 0.00000003 & -182.6262 \\
@@ -632,10 +632,110 @@ Precisión & Máximo Obtenido \\  \hline
 \end{center}
 \end{table}
 
+\subsection{Función 5}
+	Estudio realizado con el parámetro n=2
+\subsubsection*{Estudio Tamaño de Población}
+	Se varia el tamaño de la población de 10 a 460 en incrementos de 50.
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|cc|} \hline
+Tamaño Población & Mínimo Obtenido \\  \hline
+10  & -1.796137 \\ 
+60  & -1.814462 \\ 
+110 & -1.946951 \\
+160 & -1.958608 \\
+210 & -1.957552 \\
+260 & -1.955446 \\
+310 & -1.957697 \\
+360 & -1.951744 \\ 
+410 & -1.957041 \\
+460 & -1.959072 \\  \hline
+\end{tabular}
+\end{center}
+\end{table}
+ 
 
-	
-
-
+\subsubsection*{Estudio Número Máximo de Generaciones}
+	Se varia el número máximo de generaciones de 10 a 460 en incrementos de 50.
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|cc|} \hline
+Número Máximo Generaciones & Mínimo Obtenido \\  \hline
+10  & -1.881701 \\ 
+60  & -1.956846 \\ 
+110 & -1.952919 \\
+160 & -1.955062 \\
+210 & -1.955691 \\
+260 & -1.913593 \\
+310 & -1.942198 \\
+360 & -1.957594 \\ 
+410 & -1.928775 \\
+460 & -1.939548 \\  \hline
+\end{tabular}
+\end{center}
+\end{table}
+\subsubsection*{Estudio Probabilidad de Cruce}
+	Se varia la probabilidad de cruce de 0.1 a 1 en incrementos de 0.1.
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|cc|} \hline
+Probabilidad Cruce & Mínimo Obtenido \\  \hline
+0.1 & -1.812777 \\ 
+0.2 & -1.959031 \\ 
+0.3 & -1.954478 \\
+0.4 & -1.693149 \\
+0.5 & -1.862722 \\
+0.6 & -1.907169 \\
+0.7 & -1.916014 \\
+0.8 & -1.957601 \\ 
+0.9 & -1.790226 \\
+1   & -1.957731 \\  \hline
+\end{tabular}
+\end{center}
+\end{table}
+\subsubsection*{Estudio Probabilidad de Mutación}
+	Se varia la probabilidad de mutación de 0.1 a 1 en incrementos de 0.1.
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|cc|} \hline
+Probabilidad Mutación & Mínimo Obtenido \\  \hline
+0.1 & -1.958825 \\ 
+0.2 & -1.955002 \\ 
+0.3 & -1.954345 \\
+0.4 & -1.958458 \\
+0.5 & -1.784000 \\
+0.6 & -1.958566 \\
+0.7 & -1.936031 \\
+0.8 & -1.937824 \\ 
+0.9 & -1.958157 \\
+1   & -1.948154 \\  \hline
+\end{tabular}
+\end{center}
+\end{table}
+\subsubsection*{Estudio Precisión}
+	Se varia la precisión de 0.00000001 a 0.0000001 en incrementos de 0.00000001.
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|cc|} \hline
+Precisión & Mínimo Obtenido \\  \hline
+0.00000001 & -1.954301 \\ 
+0.00000002 & -1.952432 \\ 
+0.00000003 & -1.956418 \\
+0.00000004 & -1.953366 \\
+0.00000005 & -1.918998 \\
+0.00000006 & -1.956360 \\
+0.00000007 & -1.935455 \\
+0.00000008 & -1.900311 \\ 
+0.00000009 & -1.917352 \\
+0.00000010 & -1.946798 \\  \hline
+\end{tabular}
+\end{center}
+\end{table}
 
 
 \end{document}
