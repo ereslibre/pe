@@ -35,7 +35,7 @@
 	La primera función presenta un máximo de 1.98442121 en 0.98449933 como se puede observar en la figura.
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F1inicial}
+\includegraphics[width=\textwidth]{graficas/F1inicial}
 \caption{Función 1.}
 \label{fig}
 \end{figure}
@@ -43,21 +43,21 @@
 \subsubsection*{Gráfica Evaluación}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F1inicial_algoritmo}
+\includegraphics[width=\textwidth]{graficas/F1inicial_algoritmo}
 \caption{Gráfica evaluación.}
 \label{fig}
 \end{figure}
 \subsubsection*{Gráfica Aptitud}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F1inicial_aptitud}
+\includegraphics[width=\textwidth]{graficas/F1inicial_aptitud}
 \caption{Gráfica aptitud.}
 \label{fig}
 \end{figure}
 \subsubsection*{Gráfica Presión Selectiva}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F1inicial_presion}
+\includegraphics[width=\textwidth]{graficas/F1inicial_presion}
 \caption{Gráfica presión selectiva.}
 \label{fig}
 \end{figure}
@@ -66,7 +66,7 @@
 	La segunda función presenta un máximo de 38.330 en 11.607 y 5.526 como se puede observar en la figura.
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F2inicial}
+\includegraphics[width=\textwidth]{graficas/F2inicial}
 \caption{Función 2.}
 \label{fig}
 \end{figure}
@@ -74,21 +74,21 @@
 \subsubsection*{Gráfica Evaluación}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F2inicial_algoritmo}
+\includegraphics[width=\textwidth]{graficas/F2inicial_algoritmo}
 \caption{Gráfica evaluación.}
 \label{fig}
 \end{figure}
 \subsubsection*{Gráfica Aptitud}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F2inicial_aptitud}
+\includegraphics[width=\textwidth]{graficas/F2inicial_aptitud}
 \caption{Gráfica aptitud}
 \label{fig}
 \end{figure}
 \subsubsection*{Gráfica Presión Selectiva}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F2inicial_presion}
+\includegraphics[width=\textwidth]{graficas/F2inicial_presion}
 \caption{Gráfica presión selectiva}
 \label{fig}
 \end{figure}
@@ -97,7 +97,7 @@
 	La tercera función presenta un mínimo de -0.318067 en 4.574724 como se puede observar en la figura.
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F3inicial}
+\includegraphics[width=\textwidth]{graficas/F3inicial}
 \caption{Función 3.}
 \label{fig}
 \end{figure}
@@ -105,21 +105,21 @@
 \subsubsection*{Gráfica Evaluación}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F3inicial_algoritmo}
+\includegraphics[width=\textwidth]{graficas/F3inicial_algoritmo}
 \caption{Gráfica evaluación.}
 \label{fig}
 \end{figure}
 \subsubsection*{Gráfica Aptitud}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F3inicial_aptitud}
+\includegraphics[width=\textwidth]{graficas/F3inicial_aptitud}
 \caption{Gráfica aptitud}
 \label{fig}
 \end{figure}
 \subsubsection*{Gráfica Presión Selectiva}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F3inicial_presion}
+\includegraphics[width=\textwidth]{graficas/F3inicial_presion}
 \caption{Gráfica presión selectiva}
 \label{fig}
 \end{figure}
@@ -128,7 +128,7 @@
 	La cuarta función presenta mínimos en de -184.8932 en -0.7714 y -7.71 como se puede observar en la figura.
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F4inicial}
+\includegraphics[width=\textwidth]{graficas/F4inicial}
 \caption{Función 4.}
 \label{fig}
 \end{figure}
@@ -136,21 +136,21 @@
 \subsubsection*{Gráfica Evaluación}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F4inicial_algoritmo}
+\includegraphics[width=\textwidth]{graficas/F4inicial_algoritmo}
 \caption{Gráfica evaluación.}
 \label{fig}
 \end{figure}
 \subsubsection*{Gráfica Aptitud}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F4inicial_aptitud}
+\includegraphics[width=\textwidth]{graficas/F4inicial_aptitud}
 \caption{Gráfica aptitud}
 \label{fig}
 \end{figure}
 \subsubsection*{Gráfica Presión Selectiva}
 \begin{figure}[H]
 \centering
-\includegraphics[scale=0.5]{graficas/F4inicial_presion}
+\includegraphics[width=\textwidth]{graficas/F4inicial_presion}
 \caption{Gráfica presión selectiva}
 \label{fig}
 \end{figure}
