@@ -52,7 +52,7 @@ public class CromosomaF2 extends agsimple.Cromosoma {
 	@Override
 	public Cruce cruzar(ag.Cromosoma cromosoma) {
 		final int tamCromosoma = ((agsimple.Problema) poblacion().problema()).tamCromosoma();
-		final int tamx = ((int) Math.ceil(Math.log(1.0 + (12.1 - (-3.0)) / 0.001) / Math.log(2)));
+		final int tamx = ((int) Math.ceil(Math.log(1.0 + (12.1 - (-3.0)) / poblacion().problema().precision()) / Math.log(2)));
 		final int posCruceGen1 = (int) (Math.random() * (Double) Math.ceil(Math.log(1.0 + (12.1 - (-3.0)) / 0.001) / Math.log(2)));
 		final int posCruceGen2 = (int) (Math.random() * (Double) Math.ceil(Math.log(1.0 + (5.8 - 4.1) / 0.001) / Math.log(2)));
 

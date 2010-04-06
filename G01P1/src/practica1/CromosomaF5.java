@@ -37,7 +37,7 @@ public class CromosomaF5 extends agsimple.Cromosoma {
 		int i = 1;
 		while (it.hasNext()) {
 			final Double xi = it.next();
-			res += Math.sin(xi) * Math.pow(Math.sin(((double) (i + 1.0)) * Math.pow(xi, 2) / Math.PI), 20);
+			res += Math.sin(xi) * Math.pow(Math.sin((((double) i + 1.0)) * Math.pow(xi, 2) / Math.PI), 20);
 			++i;
 		}
 		return (poblacion().evaluacionMaxima() - (-res)) + Math.abs(poblacion().evaluacionMinima());
@@ -58,7 +58,7 @@ public class CromosomaF5 extends agsimple.Cromosoma {
 	@Override
 	public Cruce cruzar(ag.Cromosoma cromosoma) {
 		final int tamCromosoma = ((agsimple.Problema) poblacion().problema()).tamCromosoma();
-		int posCruce = (int) ((Math.random() * (double) tamCromosoma) - 1.0);
+		int posCruce = (int) ((Math.random() * (double) (tamCromosoma - 1.0)));
 
 		CromosomaF5 hijo1 = (CromosomaF5) poblacion().genCromosomaVacio();
 		boolean hijo1c[] = new boolean[tamCromosoma];
@@ -110,7 +110,7 @@ public class CromosomaF5 extends agsimple.Cromosoma {
 		int i = 1;
 		while (it.hasNext()) {
 			final Double xi = it.next();
-			res += Math.sin(xi) * Math.pow(Math.sin(((double) (i + 1.0)) * Math.pow(xi, 2) / Math.PI), 20);
+			res += Math.sin(xi) * Math.pow(Math.sin((((double) i + 1.0)) * Math.pow(xi, 2) / Math.PI), 20);
 			++i;
 		}
 		return -res;
@@ -120,7 +120,7 @@ public class CromosomaF5 extends agsimple.Cromosoma {
 	public Object fenotipo() {
 		ArrayList<Double> res = new ArrayList<Double>();
 		final int tamCromosoma = ((agsimple.Problema) poblacion().problema()).tamCromosoma();
-		final int tamGen = (int) (Math.ceil(Math.log(1.0 + (Math.PI - 0) / 0.000001) / Math.log(2)));
+		final int tamGen = (int) (Math.log(1.0 + Math.PI / poblacion().problema().precision()) / Math.log(2));
 		for (int i = 0; i < tamCromosoma / tamGen; ++i) {
 			boolean[] gen = new boolean[tamGen];
 			for (int j = 0; j < tamGen; ++j) {

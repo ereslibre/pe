@@ -120,8 +120,8 @@ public abstract class Poblacion {
 
 	public void evaluarPoblacion() {
 		{
-			m_evaluacionMaxima = 0.0;
-			m_evaluacionMinima = Double.MAX_VALUE;
+			m_evaluacionMaxima = Double.NEGATIVE_INFINITY;
+			m_evaluacionMinima = Double.POSITIVE_INFINITY;
 			m_aptitudMedia = 0.0;
 			ListIterator<Cromosoma> it = m_poblacion.listIterator();
 			while (it.hasNext()) {
