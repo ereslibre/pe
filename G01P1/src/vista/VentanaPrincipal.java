@@ -102,10 +102,10 @@ public class VentanaPrincipal extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		m_maxGen.setText("100");
-		m_probCruce.setText("0.6");
-		m_probMutacion.setText("0.1");
+		m_probCruce.setText("0.7");
+		m_probMutacion.setText("0.01");
 		m_tamPoblacion.setText("100");
-		m_precision.setText("0.0000001");
+		m_precision.setText("0.001");
 
 		m_maxGen2.setText("200");
 		m_maxGen2.setVisible(false);

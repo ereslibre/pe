@@ -62,16 +62,16 @@ public class CromosomaF2 extends agsimple.Cromosoma {
 		boolean hijo1c[] = new boolean[tamCromosoma];
 		{
 			for (int i = 0; i <= posCruceGen1; ++i)  {
-				hijo1c[i] = ellaOYo <= 0.5 ? ((boolean[]) genotipo())[i] : ((boolean[]) cromosoma.genotipo())[i];
+				hijo1c[i] = (ellaOYo <= 0.5 ? ((boolean[]) genotipo())[i] : ((boolean[]) cromosoma.genotipo())[i]);
 			}
 			for (int i = posCruceGen1 + 1; i < tamx; ++i) {
-				hijo1c[i] = ellaOYo <= 0.5 ? ((boolean[]) cromosoma.genotipo())[i] : ((boolean[]) genotipo())[i];
+				hijo1c[i] = (ellaOYo <= 0.5 ? ((boolean[]) cromosoma.genotipo())[i] : ((boolean[]) genotipo())[i]);
 			}
 			for (int i = tamx; i <= tamx + posCruceGen2; ++i) {
-				hijo1c[i] = ellaOYo <= 0.5 ? ((boolean[]) genotipo())[i] : ((boolean[]) cromosoma.genotipo())[i];
+				hijo1c[i] = (ellaOYo <= 0.5 ? ((boolean[]) genotipo())[i] : ((boolean[]) cromosoma.genotipo())[i]);
 			}
 			for (int i = tamx + posCruceGen2 + 1; i < tamCromosoma; ++i) {
-				hijo1c[i] = ellaOYo <= 0.5 ? ((boolean[]) cromosoma.genotipo())[i] : ((boolean[]) genotipo())[i];
+				hijo1c[i] = (ellaOYo <= 0.5 ? ((boolean[]) cromosoma.genotipo())[i] : ((boolean[]) genotipo())[i]);
 			}
 		}
 		hijo1.setCromosoma(hijo1c);
@@ -82,16 +82,16 @@ public class CromosomaF2 extends agsimple.Cromosoma {
 		boolean hijo2c[] = new boolean[tamCromosoma];
 		{
 			for (int i = 0; i <= posCruceGen1; ++i)  {
-				hijo2c[i] = ellaOYo <= 0.5 ? ((boolean[]) cromosoma.genotipo())[i] : ((boolean[]) genotipo())[i];
+				hijo2c[i] = (ellaOYo <= 0.5 ? ((boolean[]) cromosoma.genotipo())[i] : ((boolean[]) genotipo())[i]);
 			}
 			for (int i = posCruceGen1 + 1; i < tamx; ++i) {
-				hijo2c[i] = ellaOYo <= 0.5 ? ((boolean[]) genotipo())[i] : ((boolean[]) cromosoma.genotipo())[i];
+				hijo2c[i] = (ellaOYo <= 0.5 ? ((boolean[]) genotipo())[i] : ((boolean[]) cromosoma.genotipo())[i]);
 			}
 			for (int i = tamx; i <= tamx + posCruceGen2; ++i) {
-				hijo2c[i] = ellaOYo <= 0.5 ? ((boolean[]) cromosoma.genotipo())[i] : ((boolean[]) genotipo())[i];
+				hijo2c[i] = (ellaOYo <= 0.5 ? ((boolean[]) cromosoma.genotipo())[i] : ((boolean[]) genotipo())[i]);
 			}
 			for (int i = tamx + posCruceGen2 + 1; i < tamCromosoma; ++i) {
-				hijo2c[i] = ellaOYo <= 0.5 ? ((boolean[]) genotipo())[i] : ((boolean[]) cromosoma.genotipo())[i];
+				hijo2c[i] = (ellaOYo <= 0.5 ? ((boolean[]) genotipo())[i] : ((boolean[]) cromosoma.genotipo())[i]);
 			}
 		}
 		hijo2.setCromosoma(hijo2c);
@@ -122,7 +122,7 @@ public class CromosomaF2 extends agsimple.Cromosoma {
 	@Override
 	public Object fenotipo() {
 		ArrayList<Double> res = new ArrayList<Double>();
-		final int tamx = (int) Math.ceil(Math.log(1.0 + (12.1 - (-3.0)) / 0.001) / Math.log(2));
+		final int tamx = (int) Math.ceil(Math.log(1.0 + (12.1 - (-3.0)) / poblacion().problema().precision()) / Math.log(2));
 		{
 			boolean[] cx = new boolean[tamx];
 			for (int i = 0; i < tamx; ++i) {
@@ -131,7 +131,7 @@ public class CromosomaF2 extends agsimple.Cromosoma {
 			res.add(-3.0 + bin2dec(cx) * ((12.1 - (-3.0)) / (Math.pow(2, tamx) - 1.0)));
 		}
 		{
-			final int tamy = (int) Math.ceil(Math.log(1.0 + (5.8 - 4.1) / 0.001) / Math.log(2));
+			final int tamy = (int) Math.ceil(Math.log(1.0 + (5.8 - 4.1) / poblacion().problema().precision()) / Math.log(2));
 			boolean[] cy = new boolean[tamy];
 			for (int i = 0; i < tamy; ++i) {
 				cy[i] = m_cromosoma[i + tamx];
