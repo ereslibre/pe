@@ -58,6 +58,7 @@ public abstract class Poblacion {
      */
 	public void anadeCromosoma(Cromosoma cromosoma) {
 		m_poblacion.add(cromosoma);
+		cromosoma.setPoblacion(this);
 	}
 
 	/**
@@ -136,7 +137,7 @@ public abstract class Poblacion {
 		}
 		{
 			m_puntuacionesAcumuladas = new ArrayList<Double>();
-			double punt = 0;
+			Double punt = 0.0;
 			ListIterator<Cromosoma> it = m_poblacion.listIterator();
 			while (it.hasNext()) {
 				final Cromosoma c = it.next();

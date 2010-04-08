@@ -18,8 +18,6 @@
 
 package ag;
 
-import agsimple.Poblacion;
-
 public abstract class Cromosoma {
 
 	protected Cromosoma m_madre;
@@ -96,7 +94,7 @@ public abstract class Cromosoma {
 	 * @return La puntuación de este cromosoma.
 	 */
 	public double puntuacion() {
-		return aptitud() / ((Poblacion) poblacion()).puntuacionTotal();
+		return aptitud() / ((agsimple.Poblacion) poblacion()).puntuacionTotal();
 	}
 
 	/**
