@@ -34,7 +34,7 @@ public class CromosomaF2 extends agsimple.Cromosoma {
 		final ArrayList<Double> components = (ArrayList<Double>) fenotipo();
 		final Double x = components.get(0);
 		final Double y = components.get(1);
-		return 21.5 + x * Math.sin(4.0 * Math.PI * x) + y * Math.sin(20.0 * Math.PI * y);
+		return (21.5 + x * Math.sin(4.0 * Math.PI * x) + y * Math.sin(20.0 * Math.PI * y)) + Math.abs(poblacion().evaluacionMinima());
 	}
 
 	@Override
@@ -122,7 +122,7 @@ public class CromosomaF2 extends agsimple.Cromosoma {
 	@Override
 	public Object fenotipo() {
 		ArrayList<Double> res = new ArrayList<Double>();
-		final int tamx = (int) Math.ceil(Math.log(1.0 + (12.1 - (-3.0)) / poblacion().problema().precision()) / Math.log(2));
+		final int tamx = (int) (Math.log(1.0 + (12.1 - (-3.0)) / poblacion().problema().precision()) / Math.log(2));
 		{
 			boolean[] cx = new boolean[tamx];
 			for (int i = 0; i < tamx; ++i) {
@@ -131,7 +131,7 @@ public class CromosomaF2 extends agsimple.Cromosoma {
 			res.add(-3.0 + bin2dec(cx) * ((12.1 - (-3.0)) / (Math.pow(2, tamx) - 1.0)));
 		}
 		{
-			final int tamy = (int) Math.ceil(Math.log(1.0 + (5.8 - 4.1) / poblacion().problema().precision()) / Math.log(2));
+			final int tamy = (int) (Math.log(1.0 + (5.8 - 4.1) / poblacion().problema().precision()) / Math.log(2));
 			boolean[] cy = new boolean[tamy];
 			for (int i = 0; i < tamy; ++i) {
 				cy[i] = m_cromosoma[i + tamx];
