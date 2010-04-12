@@ -34,7 +34,7 @@ public class CromosomaF2 extends agsimple.Cromosoma {
 		final ArrayList<Double> components = (ArrayList<Double>) fenotipo();
 		final Double x = components.get(0);
 		final Double y = components.get(1);
-		return (21.5 + x * Math.sin(4.0 * Math.PI * x) + y * Math.sin(20.0 * Math.PI * y)) + Math.abs(poblacion().evaluacionMinima());
+		return 21.5 + x * Math.sin(4.0 * Math.PI * x) + y * Math.sin(20.0 * Math.PI * y);
 	}
 
 	@Override

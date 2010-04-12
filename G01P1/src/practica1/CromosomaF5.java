@@ -40,7 +40,7 @@ public class CromosomaF5 extends agsimple.Cromosoma {
 			res += Math.sin(xi) * Math.pow(Math.sin((((double) i + 1.0)) * Math.pow(xi, 2) / Math.PI), 20);
 			++i;
 		}
-		return (poblacion().evaluacionMaxima() - (-res)) + Math.abs(poblacion().evaluacionMinima());
+		return poblacion().evaluacionMaxima() - (-res);
 	}
 
 	@Override

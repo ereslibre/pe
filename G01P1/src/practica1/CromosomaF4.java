@@ -40,7 +40,7 @@ public class CromosomaF4 extends agsimple.Cromosoma {
 			izq += (double) ((double) i * Math.cos(((double) i + 1.0) * x1 + (double) i));
 			der += (double) ((double) i * Math.cos(((double) i + 1.0) * x2 + (double) i));
 		}
-		return (poblacion().evaluacionMaxima() - (izq * der)) + Math.abs(poblacion().evaluacionMinima());
+		return poblacion().evaluacionMaxima() - (izq * der);
 	}
 
 	@Override
