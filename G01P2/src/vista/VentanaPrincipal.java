@@ -58,6 +58,9 @@ public class VentanaPrincipal extends JFrame {
 	private Plot2DPanel  m_grafica2          = new Plot2DPanel();
 	private Plot2DPanel  m_grafica3          = new Plot2DPanel();
 	private JComboBox    m_problema          = new JComboBox();
+	private JComboBox    m_seleccion         = new JComboBox();
+	private JComboBox    m_cruce             = new JComboBox();
+	private JComboBox    m_mutacion          = new JComboBox();
 	private JProgressBar m_progressBar       = new JProgressBar();
 	private JTextField   m_maxGen            = new JTextField();
 	private JTextField   m_probCruce         = new JTextField();
@@ -405,6 +408,39 @@ public class VentanaPrincipal extends JFrame {
 		m_problema = new JComboBox(nombreProblemas);
 		p.add(m_problema, gridBagConstraints);
 
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.gridwidth = 1;
+		p.add(new JLabel("Método de Selección"), gridBagConstraints);
+
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridwidth = 4;
+		final String[] metodoSeleccion = { "Problema 1", "Problema 2", "Problema 3", "Problema 4", "Problema 5" };
+		m_seleccion = new JComboBox(metodoSeleccion);
+		p.add(m_seleccion, gridBagConstraints);
+
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 2;
+		gridBagConstraints.gridwidth = 1;
+		p.add(new JLabel("Método de Cruce"), gridBagConstraints);
+
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridwidth = 4;
+		final String[] metodoCruce = { "Problema 1", "Problema 2", "Problema 3", "Problema 4", "Problema 5" };
+		m_cruce = new JComboBox(metodoCruce);
+		p.add(m_cruce, gridBagConstraints);
+
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 3;
+		gridBagConstraints.gridwidth = 1;
+		p.add(new JLabel("Método de Mutación"), gridBagConstraints);
+
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridwidth = 4;
+		final String[] metodoMutacion = { "Problema 1", "Problema 2", "Problema 3", "Problema 4", "Problema 5" };
+		m_mutacion = new JComboBox(metodoMutacion);
+		p.add(m_mutacion, gridBagConstraints);
+
 		m_problema.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -418,7 +454,8 @@ public class VentanaPrincipal extends JFrame {
 			}
         });
 
-		gridBagConstraints.gridy = 1;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 4;
 		m_rangos.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -452,7 +489,7 @@ public class VentanaPrincipal extends JFrame {
         });
 		p.add(m_rangos, gridBagConstraints);
 
-		gridBagConstraints.gridy = 2;
+		gridBagConstraints.gridy = 5;
 		gridBagConstraints.gridx = 2;
 		p.add(m_de, gridBagConstraints);
 		gridBagConstraints.gridx = 3;
@@ -461,7 +498,7 @@ public class VentanaPrincipal extends JFrame {
 		p.add(m_paso, gridBagConstraints);
 
 		gridBagConstraints.gridwidth = 1;
-		gridBagConstraints.gridy = 3;
+		gridBagConstraints.gridy = 6;
 		gridBagConstraints.gridx = 0;
 		p.add(m_tamPoblacionRadio, gridBagConstraints);
 
@@ -477,7 +514,7 @@ public class VentanaPrincipal extends JFrame {
 		gridBagConstraints.gridx = 4;
 		p.add(m_tamPoblacionp, gridBagConstraints);
 
-		gridBagConstraints.gridy = 4;
+		gridBagConstraints.gridy = 7;
 		gridBagConstraints.gridx = 0;
 		p.add(m_maxGenRadio, gridBagConstraints);
 
@@ -493,7 +530,7 @@ public class VentanaPrincipal extends JFrame {
 		gridBagConstraints.gridx = 4;
 		p.add(m_maxGenp, gridBagConstraints);
 
-		gridBagConstraints.gridy = 5;
+		gridBagConstraints.gridy = 8;
 		gridBagConstraints.gridx = 0;
 		p.add(m_probCruceRadio, gridBagConstraints);
 
@@ -509,7 +546,7 @@ public class VentanaPrincipal extends JFrame {
 		gridBagConstraints.gridx = 4;
 		p.add(m_probCrucep, gridBagConstraints);
 
-		gridBagConstraints.gridy = 6;
+		gridBagConstraints.gridy = 9;
 		gridBagConstraints.gridx = 0;
 		p.add(m_probMutacionRadio, gridBagConstraints);
 
@@ -525,7 +562,7 @@ public class VentanaPrincipal extends JFrame {
 		gridBagConstraints.gridx = 4;
 		p.add(m_probMutacionp, gridBagConstraints);
 
-		gridBagConstraints.gridy = 7;
+		gridBagConstraints.gridy = 10;
 		gridBagConstraints.gridx = 0;
 		p.add(m_precisionRadio, gridBagConstraints);
 
@@ -541,7 +578,7 @@ public class VentanaPrincipal extends JFrame {
 		gridBagConstraints.gridx = 4;
 		p.add(m_precisionp, gridBagConstraints);
 
-		gridBagConstraints.gridy = 8;
+		gridBagConstraints.gridy = 11;
 		gridBagConstraints.gridx = 0;
 		p.add(m_elitismoRadio, gridBagConstraints);
 
@@ -557,26 +594,26 @@ public class VentanaPrincipal extends JFrame {
 		gridBagConstraints.gridx = 4;
 		p.add(m_elitismop, gridBagConstraints);
 
-		gridBagConstraints.gridy = 9;
+		gridBagConstraints.gridy = 12;
 		gridBagConstraints.gridx = 1;
 		p.add(m_prob5NLabel, gridBagConstraints);
 
 		gridBagConstraints.gridx = 2;
 		p.add(m_prob5N, gridBagConstraints);
 
-		gridBagConstraints.gridy = 10;
+		gridBagConstraints.gridy = 13;
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
 		p.add(new JLabel("Resultado:"), gridBagConstraints);
 
-		gridBagConstraints.gridy = 11;
+		gridBagConstraints.gridy = 14;
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.weighty = 10;
 		gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
 		JScrollPane resultado = new JScrollPane(m_resultado, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		p.add(resultado, gridBagConstraints);
 
-		gridBagConstraints.gridy = 12;
+		gridBagConstraints.gridy = 15;
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.weighty = 0;
 		m_lanzar = new JButton("Lanzar");
