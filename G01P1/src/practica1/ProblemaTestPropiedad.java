@@ -21,13 +21,7 @@ package practica1;
 import ag.Poblacion;
 import ag.Seleccion;
 
-public class ProblemaTestPropiedad extends agsimple.Problema {
-
-	private ProblemaF1 m_problemaF1Delegate = new ProblemaF1();
-	private ProblemaF2 m_problemaF2Delegate = new ProblemaF2();
-	private ProblemaF3 m_problemaF3Delegate = new ProblemaF3();
-	private ProblemaF4 m_problemaF4Delegate = new ProblemaF4();
-	private ProblemaF5 m_problemaF5Delegate = new ProblemaF5();
+public class ProblemaTestPropiedad extends ag.Problema {
 
 	private double m_pasoActual = 0;
 	private double m_paso = 0;
@@ -75,12 +69,6 @@ public class ProblemaTestPropiedad extends agsimple.Problema {
 
 	public void lanzar(boolean limpiaAnterior) {
 		String atributo = null;
-
-		m_problemaF1Delegate.setVentanaPrincipal(ventanaPrincipal());
-		m_problemaF2Delegate.setVentanaPrincipal(ventanaPrincipal());
-		m_problemaF3Delegate.setVentanaPrincipal(ventanaPrincipal());
-		m_problemaF4Delegate.setVentanaPrincipal(ventanaPrincipal());
-		m_problemaF5Delegate.setVentanaPrincipal(ventanaPrincipal());
 
 		switch (ventanaPrincipal().rangoSeleccionado()) {
 			case 0:
@@ -133,7 +121,7 @@ public class ProblemaTestPropiedad extends agsimple.Problema {
 		String resString = new String();
 
 		while (m_pasoActual <= m_total) {
-			Poblacion p = genPoblacionVacia();
+			Poblacion p = Factoria.genPoblacionVacia();
 			p.genPoblacionInicial();
 			p.evaluarPoblacion();
 			int gen = 0;
@@ -156,7 +144,7 @@ public class ProblemaTestPropiedad extends agsimple.Problema {
 				grafica2yMaximaAptitud[gen] = p.getMejor().aptitud();
 				grafica3yPresionSelectiva[gen] = p.getMejor().aptitud() / p.aptitudMedia();
 
-				Poblacion res = genPoblacionVacia();
+				Poblacion res = Factoria.genPoblacionVacia();
 				Seleccion.ruleta(p, res);
 				res.cruzar();
 				res.mutar();
@@ -200,45 +188,20 @@ public class ProblemaTestPropiedad extends agsimple.Problema {
 	public int tamCromosoma() {
 		switch (ventanaPrincipal().problemaSeleccionado()) {
 			case 0:
-				return m_problemaF1Delegate.tamCromosoma();
+				return (int) Math.ceil(Math.log(1.0 + 1.0 / precision()) / Math.log(2));
 			case 1:
-				return m_problemaF2Delegate.tamCromosoma();
+				return (int) Math.ceil(Math.log(1.0 + 15.1 / precision()) / Math.log(2)) +
+                       (int) Math.ceil(Math.log(1.0 + (5.8 - 4.1) / precision()) / Math.log(2));
 			case 2:
-				return m_problemaF3Delegate.tamCromosoma();
+				return (int) Math.ceil(Math.log(1.0 + 25.0 / precision()) / Math.log(2));
 			case 3:
-				return m_problemaF4Delegate.tamCromosoma();
+				return (int) Math.ceil(Math.log(1.0 + 20.0 / precision()) / Math.log(2)) * 2;
 			case 4:
-				return m_problemaF5Delegate.tamCromosoma();
+				return (int) (Math.ceil(Math.log(1.0 + Math.PI / precision()) / Math.log(2)) * ventanaPrincipal().n());
 			default:
 				break;
 		}
 		return 0;
-	}
-
-	@Override
-	protected Poblacion genPoblacionVacia() {
-		Poblacion p = null;
-		switch (ventanaPrincipal().problemaSeleccionado()) {
-			case 0:
-				p = m_problemaF1Delegate.genPoblacionVacia();
-				break;
-			case 1:
-				p = m_problemaF2Delegate.genPoblacionVacia();
-				break;
-			case 2:
-				p = m_problemaF3Delegate.genPoblacionVacia();
-				break;
-			case 3:
-				p = m_problemaF4Delegate.genPoblacionVacia();
-				break;
-			case 4:
-				p = m_problemaF5Delegate.genPoblacionVacia();
-				break;
-			default:
-				break;
-		}
-		p.setProblema(this);
-		return p;
 	}
 
 }

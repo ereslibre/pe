@@ -24,16 +24,14 @@ import java.util.ListIterator;
 public abstract class Poblacion {
 
 	private ArrayList<Cromosoma> m_poblacion;
-	private Problema             m_problema;
 	private ArrayList<Double>    m_puntuacionesAcumuladas;
 	private Cromosoma            m_mejor;
 	private Double               m_evaluacionMaxima;
 	private Double               m_evaluacionMinima;
 	private Double               m_aptitudMedia;
 
-	public Poblacion(Problema problema) {
+	public Poblacion() {
 		m_poblacion = new ArrayList<Cromosoma>();
-		m_problema = problema;
 		m_mejor = null;
 	}
 
@@ -66,10 +64,6 @@ public abstract class Poblacion {
 	 */
 	protected abstract void anadeCromosomaAleatorio();
 
-	public void setProblema(Problema problema) {
-		m_problema = problema;
-	}
-
 	public void cruzar() {
 		ArrayList<Cromosoma> cruce = new ArrayList<Cromosoma>();
 		int intentos = 0;
@@ -78,7 +72,7 @@ public abstract class Poblacion {
 			ListIterator<Cromosoma> it = m_poblacion.listIterator();
 			while (it.hasNext()) {
 				Cromosoma c = it.next();
-				if (Math.random() < problema().probCruce()) {
+				if (Math.random() < Problema.self().probCruce()) {
 					cruce.add(c);
 				}
 			}
@@ -104,7 +98,7 @@ public abstract class Poblacion {
 		ListIterator<Cromosoma> it = m_poblacion.listIterator();
 		while (it.hasNext()) {
 			Cromosoma c = it.next();
-			if (Math.random() < problema().probMutacion()) {
+			if (Math.random() < Problema.self().probMutacion()) {
 				Cromosoma cc = null;
 				do {
 					cc = (Cromosoma) c.clone();
@@ -133,7 +127,7 @@ public abstract class Poblacion {
 			}
 			m_evaluacionMaxima *= 1.05;
 			m_evaluacionMinima *= 0.95;
-			m_aptitudMedia /= problema().tamPoblacion();
+			m_aptitudMedia /= Problema.self().tamPoblacion();
 		}
 		{
 			m_puntuacionesAcumuladas = new ArrayList<Double>();
@@ -144,8 +138,8 @@ public abstract class Poblacion {
 				if (m_mejor == null || m_mejor.aptitud() < c.aptitud()) {
 					m_mejor = (Cromosoma) c.clone();
 				}
-				if (problema().getMejor() == null || problema().getMejor().aptitud() < c.aptitud()) {
-					problema().setMejor((Cromosoma) c.clone());
+				if (Problema.self().getMejor() == null || Problema.self().getMejor().aptitud() < c.aptitud()) {
+					Problema.self().setMejor((Cromosoma) c.clone());
 				}
 				punt += c.puntuacion();
 				m_puntuacionesAcumuladas.add(punt);
@@ -154,15 +148,10 @@ public abstract class Poblacion {
 	}
 
 	/**
-     * @return Genera un cromosoma vacío.
-     */
-	public abstract Cromosoma genCromosomaVacio();
-
-	/**
      * Genera una población inicial.
      */
 	public void genPoblacionInicial() {
-		for (int i = 0; i < problema().tamPoblacion(); ++i) {
+		for (int i = 0; i < Problema.self().tamPoblacion(); ++i) {
 			anadeCromosomaAleatorio();
 		}
 	}
@@ -180,10 +169,6 @@ public abstract class Poblacion {
 	 */
 	public ArrayList<Cromosoma> poblacion() {
 		return m_poblacion;
-	}
-
-	public Problema problema() {
-		return m_problema;
 	}
 
 	/**

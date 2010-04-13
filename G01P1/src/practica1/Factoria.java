@@ -19,17 +19,43 @@
 package practica1;
 
 import ag.Poblacion;
+import agsimple.Cromosoma;
 
-public class ProblemaF4 extends agsimple.Problema {
+public class Factoria {
 
-	@Override
-	public int tamCromosoma() {
-		return (int) Math.ceil(Math.log(1.0 + 20.0 / precision()) / Math.log(2)) * 2;
+	public static final int Funcion1 = 0;
+	public static final int Funcion2 = 1;
+	public static final int Funcion3 = 2;
+	public static final int Funcion4 = 3;
+	public static final int Funcion5 = 4;
+
+	public static Poblacion genPoblacionVacia() {
+		return new agsimple.Poblacion();
 	}
 
-	@Override
-	protected Poblacion genPoblacionVacia() {
-		return new PoblacionF4(this);
+	public static Cromosoma generaCromosoma(Poblacion poblacion, int funcion) {
+		Cromosoma res = null;
+		switch (funcion) {
+			case Funcion1:
+				res = new CromosomaF1();
+				break;
+			case Funcion2:
+				res = new CromosomaF2();
+				break;
+			case Funcion3:
+				res = new CromosomaF3();
+				break;
+			case Funcion4:
+				res = new CromosomaF4();
+				break;
+			case Funcion5:
+				res = new CromosomaF5();
+				break;
+			default:
+				break;
+		}
+		res.setPoblacion(poblacion);
+		return res;
 	}
 
 }

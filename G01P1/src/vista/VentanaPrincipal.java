@@ -47,6 +47,8 @@ import javax.swing.JTextField;
 
 import org.math.plot.Plot2DPanel;
 
+import ag.Problema;
+
 public class VentanaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -548,30 +550,7 @@ public class VentanaPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ag.Problema p = null;
 				if (!m_rangos.isSelected()) {
-					switch (m_problema.getSelectedIndex()) {
-						case 0: {
-							p = new practica1.ProblemaF1();
-							break;
-						}
-						case 1: {
-							p = new practica1.ProblemaF2();
-							break;
-						}
-						case 2: {
-							p = new practica1.ProblemaF3();
-							break;
-						}
-						case 3: {
-							p = new practica1.ProblemaF4();
-							break;
-						}
-						case 4: {
-							p = new practica1.ProblemaF5();
-							break;
-						}
-						default:
-							break;
-					}
+					p = new Problema();
 				} else {
 					if (m_maxGenRadio.isSelected()) {
 						if (Double.valueOf(m_maxGenp.getText()) < 0) {

@@ -22,11 +22,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import ag.Cruce;
+import ag.Problema;
+import agsimple.Cromosoma;
 
 public class CromosomaF5 extends agsimple.Cromosoma {
 
-	CromosomaF5(PoblacionF5 poblacion) {
-		super(poblacion);
+	CromosomaF5() {
+		super();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -45,9 +47,10 @@ public class CromosomaF5 extends agsimple.Cromosoma {
 
 	@Override
 	public Object clone() {
-		CromosomaF5 res = new CromosomaF5((PoblacionF5) m_poblacion);
+		CromosomaF5 res = new CromosomaF5();
 		res.m_madre = m_madre;
 		res.m_padre = m_padre;
+		res.m_poblacion = m_poblacion;
 		res.m_cromosoma = new boolean[m_cromosoma.length];
 		for (int i = 0; i < m_cromosoma.length; ++i) {
 			res.m_cromosoma[i] = m_cromosoma[i];
@@ -57,10 +60,10 @@ public class CromosomaF5 extends agsimple.Cromosoma {
 
 	@Override
 	public Cruce cruzar(ag.Cromosoma cromosoma) {
-		final int tamCromosoma = ((agsimple.Problema) poblacion().problema()).tamCromosoma();
+		final int tamCromosoma = Problema.self().tamCromosoma();
 		int posCruce = (int) ((Math.random() * (double) (tamCromosoma - 1.0)));
 
-		CromosomaF5 hijo1 = (CromosomaF5) poblacion().genCromosomaVacio();
+		Cromosoma hijo1 = Factoria.generaCromosoma(m_poblacion, Factoria.Funcion5);
 		boolean hijo1c[] = new boolean[tamCromosoma];
 		for (int i = 0; i < tamCromosoma; ++i) {
 			if (i <= posCruce) {
@@ -73,7 +76,7 @@ public class CromosomaF5 extends agsimple.Cromosoma {
 		hijo1.setMadre(this);
 		hijo1.setPadre(cromosoma);
 
-		CromosomaF5 hijo2 = (CromosomaF5) poblacion().genCromosomaVacio();
+		Cromosoma hijo2 = Factoria.generaCromosoma(m_poblacion, Factoria.Funcion5);
 		boolean hijo2c[] = new boolean[tamCromosoma];
 		for (int i = 0; i < tamCromosoma; ++i) {
 			if (i <= posCruce) {
@@ -119,8 +122,8 @@ public class CromosomaF5 extends agsimple.Cromosoma {
 	@Override
 	public Object fenotipo() {
 		ArrayList<Double> res = new ArrayList<Double>();
-		final int tamCromosoma = ((agsimple.Problema) poblacion().problema()).tamCromosoma();
-		final int tamGen = (int) (Math.log(1.0 + Math.PI / poblacion().problema().precision()) / Math.log(2));
+		final int tamCromosoma = Problema.self().tamCromosoma();
+		final int tamGen = (int) (Math.log(1.0 + Math.PI / Problema.self().precision()) / Math.log(2));
 		for (int i = 0; i < tamCromosoma / tamGen; ++i) {
 			boolean[] gen = new boolean[tamGen];
 			for (int j = 0; j < tamGen; ++j) {
@@ -148,8 +151,8 @@ public class CromosomaF5 extends agsimple.Cromosoma {
 	@Override
 	public void mutar() {
 		boolean genotipo[] = (boolean[]) genotipo();
-		for (int i = 0; i < ((agsimple.Problema) poblacion().problema()).tamCromosoma(); ++i) {
-			if (Math.random() < poblacion().problema().probMutacion()) {
+		for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
+			if (Math.random() < Problema.self().probMutacion()) {
 				genotipo[i] = !genotipo[i];
 			}
 		}

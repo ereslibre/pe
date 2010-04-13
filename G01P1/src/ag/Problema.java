@@ -18,12 +18,22 @@
 
 package ag;
 
+import practica1.Factoria;
 import vista.VentanaPrincipal;
 
-public abstract class Problema extends Thread {
+public class Problema extends Thread {
 
 	private Cromosoma        m_mejor = null;
 	private VentanaPrincipal m_ventanaPrincipal = null;
+	private static Problema  m_problemaActual = null;
+
+	public Problema() {
+		m_problemaActual = this;
+	}
+
+	public static Problema self() {
+		return m_problemaActual;
+	}
 
 	public int numMaxGen() {
 		return Integer.valueOf(m_ventanaPrincipal.maxGen());
@@ -45,7 +55,24 @@ public abstract class Problema extends Thread {
 		return Double.valueOf(m_ventanaPrincipal.precision());
 	}
 
-	protected abstract Poblacion genPoblacionVacia();
+	public int tamCromosoma() {
+		switch (ventanaPrincipal().problemaSeleccionado()) {
+			case 0:
+				return (int) Math.ceil(Math.log(1.0 + 1.0 / precision()) / Math.log(2));
+			case 1:
+				return (int) Math.ceil(Math.log(1.0 + 15.1 / precision()) / Math.log(2)) +
+	                   (int) Math.ceil(Math.log(1.0 + (5.8 - 4.1) / precision()) / Math.log(2));
+			case 2:
+				return (int) Math.ceil(Math.log(1.0 + 25.0 / precision()) / Math.log(2));
+			case 3:
+				return (int) Math.ceil(Math.log(1.0 + 20.0 / precision()) / Math.log(2)) * 2;
+			case 4:
+				return (int) (Math.ceil(Math.log(1.0 + Math.PI / precision()) / Math.log(2)) * ventanaPrincipal().n());
+			default:
+				break;
+		}
+		return 0;
+	}
 
 	public Cromosoma getMejor() {
 		return m_mejor;
@@ -61,7 +88,7 @@ public abstract class Problema extends Thread {
 	}
 
 	public void lanzar(boolean limpiaAnterior) {
-		Poblacion p = genPoblacionVacia();
+		Poblacion p = Factoria.genPoblacionVacia();
 		p.genPoblacionInicial();
 		p.evaluarPoblacion();
 		int gen = 0;
@@ -91,7 +118,7 @@ public abstract class Problema extends Thread {
 			grafica2yMaximaAptitud[gen] = p.getMejor().aptitud();
 			grafica3yPresionSelectiva[gen] = p.getMejor().aptitud() / p.aptitudMedia();
 
-			Poblacion res = genPoblacionVacia();
+			Poblacion res = Factoria.genPoblacionVacia();
 			Seleccion.ruleta(p, res);
 			res.cruzar();
 			res.mutar();

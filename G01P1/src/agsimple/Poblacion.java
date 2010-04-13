@@ -20,20 +20,42 @@ package agsimple;
 
 import java.util.ListIterator;
 
-public abstract class Poblacion extends ag.Poblacion {
+import ag.Problema;
 
-	public Poblacion(Problema problema) {
-		super(problema);
+import practica1.Factoria;
+
+public class Poblacion extends ag.Poblacion {
+
+	public Poblacion() {
+		super();
 	}
 
 	@Override
 	public void anadeCromosomaAleatorio() {
-		Problema p = (Problema) problema();
-		Cromosoma res = generaCromosoma();
+		Cromosoma res = null;
+		switch (Problema.self().ventanaPrincipal().problemaSeleccionado()) {
+			case 0:
+				res = Factoria.generaCromosoma(this, Factoria.Funcion1);
+				break;
+			case 1:
+				res = Factoria.generaCromosoma(this, Factoria.Funcion2);
+				break;
+			case 2:
+				res = Factoria.generaCromosoma(this, Factoria.Funcion3);
+				break;
+			case 3:
+				res = Factoria.generaCromosoma(this, Factoria.Funcion4);
+				break;
+			case 4:
+				res = Factoria.generaCromosoma(this, Factoria.Funcion5);
+				break;
+			default:
+				break;
+		}
 		boolean cromosomaFactible = false;
 		while (!cromosomaFactible) {
 			boolean cromosoma[] = res.cromosoma();
-			for (int i = 0; i < p.tamCromosoma(); ++i) {
+			for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
 				cromosoma[i] = (Math.random() < 0.5) ? false : true;
 			}
 			res.setCromosoma(cromosoma);
@@ -41,15 +63,6 @@ public abstract class Poblacion extends ag.Poblacion {
 		}
 		res.setPoblacion(this);
 		poblacion().add(res);
-	}
-
-	public abstract Cromosoma generaCromosoma();
-
-	@Override
-	public Cromosoma genCromosomaVacio() {
-		Cromosoma res = generaCromosoma();
-		res.setPoblacion(this);
-		return res;
 	}
 
 	public double puntuacionTotal() {

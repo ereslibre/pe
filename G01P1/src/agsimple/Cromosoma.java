@@ -18,14 +18,15 @@
 
 package agsimple;
 
+import ag.Problema;
+
 public abstract class Cromosoma extends ag.Cromosoma {
 
-	protected boolean m_cromosoma[];
+	protected boolean m_cromosoma[] = null;
 
-	public Cromosoma(Poblacion poblacion) {
-		super(poblacion);
-		Problema p = (Problema) poblacion.problema();
-		m_cromosoma = new boolean[p.tamCromosoma()];
+	public Cromosoma() {
+		super();
+		m_cromosoma = new boolean[Problema.self().tamCromosoma()];
 	}
 
 	public boolean[] cromosoma() {

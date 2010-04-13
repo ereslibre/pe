@@ -1,3 +1,4 @@
+syntax:glob
 .metadata
 practicas/bin
 practicas/.settings
@@ -5,3 +6,4 @@ memoria/*.aux
 memoria/*.log
 memoria/*.pdf
 memoria/*.toc
+*.class

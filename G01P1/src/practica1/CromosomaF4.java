@@ -21,11 +21,13 @@ package practica1;
 import java.util.ArrayList;
 
 import ag.Cruce;
+import ag.Problema;
+import agsimple.Cromosoma;
 
 public class CromosomaF4 extends agsimple.Cromosoma {
 
-	CromosomaF4(PoblacionF4 poblacion) {
-		super(poblacion);
+	CromosomaF4() {
+		super();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -45,9 +47,10 @@ public class CromosomaF4 extends agsimple.Cromosoma {
 
 	@Override
 	public Object clone() {
-		CromosomaF4 res = new CromosomaF4((PoblacionF4) m_poblacion);
+		CromosomaF4 res = new CromosomaF4();
 		res.m_madre = m_madre;
 		res.m_padre = m_padre;
+		res.m_poblacion = m_poblacion;
 		res.m_cromosoma = new boolean[m_cromosoma.length];
 		for (int i = 0; i < m_cromosoma.length; ++i) {
 			res.m_cromosoma[i] = m_cromosoma[i];
@@ -57,14 +60,14 @@ public class CromosomaF4 extends agsimple.Cromosoma {
 
 	@Override
 	public Cruce cruzar(ag.Cromosoma cromosoma) {
-		final int tamCromosoma = ((agsimple.Problema) poblacion().problema()).tamCromosoma();
-		final int tamx = ((int) Math.ceil(Math.log(1.0 + (12.1 - (-3.0)) / poblacion().problema().precision()) / Math.log(2)));
-		final int posCruceGen1 = (int) (Math.random() * (Double) Math.ceil(Math.log(1.0 + (12.1 - (-3.0)) / poblacion().problema().precision()) / Math.log(2)));
-		final int posCruceGen2 = (int) (Math.random() * (Double) Math.ceil(Math.log(1.0 + (5.8 - 4.1) / poblacion().problema().precision()) / Math.log(2)));
+		final int tamCromosoma = Problema.self().tamCromosoma();
+		final int tamx = ((int) Math.ceil(Math.log(1.0 + (12.1 - (-3.0)) / Problema.self().precision()) / Math.log(2)));
+		final int posCruceGen1 = (int) (Math.random() * (Double) Math.ceil(Math.log(1.0 + (12.1 - (-3.0)) / Problema.self().precision()) / Math.log(2)));
+		final int posCruceGen2 = (int) (Math.random() * (Double) Math.ceil(Math.log(1.0 + (5.8 - 4.1) / Problema.self().precision()) / Math.log(2)));
 
 		Double ellaOYo = Math.random();
 
-		CromosomaF4 hijo1 = (CromosomaF4) poblacion().genCromosomaVacio();
+		Cromosoma hijo1 = Factoria.generaCromosoma(m_poblacion, Factoria.Funcion4);
 		boolean hijo1c[] = new boolean[tamCromosoma];
 		{
 			for (int i = 0; i <= posCruceGen1; ++i)  {
@@ -84,7 +87,7 @@ public class CromosomaF4 extends agsimple.Cromosoma {
 		hijo1.setMadre(this);
 		hijo1.setPadre(cromosoma);
 
-		CromosomaF4 hijo2 = (CromosomaF4) poblacion().genCromosomaVacio();
+		Cromosoma hijo2 = Factoria.generaCromosoma(m_poblacion, Factoria.Funcion4);
 		boolean hijo2c[] = new boolean[tamCromosoma];
 		{
 			for (int i = 0; i <= posCruceGen1; ++i)  {
@@ -134,7 +137,7 @@ public class CromosomaF4 extends agsimple.Cromosoma {
 	@Override
 	public Object fenotipo() {
 		ArrayList<Double> res = new ArrayList<Double>();
-		final int tamx = (int) Math.ceil(Math.log(1.0 + (10.0 - (-10.0)) / poblacion().problema().precision()) / Math.log(2));
+		final int tamx = (int) Math.ceil(Math.log(1.0 + (10.0 - (-10.0)) / Problema.self().precision()) / Math.log(2));
 		{
 			boolean[] cx = new boolean[tamx];
 			for (int i = 0; i < tamx; ++i) {
@@ -168,8 +171,8 @@ public class CromosomaF4 extends agsimple.Cromosoma {
 	@Override
 	public void mutar() {
 		boolean genotipo[] = (boolean[]) genotipo();
-		for (int i = 0; i < ((agsimple.Problema) poblacion().problema()).tamCromosoma(); ++i) {
-			if (Math.random() < poblacion().problema().probMutacion()) {
+		for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
+			if (Math.random() < Problema.self().probMutacion()) {
 				genotipo[i] = !genotipo[i];
 			}
 		}
