@@ -64,21 +64,28 @@ public class VentanaPrincipal extends JFrame {
 	private JTextField   m_probMutacion      = new JTextField();
 	private JTextField   m_tamPoblacion      = new JTextField();
 	private JTextField   m_precision         = new JTextField();
+	private JTextField   m_elitismo          = new JTextField();
+
 	private JTextField   m_maxGen2           = new JTextField();
 	private JTextField   m_probCruce2        = new JTextField();
 	private JTextField   m_probMutacion2     = new JTextField();
 	private JTextField   m_tamPoblacion2     = new JTextField();
 	private JTextField   m_precision2        = new JTextField();
+	private JTextField   m_elitismo2         = new JTextField();
+
 	private JTextField   m_maxGenp           = new JTextField();
 	private JTextField   m_probCrucep        = new JTextField();
 	private JTextField   m_probMutacionp     = new JTextField();
 	private JTextField   m_tamPoblacionp     = new JTextField();
 	private JTextField   m_precisionp        = new JTextField();
+	private JTextField   m_elitismop         = new JTextField();
+
 	private JRadioButton m_maxGenRadio       = new JRadioButton();
 	private JRadioButton m_probCruceRadio    = new JRadioButton();
 	private JRadioButton m_probMutacionRadio = new JRadioButton();
 	private JRadioButton m_tamPoblacionRadio = new JRadioButton();
 	private JRadioButton m_precisionRadio    = new JRadioButton();
+	private JRadioButton m_elitismoRadio     = new JRadioButton();
 	private JLabel       m_prob5NLabel       = new JLabel("N (Problema 5)");
 	private JTextField   m_prob5N            = new JTextField();
 	private JButton      m_lanzar            = new JButton();
@@ -108,6 +115,7 @@ public class VentanaPrincipal extends JFrame {
 		m_probMutacion.setText("0.01");
 		m_tamPoblacion.setText("100");
 		m_precision.setText("0.001");
+		m_elitismo.setText("0.1");
 
 		m_maxGen2.setText("200");
 		m_maxGen2.setVisible(false);
@@ -119,6 +127,8 @@ public class VentanaPrincipal extends JFrame {
 		m_tamPoblacion2.setVisible(false);
 		m_precision2.setText("0.000001");
 		m_precision2.setVisible(false);
+		m_elitismo2.setText("0.2");
+		m_elitismo2.setVisible(false);
 
 		m_maxGenp.setText("25");
 		m_maxGenp.setVisible(false);
@@ -130,12 +140,15 @@ public class VentanaPrincipal extends JFrame {
 		m_tamPoblacionp.setVisible(false);
 		m_precisionp.setText("0.000000025");
 		m_precisionp.setVisible(false);
+		m_elitismop.setText("0.05");
+		m_elitismop.setVisible(false);
 
 		m_maxGenRadio.setVisible(false);
 		m_probCruceRadio.setVisible(false);
 		m_probMutacionRadio.setVisible(false);
 		m_tamPoblacionRadio.setVisible(false);
 		m_precisionRadio.setVisible(false);
+		m_elitismoRadio.setVisible(false);
 
 		m_de.setVisible(false);
 		m_a.setVisible(false);
@@ -151,6 +164,7 @@ public class VentanaPrincipal extends JFrame {
 		group.add(m_probMutacionRadio);
 		group.add(m_tamPoblacionRadio);
 		group.add(m_precisionRadio);
+		group.add(m_elitismoRadio);
 
 		ActionListener listener = new ActionListener() {
 			@Override
@@ -165,6 +179,8 @@ public class VentanaPrincipal extends JFrame {
 				m_tamPoblacionp.setEnabled(m_tamPoblacionRadio.isSelected());
 				m_precision2.setEnabled(m_precisionRadio.isSelected());
 				m_precisionp.setEnabled(m_precisionRadio.isSelected());
+				m_elitismo2.setEnabled(m_elitismoRadio.isSelected());
+				m_elitismop.setEnabled(m_elitismoRadio.isSelected());
 				m_resultado.setText("\t(Resultado no generado)");
 				m_grafica1.removeAllPlots();
 				m_grafica2.removeAllPlots();
@@ -178,6 +194,7 @@ public class VentanaPrincipal extends JFrame {
 		m_probMutacionRadio.addActionListener(listener);
 		m_tamPoblacionRadio.addActionListener(listener);
 		m_precisionRadio.addActionListener(listener);
+		m_elitismoRadio.addActionListener(listener);
 
 		m_resultado.setOpaque(false);
 		m_resultado.setEditable(false);
@@ -367,6 +384,8 @@ public class VentanaPrincipal extends JFrame {
 		m_tamPoblacionp.setEnabled(m_tamPoblacionRadio.isSelected());
 		m_precision2.setEnabled(m_precisionRadio.isSelected());
 		m_precisionp.setEnabled(m_precisionRadio.isSelected());
+		m_elitismo2.setEnabled(m_elitismoRadio.isSelected());
+		m_elitismop.setEnabled(m_elitismoRadio.isSelected());
 		m_prob5N.setVisible(m_problema.getSelectedIndex() == 4);
 		m_prob5NLabel.setVisible(m_problema.getSelectedIndex() == 4);
 	}
@@ -408,16 +427,19 @@ public class VentanaPrincipal extends JFrame {
 				m_probMutacion2.setVisible(m_rangos.isSelected());
 				m_tamPoblacion2.setVisible(m_rangos.isSelected());
 				m_precision2.setVisible(m_rangos.isSelected());
+				m_elitismo2.setVisible(m_rangos.isSelected());
 				m_maxGenp.setVisible(m_rangos.isSelected());
 				m_probCrucep.setVisible(m_rangos.isSelected());
 				m_probMutacionp.setVisible(m_rangos.isSelected());
 				m_tamPoblacionp.setVisible(m_rangos.isSelected());
 				m_precisionp.setVisible(m_rangos.isSelected());
+				m_elitismop.setVisible(true);
 				m_maxGenRadio.setVisible(m_rangos.isSelected());
 				m_probCruceRadio.setVisible(m_rangos.isSelected());
 				m_probMutacionRadio.setVisible(m_rangos.isSelected());
 				m_tamPoblacionRadio.setVisible(m_rangos.isSelected());
 				m_precisionRadio.setVisible(m_rangos.isSelected());
+				m_elitismoRadio.setVisible(m_rangos.isSelected());
 				m_de.setVisible(m_rangos.isSelected());
 				m_a.setVisible(m_rangos.isSelected());
 				m_paso.setVisible(m_rangos.isSelected());
@@ -520,25 +542,41 @@ public class VentanaPrincipal extends JFrame {
 		p.add(m_precisionp, gridBagConstraints);
 
 		gridBagConstraints.gridy = 8;
+		gridBagConstraints.gridx = 0;
+		p.add(m_elitismoRadio, gridBagConstraints);
+
+		gridBagConstraints.gridx = 1;
+		p.add(new JLabel("Elitismo"), gridBagConstraints);
+
+		gridBagConstraints.gridx = 2;
+		p.add(m_elitismo, gridBagConstraints);
+
+		gridBagConstraints.gridx = 3;
+		p.add(m_elitismo2, gridBagConstraints);
+
+		gridBagConstraints.gridx = 4;
+		p.add(m_elitismop, gridBagConstraints);
+
+		gridBagConstraints.gridy = 9;
 		gridBagConstraints.gridx = 1;
 		p.add(m_prob5NLabel, gridBagConstraints);
 
 		gridBagConstraints.gridx = 2;
 		p.add(m_prob5N, gridBagConstraints);
 
-		gridBagConstraints.gridy = 9;
+		gridBagConstraints.gridy = 10;
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
 		p.add(new JLabel("Resultado:"), gridBagConstraints);
 
-		gridBagConstraints.gridy = 10;
+		gridBagConstraints.gridy = 11;
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.weighty = 10;
 		gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
 		JScrollPane resultado = new JScrollPane(m_resultado, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		p.add(resultado, gridBagConstraints);
 
-		gridBagConstraints.gridy = 11;
+		gridBagConstraints.gridy = 12;
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.weighty = 0;
 		m_lanzar = new JButton("Lanzar");
