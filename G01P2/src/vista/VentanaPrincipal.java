@@ -433,7 +433,7 @@ public class VentanaPrincipal extends JFrame {
 				m_probMutacionp.setVisible(m_rangos.isSelected());
 				m_tamPoblacionp.setVisible(m_rangos.isSelected());
 				m_precisionp.setVisible(m_rangos.isSelected());
-				m_elitismop.setVisible(true);
+				m_elitismop.setVisible(m_rangos.isSelected());
 				m_maxGenRadio.setVisible(m_rangos.isSelected());
 				m_probCruceRadio.setVisible(m_rangos.isSelected());
 				m_probMutacionRadio.setVisible(m_rangos.isSelected());
