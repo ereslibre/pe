@@ -138,8 +138,8 @@ public class ProblemaTestPropiedad extends ag.Problema {
 			double[] grafica3yPresionSelectiva = new double[numMaxGen() + 1];
 
 			while (gen <= numMaxGen()) {
-				grafica1yMejorAlgoritmo[gen] = getMejor().aptitud();
-				grafica1yMejorGeneracion[gen] = p.getMejor().aptitud();
+				grafica1yMejorAlgoritmo[gen] = getMejor().evaluacion();
+				grafica1yMejorGeneracion[gen] = p.getMejor().evaluacion();
 				grafica2yMediaAptitud[gen] = p.aptitudMedia();
 				grafica2yMaximaAptitud[gen] = p.getMejor().aptitud();
 				grafica3yPresionSelectiva[gen] = p.getMejor().aptitud() / p.aptitudMedia();
@@ -168,7 +168,7 @@ public class ProblemaTestPropiedad extends ag.Problema {
 			ventanaPrincipal().grafica3().addLinePlot("Presión Selectiva (" + atributo + (float) m_pasoActual + ")", ejex, grafica3yPresionSelectiva);
 
 			resString += "\tIteración " + k + ":\tEl mejor es:\t" + getMejor().fenotipo();
-			resString += "\n\t\tEvaluación:\t" + getMejor().aptitud() + "\n\n";
+			resString += "\n\t\tEvaluación:\t" + getMejor().evaluacion() + "\n\n";
 
 			setMejor(null);
 

@@ -68,11 +68,14 @@ public abstract class Poblacion {
 			Cromosoma c1 = it.next();
 			Cromosoma c2 = it.next();
 			Cruce resultado = null;
-			do {
+			while (true) {
 				resultado = c1.cruzar(c2);
-				m_poblacion.set(m_poblacion.indexOf(c1), resultado.a());
-				m_poblacion.set(m_poblacion.indexOf(c2), resultado.b());
-			} while(!resultado.a().esFactible() || !resultado.b().esFactible());
+				if (resultado.a().esFactible() && resultado.b().esFactible()) {
+					m_poblacion.set(m_poblacion.indexOf(c1), resultado.a());
+					m_poblacion.set(m_poblacion.indexOf(c2), resultado.b());
+					break;
+				}
+			}
 		}
 	}
 

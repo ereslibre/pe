@@ -78,4 +78,8 @@ public class Utilidades {
 		return ciudades[i];
 	}
 
+	public static int numCiudades() {
+		return ciudades.length;
+	}
+
 }

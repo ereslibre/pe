@@ -18,6 +18,7 @@
 
 package agsimple;
 
+import java.util.ArrayList;
 import java.util.ListIterator;
 
 import ag.Problema;
@@ -34,15 +35,15 @@ public class Poblacion extends ag.Poblacion {
 	@Override
 	public void anadeCromosomaAleatorio() {
 		Cromosoma res = Factoria.generaCromosoma(this);
-		boolean cromosomaFactible = false;
-		while (!cromosomaFactible) {
-			int cromosoma[] = res.cromosoma();
-			for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
-				cromosoma[i] = (int) ((Problema.self().tamCromosoma() - 1) * Math.random());
-			}
-			res.setCromosoma(cromosoma);
-			cromosomaFactible = res.esFactible();
+		ArrayList<Integer> cromosoma = new ArrayList<Integer>();
+		int cromosomaFinal[] = new int[Problema.self().tamCromosoma()];
+		for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
+			cromosoma.add(i);
 		}
+		for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
+			cromosomaFinal[i] = cromosoma.remove((int) ((cromosoma.size() - 1) * Math.random()));
+		}
+		res.setCromosoma(cromosomaFinal);
 		res.setPoblacion(this);
 		poblacion().add(res);
 	}

@@ -19,6 +19,7 @@
 package ag;
 
 import practica2.Factoria;
+import practica2.Utilidades;
 import vista.VentanaPrincipal;
 
 public class Problema extends Thread {
@@ -56,22 +57,7 @@ public class Problema extends Thread {
 	}
 
 	public int tamCromosoma() {
-		switch (ventanaPrincipal().problemaSeleccionado()) {
-			case 0:
-				return (int) Math.ceil(Math.log(1.0 + 1.0 / precision()) / Math.log(2));
-			case 1:
-				return (int) Math.ceil(Math.log(1.0 + 15.1 / precision()) / Math.log(2)) +
-	                   (int) Math.ceil(Math.log(1.0 + (5.8 - 4.1) / precision()) / Math.log(2));
-			case 2:
-				return (int) Math.ceil(Math.log(1.0 + 25.0 / precision()) / Math.log(2));
-			case 3:
-				return (int) Math.ceil(Math.log(1.0 + 20.0 / precision()) / Math.log(2)) * 2;
-			case 4:
-				return (int) (Math.ceil(Math.log(1.0 + Math.PI / precision()) / Math.log(2)) * ventanaPrincipal().n());
-			default:
-				break;
-		}
-		return 0;
+		return Utilidades.numCiudades();
 	}
 
 	public Cromosoma getMejor() {
@@ -112,8 +98,8 @@ public class Problema extends Thread {
 		double[] grafica3yPresionSelectiva = new double[numMaxGen() + 1];
 
 		while (gen <= numMaxGen()) {
-			grafica1yMejorAlgoritmo[gen] = getMejor().aptitud();
-			grafica1yMejorGeneracion[gen] = p.getMejor().aptitud();
+			grafica1yMejorAlgoritmo[gen] = getMejor().evaluacion();
+			grafica1yMejorGeneracion[gen] = p.getMejor().evaluacion();
 			grafica2yMediaAptitud[gen] = p.aptitudMedia();
 			grafica2yMaximaAptitud[gen] = p.getMejor().aptitud();
 			grafica3yPresionSelectiva[gen] = p.getMejor().aptitud() / p.aptitudMedia();
@@ -139,7 +125,7 @@ public class Problema extends Thread {
 		if (limpiaAnterior) {
 			m_ventanaPrincipal.terminado();
 			ventanaPrincipal().resultado().setText("\tEl mejor es:\t" + getMejor().fenotipo());
-			ventanaPrincipal().resultado().append("\n\tEvaluación:\t" + getMejor().aptitud());
+			ventanaPrincipal().resultado().append("\n\tEvaluación:\t" + getMejor().evaluacion());
 		}
 	}
 
