@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package practica1;
+package practica2;
 
 import ag.Poblacion;
 import ag.Seleccion;
@@ -138,8 +138,8 @@ public class ProblemaTestPropiedad extends ag.Problema {
 			double[] grafica3yPresionSelectiva = new double[numMaxGen() + 1];
 
 			while (gen <= numMaxGen()) {
-				grafica1yMejorAlgoritmo[gen] = getMejor().evaluacion();
-				grafica1yMejorGeneracion[gen] = p.getMejor().evaluacion();
+				grafica1yMejorAlgoritmo[gen] = getMejor().aptitud();
+				grafica1yMejorGeneracion[gen] = p.getMejor().aptitud();
 				grafica2yMediaAptitud[gen] = p.aptitudMedia();
 				grafica2yMaximaAptitud[gen] = p.getMejor().aptitud();
 				grafica3yPresionSelectiva[gen] = p.getMejor().aptitud() / p.aptitudMedia();
@@ -168,7 +168,7 @@ public class ProblemaTestPropiedad extends ag.Problema {
 			ventanaPrincipal().grafica3().addLinePlot("Presión Selectiva (" + atributo + (float) m_pasoActual + ")", ejex, grafica3yPresionSelectiva);
 
 			resString += "\tIteración " + k + ":\tEl mejor es:\t" + getMejor().fenotipo();
-			resString += "\n\t\tEvaluación:\t" + getMejor().evaluacion() + "\n\n";
+			resString += "\n\t\tEvaluación:\t" + getMejor().aptitud() + "\n\n";
 
 			setMejor(null);
 
@@ -180,7 +180,7 @@ public class ProblemaTestPropiedad extends ag.Problema {
 		ventanaPrincipal().terminado();
 		resString += "\tGeneral:\tEl mejor es:\t" + mejorCromosoma.fenotipo();
 		resString += "\n\t\tIteración:\t" + mejor;
-		resString += "\n\t\tEvaluación:\t" + mejorCromosoma.evaluacion();
+		resString += "\n\t\tAptitud:\t" + mejorCromosoma.aptitud();
 		ventanaPrincipal().resultado().setText(resString);
 	}
 

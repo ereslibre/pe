@@ -693,7 +693,7 @@ public class VentanaPrincipal extends JFrame {
 							return;
 						}
 					}
-					p = new practica1.ProblemaTestPropiedad();
+					p = new practica2.ProblemaTestPropiedad();
 				}
 				m_progressBar.setValue(0);
 				m_resultado.setText("\tGenerando resultado...");

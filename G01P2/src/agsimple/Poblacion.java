@@ -22,7 +22,8 @@ import java.util.ListIterator;
 
 import ag.Problema;
 
-import practica1.Factoria;
+import practica2.Cromosoma;
+import practica2.Factoria;
 
 public class Poblacion extends ag.Poblacion {
 
@@ -32,31 +33,12 @@ public class Poblacion extends ag.Poblacion {
 
 	@Override
 	public void anadeCromosomaAleatorio() {
-		Cromosoma res = null;
-		switch (Problema.self().ventanaPrincipal().problemaSeleccionado()) {
-			case 0:
-				res = Factoria.generaCromosoma(this, Factoria.Funcion1);
-				break;
-			case 1:
-				res = Factoria.generaCromosoma(this, Factoria.Funcion2);
-				break;
-			case 2:
-				res = Factoria.generaCromosoma(this, Factoria.Funcion3);
-				break;
-			case 3:
-				res = Factoria.generaCromosoma(this, Factoria.Funcion4);
-				break;
-			case 4:
-				res = Factoria.generaCromosoma(this, Factoria.Funcion5);
-				break;
-			default:
-				break;
-		}
+		Cromosoma res = Factoria.generaCromosoma(this);
 		boolean cromosomaFactible = false;
 		while (!cromosomaFactible) {
-			boolean cromosoma[] = res.cromosoma();
+			int cromosoma[] = res.cromosoma();
 			for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
-				cromosoma[i] = (Math.random() < 0.5) ? false : true;
+				cromosoma[i] = (int) ((Problema.self().tamCromosoma() - 1) * Math.random());
 			}
 			res.setCromosoma(cromosoma);
 			cromosomaFactible = res.esFactible();

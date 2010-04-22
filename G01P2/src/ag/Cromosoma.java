@@ -50,11 +50,6 @@ public abstract class Cromosoma {
 	public abstract boolean esFactible();
 
 	/**
-	 * @return El valor de evaluación de este individuo.
-	 */
-	public abstract double evaluacion();
-
-	/**
 	 * @return El fenotipo para este cromosoma.
 	 */
 	public abstract Object fenotipo();

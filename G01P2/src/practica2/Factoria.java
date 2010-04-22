@@ -16,25 +16,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package agsimple;
+package practica2;
 
-import ag.Problema;
+import ag.Poblacion;
+import practica2.Cromosoma;
 
-public abstract class Cromosoma extends ag.Cromosoma {
+public class Factoria {
 
-	protected boolean m_cromosoma[] = null;
-
-	public Cromosoma() {
-		super();
-		m_cromosoma = new boolean[Problema.self().tamCromosoma()];
+	public static Poblacion genPoblacionVacia() {
+		return new agsimple.Poblacion();
 	}
 
-	public boolean[] cromosoma() {
-		return m_cromosoma;
-	}
-
-	public void setCromosoma(boolean[] cromosoma) {
-		m_cromosoma = cromosoma;
+	public static Cromosoma generaCromosoma(Poblacion poblacion) {
+		Cromosoma res = new Cromosoma();
+		res.setPoblacion(poblacion);
+		return res;
 	}
 
 }

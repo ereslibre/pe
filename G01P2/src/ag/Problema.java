@@ -18,7 +18,7 @@
 
 package ag;
 
-import practica1.Factoria;
+import practica2.Factoria;
 import vista.VentanaPrincipal;
 
 public class Problema extends Thread {
@@ -112,8 +112,8 @@ public class Problema extends Thread {
 		double[] grafica3yPresionSelectiva = new double[numMaxGen() + 1];
 
 		while (gen <= numMaxGen()) {
-			grafica1yMejorAlgoritmo[gen] = getMejor().evaluacion();
-			grafica1yMejorGeneracion[gen] = p.getMejor().evaluacion();
+			grafica1yMejorAlgoritmo[gen] = getMejor().aptitud();
+			grafica1yMejorGeneracion[gen] = p.getMejor().aptitud();
 			grafica2yMediaAptitud[gen] = p.aptitudMedia();
 			grafica2yMaximaAptitud[gen] = p.getMejor().aptitud();
 			grafica3yPresionSelectiva[gen] = p.getMejor().aptitud() / p.aptitudMedia();
@@ -139,7 +139,7 @@ public class Problema extends Thread {
 		if (limpiaAnterior) {
 			m_ventanaPrincipal.terminado();
 			ventanaPrincipal().resultado().setText("\tEl mejor es:\t" + getMejor().fenotipo());
-			ventanaPrincipal().resultado().append("\n\tEvaluación:\t" + getMejor().evaluacion());
+			ventanaPrincipal().resultado().append("\n\tEvaluación:\t" + getMejor().aptitud());
 		}
 	}
 

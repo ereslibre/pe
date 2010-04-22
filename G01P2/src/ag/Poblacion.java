@@ -26,29 +26,11 @@ public abstract class Poblacion {
 	private ArrayList<Cromosoma> m_poblacion;
 	private ArrayList<Double>    m_puntuacionesAcumuladas;
 	private Cromosoma            m_mejor;
-	private Double               m_evaluacionMaxima;
-	private Double               m_evaluacionMinima;
 	private Double               m_aptitudMedia;
 
 	public Poblacion() {
 		m_poblacion = new ArrayList<Cromosoma>();
 		m_mejor = null;
-	}
-
-	/**
-	 * @return La evaluación máxima de esta población. Útil para convertir problemas de minimización
-	 *         en problemas de maximización.
-	 */
-	public Double evaluacionMaxima() {
-		return m_evaluacionMaxima;
-	}
-
-	/**
-	 * @return La evaluación mínima de esta población. Útil para tratar números negativos en problemas
-	 *         de maximización.
-	 */
-	public Double evaluacionMinima() {
-		return m_evaluacionMinima;
 	}
 
 	/**
@@ -115,18 +97,11 @@ public abstract class Poblacion {
 
 	public void evaluarPoblacion() {
 		{
-			m_evaluacionMaxima = Double.NEGATIVE_INFINITY;
-			m_evaluacionMinima = Double.POSITIVE_INFINITY;
 			m_aptitudMedia = 0.0;
 			ListIterator<Cromosoma> it = m_poblacion.listIterator();
 			while (it.hasNext()) {
-				final Cromosoma c = it.next();
-				m_evaluacionMaxima = Math.max(m_evaluacionMaxima, c.evaluacion());
-				m_evaluacionMinima = Math.min(m_evaluacionMinima, c.evaluacion());
-				m_aptitudMedia += c.aptitud();
+				m_aptitudMedia += it.next().aptitud();
 			}
-			m_evaluacionMaxima *= 1.05;
-			m_evaluacionMinima *= 0.95;
 			m_aptitudMedia /= Problema.self().tamPoblacion();
 		}
 		{
