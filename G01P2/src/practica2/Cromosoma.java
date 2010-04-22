@@ -34,21 +34,21 @@ public class Cromosoma extends ag.Cromosoma {
 
 	@Override
 	public double aptitud() {
-		double res = 0;
+		double res = Utilidades.getDist(0, m_cromosoma[0]);
 		for (int i = 0; i < m_cromosoma.length - 1; ++i) {
 			res += Utilidades.getDist(m_cromosoma[i], m_cromosoma[i + 1]);
 		}
-		res += Utilidades.getDist(m_cromosoma[m_cromosoma.length - 1], m_cromosoma[0]);
+		res += Utilidades.getDist(m_cromosoma[m_cromosoma.length - 1], 0);
 		return 10000000 - res;
 	}
 
 	@Override
 	public double evaluacion() {
-		double res = 0;
+		double res = Utilidades.getDist(0, m_cromosoma[0]);
 		for (int i = 0; i < m_cromosoma.length - 1; ++i) {
 			res += Utilidades.getDist(m_cromosoma[i], m_cromosoma[i + 1]);
 		}
-		res += Utilidades.getDist(m_cromosoma[m_cromosoma.length - 1], m_cromosoma[0]);
+		res += Utilidades.getDist(m_cromosoma[m_cromosoma.length - 1], 0);
 		return res;
 	}
 
@@ -104,6 +104,10 @@ public class Cromosoma extends ag.Cromosoma {
 //		for (int i = 0; i < m_cromosoma.length - 1; ++i) {
 //			for (int j = i + 1; j < m_cromosoma.length; ++j) {
 //				if (m_cromosoma[i] == m_cromosoma[j]) {
+//					// Assert. Esto nunca debería ocurrir. No sabemos por qué "assert false" no hace su
+//                    // trabajo.
+//                    ArrayList<Integer> assertForzado = new ArrayList<Integer>();
+//                    assertForzado.set(100, 1);
 //					return false;
 //				}
 //			}
@@ -114,6 +118,7 @@ public class Cromosoma extends ag.Cromosoma {
 	@Override
 	public Object fenotipo() {
 		ArrayList<String> res = new ArrayList<String>();
+		res.add(Utilidades.getCiudad(0));
 		for (int i = 0; i < m_cromosoma.length; ++i) {
 			res.add(Utilidades.getCiudad(m_cromosoma[i]));
 		}
@@ -129,7 +134,7 @@ public class Cromosoma extends ag.Cromosoma {
 	public void mutar() {
 		for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
 			if (Math.random() < Problema.self().probMutacion()) {
-				m_cromosoma[i] = (int) ((Problema.self().tamCromosoma() - 1) * Math.random());
+				m_cromosoma[i] = (int) (((Problema.self().tamCromosoma() - 1) * Math.random()) + 1);
 			}
 		}
 	}

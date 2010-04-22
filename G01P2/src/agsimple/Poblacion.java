@@ -38,10 +38,10 @@ public class Poblacion extends ag.Poblacion {
 		ArrayList<Integer> cromosoma = new ArrayList<Integer>();
 		int cromosomaFinal[] = new int[Problema.self().tamCromosoma()];
 		for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
-			cromosoma.add(i);
+			cromosoma.add(i + 1);
 		}
 		for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
-			cromosomaFinal[i] = cromosoma.remove((int) ((cromosoma.size() - 1) * Math.random()));
+			cromosomaFinal[i] = cromosoma.remove((int) Math.round(((cromosoma.size() - 1.0) * Math.random())));
 		}
 		res.setCromosoma(cromosomaFinal);
 		res.setPoblacion(this);
