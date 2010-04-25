@@ -57,7 +57,7 @@ public class VentanaPrincipal extends JFrame {
 	private Plot2DPanel  m_grafica1          = new Plot2DPanel();
 	private Plot2DPanel  m_grafica2          = new Plot2DPanel();
 	private Plot2DPanel  m_grafica3          = new Plot2DPanel();
-	private JComboBox    m_problema          = new JComboBox();
+	private JComboBox    m_version          = new JComboBox();
 	private JComboBox    m_seleccion         = new JComboBox();
 	private JComboBox    m_cruce             = new JComboBox();
 	private JComboBox    m_mutacion          = new JComboBox();
@@ -109,7 +109,7 @@ public class VentanaPrincipal extends JFrame {
 		setLayout(new BorderLayout());
 		add(m_tabbedPane, BorderLayout.CENTER);
 		add(m_progressBar, BorderLayout.SOUTH);
-		setSize(640, 480);
+		setSize(800, 600);
 		setLocationRelativeTo(getRootPane());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -301,10 +301,21 @@ public class VentanaPrincipal extends JFrame {
 		trataIntervalos();
 	}
 
-	public int problemaSeleccionado() {
-		return m_problema.getSelectedIndex();
+	public int versionSeleccionada() {
+		return m_version.getSelectedIndex();
 	}
+	
+	public int seleccionSeleccionada() {
+		return m_seleccion.getSelectedIndex();
+	}
+	
+	public int cruceSeleccionado() {
+		return m_cruce.getSelectedIndex();
+	}	
 
+	public int mutacionSeleccionada() {
+		return m_mutacion.getSelectedIndex();
+	}	
 	public void activaODesactivaTodo(Component c, boolean activa) {
 		c.setEnabled(activa);
 		if (c instanceof Container) {
@@ -389,8 +400,8 @@ public class VentanaPrincipal extends JFrame {
 		m_precisionp.setEnabled(m_precisionRadio.isSelected());
 		m_elitismo2.setEnabled(m_elitismoRadio.isSelected());
 		m_elitismop.setEnabled(m_elitismoRadio.isSelected());
-		m_prob5N.setVisible(m_problema.getSelectedIndex() == 4);
-		m_prob5NLabel.setVisible(m_problema.getSelectedIndex() == 4);
+		m_prob5N.setVisible(m_version.getSelectedIndex() == 4);
+		m_prob5NLabel.setVisible(m_version.getSelectedIndex() == 4);
 	}
 
 	private JComponent problema() {
@@ -404,9 +415,9 @@ public class VentanaPrincipal extends JFrame {
 		gridBagConstraints.gridy = 0;
 
 		gridBagConstraints.gridwidth = 5;
-		final String[] nombreProblemas = { "Problema 1", "Problema 2", "Problema 3", "Problema 4", "Problema 5" };
-		m_problema = new JComboBox(nombreProblemas);
-		p.add(m_problema, gridBagConstraints);
+		final String[] nombreProblemas = { "Versión 1", "versión 2" };
+		m_version = new JComboBox(nombreProblemas);
+		p.add(m_version, gridBagConstraints);
 
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 1;
@@ -415,7 +426,7 @@ public class VentanaPrincipal extends JFrame {
 
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridwidth = 4;
-		final String[] metodoSeleccion = { "Problema 1", "Problema 2", "Problema 3", "Problema 4", "Problema 5" };
+		final String[] metodoSeleccion = { "Ruleta", "Torneo", "Ranking" };
 		m_seleccion = new JComboBox(metodoSeleccion);
 		p.add(m_seleccion, gridBagConstraints);
 
@@ -426,7 +437,8 @@ public class VentanaPrincipal extends JFrame {
 
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridwidth = 4;
-		final String[] metodoCruce = { "Problema 1", "Problema 2", "Problema 3", "Problema 4", "Problema 5" };
+		final String[] metodoCruce = { "PMX", "OX", "Variante de OX", "Ciclos (CX)",
+									   "Recombinación de rutas (ERX)", "Codificación Ordinal", "Propio" };
 		m_cruce = new JComboBox(metodoCruce);
 		p.add(m_cruce, gridBagConstraints);
 
@@ -437,15 +449,15 @@ public class VentanaPrincipal extends JFrame {
 
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridwidth = 4;
-		final String[] metodoMutacion = { "Problema 1", "Problema 2", "Problema 3", "Problema 4", "Problema 5" };
+		final String[] metodoMutacion = { "Inserción", "Intercambio", "Inversión", "Propio"};
 		m_mutacion = new JComboBox(metodoMutacion);
 		p.add(m_mutacion, gridBagConstraints);
 
-		m_problema.addActionListener(new ActionListener() {
+		m_version.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				m_prob5N.setVisible(m_problema.getSelectedIndex() == 4);
-				m_prob5NLabel.setVisible(m_problema.getSelectedIndex() == 4);
+				m_prob5N.setVisible(m_version.getSelectedIndex() == 4);
+				m_prob5NLabel.setVisible(m_version.getSelectedIndex() == 4);
 				m_resultado.setText("\t(Resultado no generado)");
 				m_grafica1.removeAllPlots();
 				m_grafica2.removeAllPlots();

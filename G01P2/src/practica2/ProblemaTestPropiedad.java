@@ -184,24 +184,24 @@ public class ProblemaTestPropiedad extends ag.Problema {
 		ventanaPrincipal().resultado().setText(resString);
 	}
 
-	@Override
-	public int tamCromosoma() {
-		switch (ventanaPrincipal().problemaSeleccionado()) {
-			case 0:
-				return (int) Math.ceil(Math.log(1.0 + 1.0 / precision()) / Math.log(2));
-			case 1:
-				return (int) Math.ceil(Math.log(1.0 + 15.1 / precision()) / Math.log(2)) +
-                       (int) Math.ceil(Math.log(1.0 + (5.8 - 4.1) / precision()) / Math.log(2));
-			case 2:
-				return (int) Math.ceil(Math.log(1.0 + 25.0 / precision()) / Math.log(2));
-			case 3:
-				return (int) Math.ceil(Math.log(1.0 + 20.0 / precision()) / Math.log(2)) * 2;
-			case 4:
-				return (int) (Math.ceil(Math.log(1.0 + Math.PI / precision()) / Math.log(2)) * ventanaPrincipal().n());
-			default:
-				break;
-		}
-		return 0;
-	}
+//	@Override
+//	public int tamCromosoma() {
+//		switch (ventanaPrincipal().versionSeleccionada()) {
+//			case 0:
+//				return (int) Math.ceil(Math.log(1.0 + 1.0 / precision()) / Math.log(2));
+//			case 1:
+//				return (int) Math.ceil(Math.log(1.0 + 15.1 / precision()) / Math.log(2)) +
+//                       (int) Math.ceil(Math.log(1.0 + (5.8 - 4.1) / precision()) / Math.log(2));
+//			case 2:
+//				return (int) Math.ceil(Math.log(1.0 + 25.0 / precision()) / Math.log(2));
+//			case 3:
+//				return (int) Math.ceil(Math.log(1.0 + 20.0 / precision()) / Math.log(2)) * 2;
+//			case 4:
+//				return (int) (Math.ceil(Math.log(1.0 + Math.PI / precision()) / Math.log(2)) * ventanaPrincipal().n());
+//			default:
+//				break;
+//		}
+//		return 0;
+//	}
 
 }

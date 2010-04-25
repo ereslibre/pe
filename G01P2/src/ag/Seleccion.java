@@ -39,5 +39,28 @@ public class Seleccion {
 			}
 		}
 	}
+	
+	static public void torneo(Poblacion poblacion, Poblacion res){
+
+		for(int i = 0; i< Problema.self().tamPoblacion(); ++i){
+			
+			final int r1 = (int)(Math.random()*Problema.self().tamPoblacion());
+			final int r2 = (int)(Math.random()*Problema.self().tamPoblacion());
+			final int r3 = (int)(Math.random()*Problema.self().tamPoblacion());
+			
+			if (poblacion.poblacion().get(r1).puntuacion() > poblacion.poblacion().get(r2).puntuacion() &&
+			    poblacion.poblacion().get(r1).puntuacion() > poblacion.poblacion().get(r3).puntuacion()){
+					res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(i).clone());
+			}else{
+				if(poblacion.poblacion().get(r2).puntuacion() > poblacion.poblacion().get(r1).puntuacion() &&
+				   poblacion.poblacion().get(r2).puntuacion() > poblacion.poblacion().get(r3).puntuacion()){
+						res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(i).clone());
+				}else{
+						res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(i).clone());	
+				}	
+			}	
+		}
+
+	}
 
 }

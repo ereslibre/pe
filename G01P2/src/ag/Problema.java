@@ -105,7 +105,12 @@ public class Problema extends Thread {
 			grafica3yPresionSelectiva[gen] = p.getMejor().aptitud() / p.aptitudMedia();
 
 			Poblacion res = Factoria.genPoblacionVacia();
-			Seleccion.ruleta(p, res);
+			if(m_ventanaPrincipal.seleccionSeleccionada()==0)
+				Seleccion.ruleta(p, res);
+			else if(m_ventanaPrincipal.seleccionSeleccionada()==1)
+				Seleccion.torneo(p, res);
+			else
+				//Seleccion.ranking(p, res);
 			res.cruzar();
 			res.mutar();
 			res.evaluarPoblacion();
