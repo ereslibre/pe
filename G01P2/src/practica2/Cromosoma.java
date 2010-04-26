@@ -257,7 +257,6 @@ public class Cromosoma extends ag.Cromosoma {
 	    else {
 	    	((int[]) genotipo())[posInsertar] = ciudad;
 	    }
-	    
 	    ////////////////////////////////////////////////////////////////////////////////////////////////////
 	    //////Inversion/////
 		int posCruce1 = 0;

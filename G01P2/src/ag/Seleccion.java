@@ -48,15 +48,15 @@ public class Seleccion {
 			final int r2 = (int)(Math.random()*Problema.self().tamPoblacion());
 			final int r3 = (int)(Math.random()*Problema.self().tamPoblacion());
 			
-			if (poblacion.poblacion().get(r1).puntuacion() > poblacion.poblacion().get(r2).puntuacion() &&
-			    poblacion.poblacion().get(r1).puntuacion() > poblacion.poblacion().get(r3).puntuacion()){
-					res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(i).clone());
+			if (poblacion.poblacion().get(r1).evaluacion() > poblacion.poblacion().get(r2).evaluacion() &&
+			    poblacion.poblacion().get(r1).evaluacion() > poblacion.poblacion().get(r3).evaluacion()){
+					res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(r1).clone());
 			}else{
-				if(poblacion.poblacion().get(r2).puntuacion() > poblacion.poblacion().get(r1).puntuacion() &&
-				   poblacion.poblacion().get(r2).puntuacion() > poblacion.poblacion().get(r3).puntuacion()){
-						res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(i).clone());
+				if(poblacion.poblacion().get(r2).evaluacion() > poblacion.poblacion().get(r1).evaluacion() &&
+				   poblacion.poblacion().get(r2).evaluacion() > poblacion.poblacion().get(r3).evaluacion()){
+						res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(r2).clone());
 				}else{
-						res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(i).clone());	
+						res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(r3).clone());	
 				}	
 			}	
 		}
