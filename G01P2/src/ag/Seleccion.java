@@ -43,11 +43,14 @@ public class Seleccion {
 	static public void torneo(Poblacion poblacion, Poblacion res){
 
 		for(int i = 0; i< Problema.self().tamPoblacion(); ++i){
-			
-			final int r1 = (int)(Math.random()*Problema.self().tamPoblacion());
-			final int r2 = (int)(Math.random()*Problema.self().tamPoblacion());
-			final int r3 = (int)(Math.random()*Problema.self().tamPoblacion());
-			
+			int r1=0;
+			int r2=0;
+			int r3=0;
+			while(r1 == r2 && r2 == r3){
+					r1 = (int)(Math.random()*Problema.self().tamPoblacion());
+					r2 = (int)(Math.random()*Problema.self().tamPoblacion());
+					r3 = (int)(Math.random()*Problema.self().tamPoblacion());
+			}
 			if (poblacion.poblacion().get(r1).evaluacion() > poblacion.poblacion().get(r2).evaluacion() &&
 			    poblacion.poblacion().get(r1).evaluacion() > poblacion.poblacion().get(r3).evaluacion()){
 					res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(r1).clone());

@@ -274,10 +274,10 @@ public class Cromosoma extends ag.Cromosoma {
 			posCruce1 = aux;
 		}
 	     	    
-		for(int i = posCruce1; i < (posCruce1+posCruce2)/2; i++) {
+		for(int i = posCruce1; i <= (posCruce1+posCruce2)/2; i++) {
 			   aux1 = ((int[]) genotipo())[i];
-			   ((int[]) genotipo())[i] = ((int[]) genotipo())[(posCruce2-1)-(i-posCruce1)];
-			   ((int[]) genotipo())[(posCruce2-1)-(i-posCruce1)] = aux1;
+			   ((int[]) genotipo())[i] = ((int[]) genotipo())[(posCruce2)-(i-posCruce1)];
+			   ((int[]) genotipo())[(posCruce2)-(i-posCruce1)] = aux1;
 		}
 		
 	}
