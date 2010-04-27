@@ -96,7 +96,26 @@ public class Cromosoma extends ag.Cromosoma {
 		hijo2.setPadre(cromosoma);
 
 		return new Cruce(hijo1, hijo2);
-		
+
+//		switch (Problema.self().ventanaPrincipal().cruceSeleccionado()) {
+//			case 0: // PMX
+//				break;
+//			case 1: // OX
+//				break;
+//			case 2: // Variante OX
+//				break;
+//			case 3: // Ciclos
+//				break;
+//			case 4: // ERX
+//				break;
+//			case 5: // Codificación Ordinal
+//				break;
+//			case 6: // Propio
+//				break;
+//			default:
+//				break;
+//		}
+
 //		//////////////////////////////////////////////////////////////////////
 //		//////PMX
 //		final int tamCromosoma = Problema.self().tamCromosoma();
@@ -226,13 +245,26 @@ public class Cromosoma extends ag.Cromosoma {
 
 	@Override
 	public void mutar() {
+		// QUITAR CUANDO TODO FUNCIONE
 		for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
 			if (Math.random() < Problema.self().probMutacion()) {
 				m_cromosoma[i] = (int) (((Problema.self().tamCromosoma() - 1) * Math.random()) + 1);
 			}
 		}
-///////Hay que hacer aqui el switch case		
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		switch (Problema.self().ventanaPrincipal().mutacionSeleccionada()) {
+			case 0: // Inserción
+				break;
+			case 1: // Intercambio
+				break;
+			case 2: // Inversión
+				break;
+			case 3: // Propio
+				break;
+			default:
+				break;
+		}
+/////Hay que hacer aqui el switch case		
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		////Insercion/////////
 //		final int tamCromosoma = Problema.self().tamCromosoma();
 //		//Se elige la posicion a insertar y la ciudad
@@ -292,14 +324,13 @@ public class Cromosoma extends ag.Cromosoma {
 	
 	public int buscar(int[] vector, int elem) {
 		int i = 0;
-		boolean encontrado = false;
-		while (i < vector.length && !encontrado) {
-			encontrado = vector[i] == elem;
+		while (i < vector.length) {
+			if (vector[i] == elem) {
+				return i;
+			}
 			i++;
 		}
-		if (encontrado) 
-			return i-1;
-		else return -1;
+		return -1;
 	}
 
 }

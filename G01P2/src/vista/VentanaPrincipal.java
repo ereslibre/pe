@@ -319,7 +319,8 @@ public class VentanaPrincipal extends JFrame {
 
 	public int mutacionSeleccionada() {
 		return m_mutacion.getSelectedIndex();
-	}	
+	}
+
 	public void activaODesactivaTodo(Component c, boolean activa) {
 		c.setEnabled(activa);
 		if (c instanceof Container) {
