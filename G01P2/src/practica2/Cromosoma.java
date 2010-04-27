@@ -246,72 +246,62 @@ public class Cromosoma extends ag.Cromosoma {
 	@Override
 	public void mutar() {
 		// QUITAR CUANDO TODO FUNCIONE
-		for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
-			if (Math.random() < Problema.self().probMutacion()) {
-				m_cromosoma[i] = (int) (((Problema.self().tamCromosoma() - 1) * Math.random()) + 1);
-			}
-		}
+//		for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
+//			if (Math.random() < Problema.self().probMutacion()) {
+//				m_cromosoma[i] = (int) (((Problema.self().tamCromosoma() - 1) * Math.random()) + 1);
+//			}
+//		}
 		switch (Problema.self().ventanaPrincipal().mutacionSeleccionada()) {
-			case 0: // Inserción
+			case 0: { // Inserción
+					int posAleat1 = 0;
+					int posAleat2 = 0;
+	
+					while (posAleat1 == posAleat2) {
+						posAleat1 = (int) (Math.random() * (Problema.self().tamCromosoma() - 1));
+						posAleat2 = (int) (Math.random() * (Problema.self().tamCromosoma() - 1)); 
+					}
+
+					if (posAleat2 < posAleat1) {
+						final int aux = posAleat1;
+						posAleat1 = posAleat2;
+						posAleat2 = aux;
+					}
+	
+					final int c = m_cromosoma[posAleat2];
+					for (int i = posAleat2; i > posAleat1; --i) {
+						m_cromosoma[i] = m_cromosoma[i - 1];
+					}
+					m_cromosoma[posAleat1] = c;
+				}
 				break;
 			case 1: // Intercambio
 				break;
-			case 2: // Inversión
+			case 2: { // Inversión
+					int posCruce1 = 0;
+					int posCruce2 = 0;
+					while (posCruce1 == posCruce2) {
+						posCruce1 = (int) ((Math.random() * ((double) Problema.self().tamCromosoma() - 1.0)));
+						posCruce2 = (int) ((Math.random() * ((double) Problema.self().tamCromosoma() - 1.0)));
+					}
+					
+					if (posCruce2 < posCruce1) {
+						final int aux = posCruce2;
+						posCruce2 = posCruce1;
+						posCruce1 = aux;
+					}
+				     	    
+					for (int i = posCruce1; i <= (posCruce1 + posCruce2) / 2; ++i) {
+						   final int aux1 = m_cromosoma[i];
+						   m_cromosoma[i] = m_cromosoma[posCruce2 - (i - posCruce1)];
+						   m_cromosoma[posCruce2 - (i - posCruce1)] = aux1;
+					}
+				}
 				break;
 			case 3: // Propio
 				break;
 			default:
 				break;
 		}
-/////Hay que hacer aqui el switch case		
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//		////Insercion/////////
-//		final int tamCromosoma = Problema.self().tamCromosoma();
-//		//Se elige la posicion a insertar y la ciudad
-//		int posInsertar = (int) ((Math.random() * ((double) tamCromosoma - 1.0)));
-//	    int ciudad = (int)((Problema.self().tamCromosoma() - 1) * Math.random()) + 1;
-//	    //Se busca la posicion de dicha ciudad
-//	    int posOriginal = buscar(((int[]) genotipo()), ciudad);
-//	    //Se desplaza para dejar hueco para insertar la ciudad
-//	    if(posInsertar < posOriginal) {
-//	       for (int i = posOriginal;i > posInsertar; i--) {
-//	    	   ((int[]) genotipo())[i] = ((int[]) genotipo())[i-1];
-//	       }
-//	       ((int[]) genotipo())[posInsertar] = ciudad;
-//	    }
-//	    
-//	    else if (posInsertar > posOriginal){
-//	    	 for (int i = posOriginal;i < posInsertar; i++) {
-//	    		 ((int[]) genotipo())[i] = ((int[]) genotipo())[i+1];
-//		       }
-//	    	 ((int[]) genotipo())[posInsertar] = ciudad;
-//	    }
-//	    else {
-//	    	((int[]) genotipo())[posInsertar] = ciudad;
-//	    }
-//	    ////////////////////////////////////////////////////////////////////////////////////////////////////
-//	    //////Inversion/////
-//		int posCruce1 = 0;
-//		int posCruce2 = 0;
-//		int aux;
-//		int aux1;
-//		while (posCruce1 == posCruce2) {
-//			posCruce1 = (int) ((Math.random() * ((double) tamCromosoma - 1.0)));
-//			posCruce2 = (int) ((Math.random() * ((double) tamCromosoma - 1.0)));
-//		}
-//		
-//		if (posCruce2 < posCruce1) {
-//			aux = posCruce2;
-//			posCruce2 = posCruce1;
-//			posCruce1 = aux;
-//		}
-//	     	    
-//		for(int i = posCruce1; i <= (posCruce1+posCruce2)/2; i++) {
-//			   aux1 = ((int[]) genotipo())[i];
-//			   ((int[]) genotipo())[i] = ((int[]) genotipo())[(posCruce2)-(i-posCruce1)];
-//			   ((int[]) genotipo())[(posCruce2)-(i-posCruce1)] = aux1;
-//		}
-//		
 	}
 
 	public int[] cromosoma() {
