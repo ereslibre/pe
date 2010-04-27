@@ -18,7 +18,7 @@
 
 package ag;
 
-public abstract class Cromosoma {
+public abstract class Cromosoma implements Comparable<Cromosoma> {
 
 	protected Cromosoma m_madre;
 	protected Cromosoma m_padre;
@@ -122,6 +122,20 @@ public abstract class Cromosoma {
 	 */
 	public void setPoblacion(Poblacion poblacion) {
 		m_poblacion = poblacion;
+	}
+
+	public int compareTo(Cromosoma c) {
+		if (aptitud() < c.aptitud()) {
+			return -1;
+		}
+		if (aptitud() > c.aptitud()) {
+			return 1;
+		}
+		return 0;
+	}
+
+	public String toString() {
+		return String.valueOf(aptitud());
 	}
 
 }

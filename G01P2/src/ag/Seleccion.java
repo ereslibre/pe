@@ -40,30 +40,28 @@ public class Seleccion {
 		}
 	}
 	
-	static public void torneo(Poblacion poblacion, Poblacion res){
-
-		for(int i = 0; i< Problema.self().tamPoblacion(); ++i){
-			int r1=0;
-			int r2=0;
-			int r3=0;
-			while(r1 == r2 && r2 == r3){
-					r1 = (int)(Math.random()*Problema.self().tamPoblacion());
-					r2 = (int)(Math.random()*Problema.self().tamPoblacion());
-					r3 = (int)(Math.random()*Problema.self().tamPoblacion());
+	static public void torneo(Poblacion poblacion, Poblacion res) {
+		for (int i = 0; i < Problema.self().tamPoblacion(); ++i) {
+			int r1 = 0;
+			int r2 = 0;
+			int r3 = 0;
+			while (r1 == r2 || r2 == r3 || r1 == r3) {
+					r1 = (int) (Math.random() * (Problema.self().tamPoblacion() - 1));
+					r2 = (int) (Math.random() * (Problema.self().tamPoblacion() - 1));
+					r3 = (int) (Math.random() * (Problema.self().tamPoblacion() - 1));
 			}
-			if (poblacion.poblacion().get(r1).evaluacion() > poblacion.poblacion().get(r2).evaluacion() &&
-			    poblacion.poblacion().get(r1).evaluacion() > poblacion.poblacion().get(r3).evaluacion()){
+			if (poblacion.poblacion().get(r1).aptitud() > poblacion.poblacion().get(r2).aptitud() &&
+			    poblacion.poblacion().get(r1).aptitud() > poblacion.poblacion().get(r3).aptitud()) {
 					res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(r1).clone());
-			}else{
-				if(poblacion.poblacion().get(r2).evaluacion() > poblacion.poblacion().get(r1).evaluacion() &&
-				   poblacion.poblacion().get(r2).evaluacion() > poblacion.poblacion().get(r3).evaluacion()){
-						res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(r2).clone());
-				}else{
-						res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(r3).clone());	
-				}	
+			} else {
+				if (poblacion.poblacion().get(r2).aptitud() > poblacion.poblacion().get(r1).aptitud() &&
+				    poblacion.poblacion().get(r2).aptitud() > poblacion.poblacion().get(r3).aptitud()) {
+					res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(r2).clone());
+				} else {
+					res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(r3).clone());	
+				}
 			}	
 		}
-
 	}
 
 }

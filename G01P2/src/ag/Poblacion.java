@@ -19,6 +19,7 @@
 package ag;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ListIterator;
 
 public abstract class Poblacion {
@@ -110,9 +111,24 @@ public abstract class Poblacion {
 		{
 			m_puntuacionesAcumuladas = new ArrayList<Double>();
 			Double punt = 0.0;
+			ArrayList<Cromosoma> elite = Problema.self().elite();
 			ListIterator<Cromosoma> it = m_poblacion.listIterator();
 			while (it.hasNext()) {
 				final Cromosoma c = it.next();
+				if (elite.size() < Problema.self().tamPoblacion() * Problema.self().ventanaPrincipal().elitismo()) {
+					elite.add((Cromosoma) c.clone());
+					Collections.sort(elite);
+				} else {
+					ListIterator<Cromosoma> it2 = elite.listIterator();
+					while (it2.hasNext()) {
+						final Cromosoma e = it2.next();
+						if (c.aptitud() > e.aptitud()) {
+							//it2.set((Cromosoma) c.clone());
+							Collections.sort(elite);
+						}
+					}
+				}
+				Problema.self().setElite(elite);
 				if (m_mejor == null || m_mejor.aptitud() < c.aptitud()) {
 					m_mejor = (Cromosoma) c.clone();
 				}

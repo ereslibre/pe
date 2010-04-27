@@ -292,6 +292,10 @@ public class VentanaPrincipal extends JFrame {
 		return Double.valueOf(m_prob5N.getText());
 	}
 
+	public double elitismo() {
+		return Double.valueOf(m_elitismo.getText());
+	}
+
 	public JTextArea resultado() {
 		return m_resultado;
 	}
@@ -415,7 +419,7 @@ public class VentanaPrincipal extends JFrame {
 		gridBagConstraints.gridy = 0;
 
 		gridBagConstraints.gridwidth = 5;
-		final String[] nombreProblemas = { "Versión 1", "versión 2" };
+		final String[] nombreProblemas = { "Versión 1", "Versión 2" };
 		m_version = new JComboBox(nombreProblemas);
 		p.add(m_version, gridBagConstraints);
 

@@ -18,18 +18,22 @@
 
 package ag;
 
+import java.util.ArrayList;
+
 import practica2.Factoria;
 import practica2.Utilidades;
 import vista.VentanaPrincipal;
 
 public class Problema extends Thread {
 
-	private Cromosoma        m_mejor = null;
-	private VentanaPrincipal m_ventanaPrincipal = null;
-	private static Problema  m_problemaActual = null;
+	private Cromosoma            m_mejor = null;
+	private VentanaPrincipal     m_ventanaPrincipal = null;
+	private static Problema      m_problemaActual = null;
+	private ArrayList<Cromosoma> m_elite = null;
 
 	public Problema() {
 		m_problemaActual = this;
+		m_elite = new ArrayList<Cromosoma>();
 	}
 
 	public static Problema self() {
@@ -105,12 +109,16 @@ public class Problema extends Thread {
 			grafica3yPresionSelectiva[gen] = p.getMejor().aptitud() / p.aptitudMedia();
 
 			Poblacion res = Factoria.genPoblacionVacia();
-			if(m_ventanaPrincipal.seleccionSeleccionada()==0)
+			if (m_ventanaPrincipal.seleccionSeleccionada() == 0) {
 				Seleccion.ruleta(p, res);
-			else if(m_ventanaPrincipal.seleccionSeleccionada()==1)
+			} else if(m_ventanaPrincipal.seleccionSeleccionada() == 1) {
 				Seleccion.torneo(p, res);
-			else
+			} else {
 				//Seleccion.ranking(p, res);
+			}
+
+			res.poblacion().addAll(m_elite);
+
 			res.cruzar();
 			res.mutar();
 			res.evaluarPoblacion();
@@ -134,6 +142,14 @@ public class Problema extends Thread {
 		}
 	}
 
+	public ArrayList<Cromosoma> elite() {
+		return m_elite;
+	}
+
+	public void setElite(ArrayList<Cromosoma> elite) {
+		m_elite = elite;
+	}
+	
 	public void setVentanaPrincipal(VentanaPrincipal ventanaPrincipal) {
 		m_ventanaPrincipal = ventanaPrincipal;
 	}
