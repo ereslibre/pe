@@ -18,6 +18,7 @@
 
 package practica2;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import ag.Cruce;
@@ -169,10 +170,32 @@ public class Cromosoma extends ag.Cromosoma {
 						posCruce2 = posCruce1;
 						posCruce1 = aux;
 					}
-					
-					for (int i = 0; i < tamCromosoma;++i){
-						 hijo1c[i] = ((int[]) genotipo())[i];
-						 hijo2c[i] = ((int[]) cromosoma.genotipo())[i];
+
+					posCruce1 = Math.max(1, posCruce1);
+					posCruce2 = Math.min(tamCromosoma - 2, posCruce2);
+
+					ArrayList<Integer> elemHijo1 = new ArrayList<Integer>();
+					ArrayList<Integer> elemHijo2 = new ArrayList<Integer>();
+					for (int i = posCruce1; i <= posCruce2; ++i) {
+						elemHijo1.add(m_cromosoma[i]);
+						hijo1c[i] = m_cromosoma[i];
+						elemHijo2.add(((practica2.Cromosoma) cromosoma).m_cromosoma[i]);
+						hijo2c[i] = ((practica2.Cromosoma) cromosoma).m_cromosoma[i];
+					}
+
+					int posAct1 = posCruce2 + 1;
+					int posAct2 = posAct1;
+					int posAct = posAct1;
+					for (int i = 0; i < tamCromosoma; ++i) {
+						if (!elemHijo1.contains(((practica2.Cromosoma) cromosoma).m_cromosoma[posAct])) {
+							hijo1c[posAct1] = ((practica2.Cromosoma) cromosoma).m_cromosoma[posAct];
+							posAct1 = (posAct1 + 1) % tamCromosoma;
+						}
+						if (!elemHijo2.contains(m_cromosoma[posAct])) {
+							hijo2c[posAct2] = m_cromosoma[posAct];
+							posAct2 = (posAct2 + 1) % tamCromosoma;
+						}
+						posAct = (posAct + 1) % tamCromosoma;
 					}
 				}
 				break;
