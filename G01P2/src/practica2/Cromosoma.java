@@ -66,152 +66,135 @@ public class Cromosoma extends ag.Cromosoma {
 
 	@Override
 	public Cruce cruzar(ag.Cromosoma cromosoma) {
-//		final int tamCromosoma = Problema.self().tamCromosoma();
-//		int posCruce = (int) ((Math.random() * ((double) tamCromosoma - 1.0)));
-//
-//		Cromosoma hijo1 = Factoria.generaCromosoma(m_poblacion);
-//		int hijo1c[] = new int[tamCromosoma];
-//		for (int i = 0; i < tamCromosoma; ++i) {
-//			if (i <= posCruce) {
-//				hijo1c[i] = ((int[]) genotipo())[i];
-//			} else {
-//				hijo1c[i] = ((int[]) cromosoma.genotipo())[i];
-//			}
-//		}
-//		hijo1.setCromosoma(hijo1c);
-//		hijo1.setMadre(this);
-//		hijo1.setPadre(cromosoma);
-//
-//		Cromosoma hijo2 = Factoria.generaCromosoma(m_poblacion);
-//		int hijo2c[] = new int[tamCromosoma];
-//		for (int i = 0; i < tamCromosoma; ++i) {
-//			if (i <= posCruce) {
-//				hijo2c[i] = ((int[]) cromosoma.genotipo())[i];
-//			} else {
-//				hijo2c[i] = ((int[]) genotipo())[i];
-//			}
-//		}
-//		hijo2.setCromosoma(hijo2c);
-//		hijo2.setMadre(this);
-//		hijo2.setPadre(cromosoma);
-//
-//		return new Cruce(hijo1, hijo2);
-
-//		switch (Problema.self().ventanaPrincipal().cruceSeleccionado()) {
-//			case 0: // PMX
-//				break;
-//			case 1: // OX
-//				break;
-//			case 2: // Variante OX
-//				break;
-//			case 3: // Ciclos
-//				break;
-//			case 4: // ERX
-//				break;
-//			case 5: // Codificación Ordinal
-//				break;
-//			case 6: // Propio
-//				break;
-//			default:
-//				break;
-//		}
-
-//		//////////////////////////////////////////////////////////////////////
-//		//////PMX
 		final int tamCromosoma = Problema.self().tamCromosoma();
-
-		int posCruce1 = 0;
-		int posCruce2 = 0;
-		int aux;
-		while (posCruce1 == posCruce2) {
-			posCruce1 = (int) ((Math.random() * ((double) tamCromosoma - 1.0)));
-			posCruce2 = (int) ((Math.random() * ((double) tamCromosoma - 1.0)));
-		}
-		
-
-		if (posCruce2 < posCruce1) {
-			aux = posCruce2;
-			posCruce2 = posCruce1;
-			posCruce1 = aux;
-		}
-		//Creamos los cromosomas
 		Cromosoma hijo1 = Factoria.generaCromosoma(m_poblacion);
 		Cromosoma hijo2 = Factoria.generaCromosoma(m_poblacion);
 		int hijo1c[] = new int[tamCromosoma];
 		int hijo2c[] = new int[tamCromosoma];
-		
-		for(int i = 0; i < tamCromosoma;++i){
-			 hijo1c[i] = ((int[]) genotipo())[i];
-			 hijo2c[i] = ((int[]) cromosoma.genotipo())[i];
-			
+
+		switch (Problema.self().ventanaPrincipal().cruceSeleccionado()) {
+			case 0: { // PMX	
+					int posCruce1 = 0;
+					int posCruce2 = 0;
+					int aux;
+					while (posCruce1 == posCruce2) {
+						posCruce1 = (int) ((Math.random() * ((double) tamCromosoma - 1.0)));
+						posCruce2 = (int) ((Math.random() * ((double) tamCromosoma - 1.0)));
+					}
+	
+					if (posCruce2 < posCruce1) {
+						aux = posCruce2;
+						posCruce2 = posCruce1;
+						posCruce1 = aux;
+					}
+					
+					for (int i = 0; i < tamCromosoma;++i){
+						 hijo1c[i] = ((int[]) genotipo())[i];
+						 hijo2c[i] = ((int[]) cromosoma.genotipo())[i];
+					}
+
+					int hijo1cAux[] = new int[hijo1c.length];
+					int hijo2cAux[] = new int[hijo2c.length];
+					ArrayList<Integer> acum1 = new ArrayList<Integer>();
+					ArrayList<Integer> acum2 = new ArrayList<Integer>();
+					
+					for (int i = posCruce1; i < posCruce2; i++) {
+						hijo1cAux[i] = hijo2c[i]; acum1.add(hijo2c[i]);
+						hijo2cAux[i] = hijo1c[i]; acum2.add(hijo1c[i]);
+					}
+
+					for (int i = 0; i < posCruce1;i++) {
+				    	if (acum1.contains(hijo1c[i])) {
+				    		hijo1cAux[i] = hijo1c[buscar(hijo2c, hijo1c[i])];
+				    		while(acum1.contains(hijo1cAux[i])) {
+				    			hijo1cAux[i] = hijo1c[buscar(hijo2c, hijo1cAux[i])];
+				    		}
+				    		acum1.add(hijo1cAux[i]);
+				    	}		
+				    	else {
+				    		hijo1cAux[i] = hijo1c[i];
+				    		acum1.add(hijo1cAux[i]);
+				    	}
+				    	
+				    	if (acum2.contains(hijo2c[i])) {
+				    		hijo2cAux[i] = hijo2c[buscar(hijo1c, hijo2c[i])];
+				    		while(acum2.contains(hijo2cAux[i])) {
+				    			hijo2cAux[i] = hijo2c[buscar(hijo1c, hijo2cAux[i])];
+				    		}
+				    		acum2.add(hijo2cAux[i]);
+				    	}		
+				    	else {
+				    		hijo2cAux[i] = hijo2c[i];
+				    		acum2.add(hijo2cAux[i]);
+				    	}
+					}
+
+					for (int i = posCruce2; i < hijo1c.length;i++) {
+				    	if (acum1.contains(hijo1c[i])) {
+				    		hijo1cAux[i] = hijo1c[buscar(hijo2c, hijo1c[i])];
+				    		while(acum1.contains(hijo1cAux[i])) {
+				    			hijo1cAux[i] = hijo1c[buscar(hijo2c, hijo1cAux[i])];
+				    		}
+				    		acum1.add(hijo1cAux[i]);
+				    	} else {
+				    		hijo1cAux[i] = hijo1c[i];
+			    		    acum1.add(hijo1cAux[i]);
+				    	}
+				    	if (acum2.contains(hijo2c[i])) {
+				    		hijo2cAux[i] = hijo2c[buscar(hijo1c, hijo2c[i])];
+				    		while(acum2.contains(hijo2cAux[i])) {
+				    			hijo2cAux[i] = hijo2c[buscar(hijo1c, hijo2cAux[i])];
+				    		}
+				    		acum2.add(hijo2cAux[i]);
+				    	} else {
+				    		hijo2cAux[i] = hijo2c[i];
+				    		acum2.add(hijo2cAux[i]);
+				    	}
+					}
+					hijo1c = hijo1cAux;
+					hijo2c = hijo2cAux;
+				}
+				break;
+			case 1: { // OX
+					int posCruce1 = 0;
+					int posCruce2 = 0;
+
+					while (posCruce1 == posCruce2) {
+						posCruce1 = (int) ((Math.random() * ((double) tamCromosoma - 1.0)));
+						posCruce2 = (int) ((Math.random() * ((double) tamCromosoma - 1.0)));
+					}
+	
+					if (posCruce2 < posCruce1) {
+						final int aux = posCruce2;
+						posCruce2 = posCruce1;
+						posCruce1 = aux;
+					}
+					
+					for (int i = 0; i < tamCromosoma;++i){
+						 hijo1c[i] = ((int[]) genotipo())[i];
+						 hijo2c[i] = ((int[]) cromosoma.genotipo())[i];
+					}
+				}
+				break;
+			case 2: // Variante OX
+				break;
+			case 3: // Ciclos
+				break;
+			case 4: // ERX
+				break;
+			case 5: // Codificación Ordinal
+				break;
+			case 6: // Propio
+				break;
+			default:
+				break;
 		}
-		int hijo1cAux[] = new int[hijo1c.length];
-		int hijo2cAux[] = new int[hijo2c.length];
-		ArrayList<Integer> acum1 = new ArrayList<Integer>();
-		ArrayList<Integer> acum2 = new ArrayList<Integer>();
-		
-		//Intercambio la parte central en el vector auxiliar
-		for(int i = posCruce1; i < posCruce2; i++) {
-			hijo1cAux[i] = hijo2c[i]; acum1.add(hijo2c[i]);
-			hijo2cAux[i] = hijo1c[i]; acum2.add(hijo1c[i]);
-		}
-		//recorro la primera parte del vector hasta el primer cruce
-		for(int i = 0; i < posCruce1;i++) {
-	    	if (acum1.contains(hijo1c[i])) {//Compruebo si se ha utilizado antes 
-	    		hijo1cAux[i] = hijo1c[buscar(hijo2c, hijo1c[i])];
-	    		while(acum1.contains(hijo1cAux[i])) {
-	    			hijo1cAux[i] = hijo1c[buscar(hijo2c, hijo1cAux[i])];
-	    		}
-	    		acum1.add(hijo1cAux[i]);
-	    	}		
-	    	else {
-	    		hijo1cAux[i] = hijo1c[i];
-	    		acum1.add(hijo1cAux[i]);
-	    	}
-	    	
-	    	if (acum2.contains(hijo2c[i])) {
-	    		hijo2cAux[i] = hijo2c[buscar(hijo1c, hijo2c[i])];
-	    		while(acum2.contains(hijo2cAux[i])) {
-	    			hijo2cAux[i] = hijo2c[buscar(hijo1c, hijo2cAux[i])];
-	    		}
-	    		acum2.add(hijo2cAux[i]);
-	    	}		
-	    	else {
-	    		hijo2cAux[i] = hijo2c[i];
-	    		acum2.add(hijo2cAux[i]);
-	    	}
-		}
-		//se recorre la segunda parte del vector
-		for(int i = posCruce2; i < hijo1c.length;i++) {
-	    	if (acum1.contains(hijo1c[i])) {
-	    		hijo1cAux[i] = hijo1c[buscar(hijo2c, hijo1c[i])];
-	    		while(acum1.contains(hijo1cAux[i])) {
-	    			hijo1cAux[i] = hijo1c[buscar(hijo2c, hijo1cAux[i])];
-	    		}
-	    		acum1.add(hijo1cAux[i]);
-	    	}		
-	    	else {
-	    		hijo1cAux[i] = hijo1c[i];
-    		    acum1.add(hijo1cAux[i]);
-	    	}
-	    	if (acum2.contains(hijo2c[i])) {
-	    		hijo2cAux[i] = hijo2c[buscar(hijo1c, hijo2c[i])];
-	    		while(acum2.contains(hijo2cAux[i])) {
-	    			hijo2cAux[i] = hijo2c[buscar(hijo1c, hijo2cAux[i])];
-	    		}
-	    		acum2.add(hijo2cAux[i]);
-	    	}		
-	    	else {
-	    		hijo2cAux[i] = hijo2c[i];
-	    		acum2.add(hijo2cAux[i]);
-	    	}
-		}
-		
-		hijo1.setCromosoma(hijo1cAux);
+
+		hijo1.setCromosoma(hijo1c);
 		hijo1.setMadre(this);
 		hijo1.setPadre(cromosoma);
 		
-		hijo2.setCromosoma(hijo2cAux);
+		hijo2.setCromosoma(hijo2c);
 		hijo2.setMadre(this);
 		hijo2.setPadre(cromosoma);
 		return new Cruce(hijo1, hijo2);
@@ -251,12 +234,6 @@ public class Cromosoma extends ag.Cromosoma {
 
 	@Override
 	public void mutar() {
-		// QUITAR CUANDO TODO FUNCIONE
-//		for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
-//			if (Math.random() < Problema.self().probMutacion()) {
-//				m_cromosoma[i] = (int) (((Problema.self().tamCromosoma() - 1) * Math.random()) + 1);
-//			}
-//		}
 		switch (Problema.self().ventanaPrincipal().mutacionSeleccionada()) {
 			case 0: { // Inserción
 					int posAleat1 = 0;
@@ -280,7 +257,19 @@ public class Cromosoma extends ag.Cromosoma {
 					m_cromosoma[posAleat1] = c;
 				}
 				break;
-			case 1: // Intercambio
+			case 1: { // Intercambio
+					for (int i = 0; i < Problema.self().tamCromosoma(); ++i) {
+						if (Math.random() <= Problema.self().probMutacion()) {
+							int swapWith = 0;
+							do {
+								swapWith = (int) ((Math.random() * ((double) Problema.self().tamCromosoma() - 1.0)));
+							} while (swapWith != i);
+							final int aux = m_cromosoma[i];
+							m_cromosoma[i] = m_cromosoma[swapWith];
+							m_cromosoma[swapWith] = aux;
+						}
+					}
+				}
 				break;
 			case 2: { // Inversión
 					int posCruce1 = 0;
