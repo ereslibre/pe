@@ -83,15 +83,7 @@ public abstract class Poblacion {
 	public void mutar() {
 		ListIterator<Cromosoma> it = m_poblacion.listIterator();
 		while (it.hasNext()) {
-			Cromosoma c = it.next();
-			if (Math.random() < Problema.self().probMutacion()) {
-				Cromosoma cc = null;
-				do {
-					cc = (Cromosoma) c.clone();
-					cc.mutar();
-				} while (!cc.esFactible());
-				c = cc;
-			}
+			it.next().mutar();
 		}
 	}
 

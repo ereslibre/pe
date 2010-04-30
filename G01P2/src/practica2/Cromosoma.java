@@ -422,7 +422,7 @@ public class Cromosoma extends ag.Cromosoma {
 							int swapWith = 0;
 							do {
 								swapWith = (int) ((Math.random() * ((double) Problema.self().tamCromosoma() - 1.0)));
-							} while (swapWith != i);
+							} while (swapWith == i);
 							final int aux = m_cromosoma[i];
 							m_cromosoma[i] = m_cromosoma[swapWith];
 							m_cromosoma[swapWith] = aux;
