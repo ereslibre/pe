@@ -18,7 +18,6 @@
 
 package practica2;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import ag.Cruce;
