@@ -362,19 +362,18 @@ public class Cromosoma extends ag.Cromosoma {
 
 	@Override
 	public boolean esFactible() {
+		for (int i = 0; i < m_cromosoma.length - 1; ++i) {
+			for (int j = i + 1; j < m_cromosoma.length; ++j) {
+				if (m_cromosoma[i] == m_cromosoma[j]) {
+					// Assert. Esto nunca debería ocurrir. No sabemos por qué "assert false" no hace su
+                    // trabajo.
+                    ArrayList<Integer> assertForzado = new ArrayList<Integer>();
+                    assertForzado.set(100, 1);
+					return false;
+				}
+			}
+		}
 		return true;
-//		for (int i = 0; i < m_cromosoma.length - 1; ++i) {
-//			for (int j = i + 1; j < m_cromosoma.length; ++j) {
-//				if (m_cromosoma[i] == m_cromosoma[j]) {
-//					// Assert. Esto nunca debería ocurrir. No sabemos por qué "assert false" no hace su
-//                    // trabajo.
-//                    ArrayList<Integer> assertForzado = new ArrayList<Integer>();
-//                    assertForzado.set(100, 1);
-//					return false;
-//				}
-//			}
-//		}
-//		return true;
 	}
 
 	@Override
@@ -452,7 +451,15 @@ public class Cromosoma extends ag.Cromosoma {
 					}
 				}
 				break;
-			case 3: // Propio
+			case 3: { // Propio (Variante de Inversión)
+					for (int i = 0; i < Problema.self().tamCromosoma() / 2; ++i) {
+						if (Math.random() < Problema.self().probMutacion()) {
+							final int aux = m_cromosoma[i * 2];
+							m_cromosoma[i * 2] = m_cromosoma[i * 2 + 1];
+							m_cromosoma[i * 2 + 1] = aux;
+						}
+					}
+				}
 				break;
 			default:
 				break;
