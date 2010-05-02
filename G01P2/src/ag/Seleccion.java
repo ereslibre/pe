@@ -66,7 +66,7 @@ public class Seleccion {
 	
 	static public void ranking(Poblacion poblacion, Poblacion res) {
 		// Primero se ordena por orden decreciente de puntuacion
-		int[] ordenados = ordenaDecreciente(poblacion);
+		int[] ordenados = ordenaDecreciente(poblacion);	
 		float[] puntAcum = new float[Problema.self().tamPoblacion()];
 		float puntTotal = 0;
 		ArrayList<Cromosoma> poblacionAux = new ArrayList<Cromosoma>();

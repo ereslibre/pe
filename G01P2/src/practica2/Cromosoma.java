@@ -198,7 +198,9 @@ public class Cromosoma extends ag.Cromosoma {
 					}
 				}
 				break;
-			case 2: // Variante OX
+			case 2: { // Variante OX
+					
+				}
 				break;
 			case 3: // Ciclos
 				break;
@@ -222,7 +224,7 @@ public class Cromosoma extends ag.Cromosoma {
 					//Se pone las distintas ciudades vecinas en la tabla
 					for (int i = 1; i <= tamCromosoma; i++) {
 						//primer padre
-						int posP1 = devuelvePos(i);
+						int posP1 = devuelvePos(m_cromosoma,i);
 						int pos1P1 = p1[(posP1 - 1 + tamCromosoma) % tamCromosoma];
 						int pos2P1 = p1[(posP1 + 1 + tamCromosoma) % tamCromosoma];
 						tabla1[i - 1].add(pos1P1);
@@ -231,7 +233,7 @@ public class Cromosoma extends ag.Cromosoma {
 						tabla2[i - 1].add(pos2P1);
 
 						//segundo padre
-						int posP2 = devuelvePos(i);
+						int posP2 = devuelvePos(((practica2.Cromosoma) cromosoma).m_cromosoma,i);
 						int pos1P2 = p2[(posP2 - 1 + tamCromosoma) % tamCromosoma];
 						int pos2P2 = p2[(posP2 + 1 + tamCromosoma) % tamCromosoma];
 						if (!tabla1[i - 1].contains(pos1P2)) {
@@ -488,9 +490,9 @@ public class Cromosoma extends ag.Cromosoma {
 		}
 		return -1;
 	}
-	public int devuelvePos(int ciudad){
+	public int devuelvePos(int[] crom, int ciudad){
         for(int i = 0; i< Problema.self().tamCromosoma(); i++){
-            	if(m_cromosoma[i] == ciudad){
+            	if(crom[i] == ciudad){
             		return i;
             	}
         }    	
