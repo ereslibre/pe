@@ -1,0 +1,95 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\title{Práctica 1\\Programación Evolutiva}
+\author{Grupo 01\\Rafael Fernández López\\Ángel Valero Picazo}
+\date{}
+
+\pdfinfo
+{
+  /Title       (PRACTICA1-PE)
+  /Author      (RAFAEL FERNANDEZ LOPEZ, ANGEL VALERO PICAZO)
+}
+
+\begin{document}
+
+\maketitle
+\newpage
+\newpage
+\tableofcontents
+\newpage
+
+\section{Estudio Obligatorio de las Funciones}	
+
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|cc|} \hline
+Precisión & Mínimo Obtenido \\  \hline
+0.00000001 & -1.954301 \\ 
+0.00000002 & -1.952432 \\ 
+0.00000003 & -1.956418 \\
+0.00000004 & -1.953366 \\
+0.00000005 & -1.918998 \\
+0.00000006 & -1.956360 \\
+0.00000007 & -1.935455 \\
+0.00000008 & -1.900311 \\ 
+0.00000009 & -1.917352 \\
+0.00000010 & -1.946798 \\  \hline
+\end{tabular}
+\end{center}
+\end{table}
+	
+
+\section{Conclusiones}
+Selección basada en Ruleta
+Esta selección permite que los mejores individuos sean elegidos con una mayor probabilidad, pero al mismo tiempo permite a los peores individuos ser elegidos, lo cual puede ayudar a mantener la diversidad de la población, en contraste con la selección por truncamiento.
+Un problema de la selección de ruleta se presenta cuando existe una pequeña fracción de la población (en el límite, sólo un individuo) que posee una medida de desempeño excesivamente superior al resto. Esto provoca pérdida de diversidad y puede conducir a una convergencia prematura pues la mayor parte de los individuos seleccionados será una copia de los pocos predominantes. En este caso es preferible utilizar selección basada en ranking o selección por torneo.
+
+
+Selección basada en ranking
+
+En esta selección los individuos se ordenan según su medida de desempeño y luego son asignados con una segunda medida de desempeño, inversamente proporcional a su posición en el ranking (esto es, otorgando una mayor probabilidad a los mejores). Los valores de esta segunda asignación pueden ser lineales o exponenciales. Finalmente, los individuos son seleccionados proporcionalmente a esta probabilidad.
+Este método disminuye el riesgo de convergencia prematura que se produce cuando se utiliza selección de ruleta en poblaciones con unos pocos individuos con medidas de desempeño muy superiores a las del resto.
+
+
+Selección por torneo
+
+Esta selección se efectúa mediante un torneo (comparación) entre un pequeño subconjunto de individuos elegidos al azar desde la población.
+Los beneficios de este tipo de selección son la velocidad de aplicación (dado que no es necesario evaluar ni comparar la totalidad de la población) y la capacidad de prevenir, en cierto grado, la convergencia prematura. La principal desventaja es la necesidad de establecer el parámetro correspondiente al tamaño del subconjunto.	 
+
+Selección por truncamiento
+
+Por último se habla de esta selección aunque en nuestra practica no esta implentada. En esta selección las soluciones candidatas son ordenadas según su función de desempeño, y una proporción p (por ejemplo =1/2, 1/3, 1/4, ...) de los individuos con mejor desempeño es seleccionada y reproducida 1/p veces. Esta selección es menos sofisticada que la mayoría de los métodos de selección, y generalmente no es usada en la práctica
+
+
+Sobre valores de los parámetros:
+
+
+Las recomendaciones son a menudo los resultados de algunos estudios empíricos de gas, que se llevaron a cabo a menudo sólo en la codificación binaria.
+
+Crossover tasa
+tasa de cruce en general debe ser alta, alrededor de 80-95\%. (Sin embargo, algunos resultados muestran que para algunos problemas de cruce tasa de alrededor del 60\% es el mejor.)
+
+Mutación tasa
+Por otro lado, la tasa de mutación debe ser muy baja. Las mejores tarifas se informó acerca de un 0,5\% -1\%.
+
+Tamaño de la población
+Puede ser sorprendente, que la población de tamaño muy grande por lo general no mejora el rendimiento de los GA (en el sentido de la velocidad de búsqueda de solución). Buen tamaño de la población es de aproximadamente 20-30, a veces los tamaños 50-100 sin embargo se presentan como la mejor. Cierta investigación muestra, que mejor tamaño de la población depende de la codificación, el tamaño de cadena codificada. Es decir, si tiene el cromosoma con 32 bits, la población debe ser que el 32, pero sin duda dos veces más que la población en mejor tamaño para el cromosoma con 16 bits.
+
+Selección
+Básico ruleta de selección de la rueda puede ser utilizado, pero rango de selección a veces puede ser mejor. Revise el capítulo sobre la selección de ventajas y desventajas. También hay algunas método más sofisticado, que cambia los parámetros de la selección durante la marcha de la Asamblea General. Básicamente, se comporta como el recocido simulado. Pero sin duda el elitismo se debe utilizar (si no utiliza otro método para guardar la mejor solución encontrada). También puede probar el estado de equilibrio de selección.
+
+Codificación
+Codificación depende del problema y también en el tamaño de la instancia del problema. Revise el capítulo sobre la codificación de algunas sugerencias o mirar a otros recursos.
+
+Crossover y tipo de mutación
+Los operadores dependen de la codificación y en el problema. Revise el capítulo sobre los operadores para algunas sugerencias. También puede consultar los otros sitios.
+
+
+
+
+
+\end{document}
