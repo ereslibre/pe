@@ -204,12 +204,12 @@ public class Cromosoma extends ag.Cromosoma {
 				break;
 			case 4: {// ERX
 				
-					ArrayList[] tabla1 = new ArrayList[tamCromosoma];
-					ArrayList[] tabla2 = new ArrayList[tamCromosoma];
+					ArrayList<Integer>[] tabla1 = new ArrayList[tamCromosoma];
+					ArrayList<Integer>[] tabla2 = new ArrayList[tamCromosoma];
 		        
 					for (int i = 0; i < tabla1.length; i++) {
-						tabla1[i] = new ArrayList();
-						tabla2[i] = new ArrayList();
+						tabla1[i] = new ArrayList<Integer>();
+						tabla2[i] = new ArrayList<Integer>();
 					}
 					//Padres
 					int p1[] = new int[tamCromosoma];
@@ -220,9 +220,9 @@ public class Cromosoma extends ag.Cromosoma {
 						p2[i] = ((int[]) cromosoma.genotipo())[i];
 					}
 					//Se pone las distintas ciudades vecinas en la tabla
-					for (int i = 0; i < tamCromosoma; i++) {
+					for (int i = 1; i <= tamCromosoma; i++) {
 						//primer padre
-						int posP1 =0; /////////devuelvePos(i,1);
+						int posP1 = devuelvePos(i);
 						int pos1P1 = p1[(posP1 - 1 + tamCromosoma) % tamCromosoma];
 						int pos2P1 = p1[(posP1 + 1 + tamCromosoma) % tamCromosoma];
 						tabla1[i - 1].add(pos1P1);
@@ -231,7 +231,7 @@ public class Cromosoma extends ag.Cromosoma {
 						tabla2[i - 1].add(pos2P1);
 
 						//segundo padre
-						int posP2 =0;////// devuelvePos(i,2);
+						int posP2 = devuelvePos(i);
 						int pos1P2 = p2[(posP2 - 1 + tamCromosoma) % tamCromosoma];
 						int pos2P2 = p2[(posP2 + 1 + tamCromosoma) % tamCromosoma];
 						if (!tabla1[i - 1].contains(pos1P2)) {
@@ -270,24 +270,26 @@ public class Cromosoma extends ag.Cromosoma {
 								}
 							}
 							//actualizamos la tabla eliminando el elemento utilizado
-							for (int j = 0; j < tabla1.length; j++) {
-								if (tabla1[j].contains(pos)) {
-									tabla1[j].remove(new Integer(pos));
-								}
-							}
+							
 							//en caso de no mejorar y tener un empate
 							if (pos == -1) {
 								//cogemos uno al azar
-								ArrayList lista = new ArrayList();
-								for (int j = 0; j < tamCromosoma; i++) {
+								ArrayList<Integer> lista = new ArrayList<Integer>();
+								for (int j = 1; j < tamCromosoma+1; j++) {
 									if (buscar(hijo1c,j) == -1) {
 										lista.add(j);
 									}
 								}
-								int elemento = (int) Math.random() * tamCromosoma;
-								hijo1c[i] = (Integer)lista.get(elemento);
+								int elemento = (int) Math.random() * lista.size();
+								pos = (Integer)lista.get(elemento);
+								hijo1c[i] = pos;
 							}else{
 								hijo1c[i] = pos;
+							}
+							for (int j = 0; j < tabla1.length; j++) {
+								if (tabla1[j].contains(pos)) {
+									tabla1[j].remove(new Integer(pos));
+								}
 							}
 							i++;
 						}
@@ -319,23 +321,25 @@ public class Cromosoma extends ag.Cromosoma {
 								}
 							}
 							//ponemos la tabla bien
-							for (int j = 0; j < tabla2.length; j++) {
-								if (tabla2[j].contains(pos)) {
-									tabla2[j].remove(new Integer(pos));
-								}
-							}
+							
 							if (pos == -1) {
 								//cogemos uno al azar
-								ArrayList lista = new ArrayList();
-								for (int j = 0; j < tamCromosoma; i++) {
+								ArrayList<Integer> lista = new ArrayList<Integer>();
+								for (int j = 1; j < tamCromosoma+1; j++) {
 									if (buscar(hijo2c,j) == -1) {
 										lista.add(j);
 									}
 								}
-								int elemento = (int) Math.random() * tamCromosoma;
-								hijo2c[i] = (Integer)lista.get(elemento);
+								int elemento = (int) Math.random() * lista.size();
+								pos = (Integer)lista.get(elemento);
+								hijo2c[i] = pos;
 							}else{
 								hijo2c[i] = pos;
+							}
+							for (int j = 0; j < tabla2.length; j++) {
+								if (tabla2[j].contains(pos)) {
+									tabla2[j].remove(new Integer(pos));
+								}
 							}
 							i++;
 						}           
