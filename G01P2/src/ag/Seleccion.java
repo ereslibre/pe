@@ -63,5 +63,60 @@ public class Seleccion {
 			}	
 		}
 	}
+	
+	static public void ranking(Poblacion poblacion, Poblacion res) {
+		// Primero se ordena por orden decreciente de puntuacion
+		int[] ordenados = ordenaDecreciente(poblacion);
+		float[] puntAcum = new float[Problema.self().tamPoblacion()];
+		float puntTotal = 0;
+		ArrayList<Cromosoma> poblacionAux = new ArrayList<Cromosoma>();
+		for(int i=0;i<Problema.self().tamPoblacion();i++){
+			puntAcum[i]=(float) ((1.5-2*(1.5-1)*((i-1)/(Problema.self().tamPoblacion()-1)))/Problema.self().tamPoblacion());
+			puntTotal =+ puntAcum[i];
+			poblacionAux.add((Cromosoma) poblacion.poblacion().get(ordenados[i]));
+		}
+		puntAcum[0]=puntAcum[0]/puntTotal;
+		for(int i=1;i<Problema.self().tamPoblacion();i++){
+			puntAcum[i]=puntAcum[i-1] + (puntAcum[i]/puntTotal);
+		}
+		
+		for(int i=0;i<Problema.self().tamPoblacion();i++){
+			float prob = (float) Math.random();
+			int seleccionado = buscar(puntAcum, prob);
+			res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(seleccionado).clone());
+		}
+	}
+	
+	private static int buscar(float[] vector, float valor) {
+	   	int pos = 0;
+	   	while(pos<vector.length && vector[pos]<valor){
+	   		pos++;
+	   	}
+	   	if(pos>=vector.length){
+	   		pos--;
+	   	}
+	   	return pos;
+   }
+	
+	private static int[] ordenaDecreciente(Poblacion poblacion) {
+		int[] ordenado = new int[Problema.self().tamPoblacion()];
+		boolean[] usados = new boolean[Problema.self().tamPoblacion()];
+		for(int i=0;i<usados.length;i++){
+			usados[i]=false;
+		}
+		for(int i=0;i<Problema.self().tamPoblacion();i++){
+			double mejorPunt = poblacion.poblacion().get(0).aptitud();
+			int posMejor = 0;
+			for(int j=1;j<Problema.self().tamPoblacion();j++){
+				if(poblacion.poblacion().get(j).aptitud()>mejorPunt && !usados[j]){
+					posMejor=j;
+					mejorPunt = poblacion.poblacion().get(j).aptitud();
+				}
+			}
+			ordenado[i]=posMejor;
+			usados[posMejor]=true;
+		}
+		return ordenado;
+	}
 
 }

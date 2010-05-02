@@ -114,7 +114,7 @@ public class Problema extends Thread {
 			} else if(m_ventanaPrincipal.seleccionSeleccionada() == 1) {
 				Seleccion.torneo(p, res);
 			} else {
-				//Seleccion.ranking(p, res);
+				Seleccion.ranking(p, res);
 			}
 
 			res.poblacion().addAll(m_elite);
