@@ -199,12 +199,44 @@ public class Cromosoma extends ag.Cromosoma {
 				}
 				break;
 			case 2: { // Variante OX
-					
 				}
 				break;
-			case 3: // Ciclos
+			case 3: { // Ciclos
+					for (int i = 0; i < tamCromosoma; ++i) {
+						hijo1c[i] = -1;
+						hijo2c[i] = -1;
+					}
+
+					int i = 0;
+					while (true) {
+						hijo1c[i] = m_cromosoma[i];
+						i = buscar(m_cromosoma, ((practica2.Cromosoma) cromosoma).m_cromosoma[i]);
+						if (hijo1c[i] != -1) {
+							break;
+						}
+					}
+					for (int j = 0; j < m_cromosoma.length; ++j) {
+						if (hijo1c[j] == -1) {
+							hijo1c[j] = ((practica2.Cromosoma) cromosoma).m_cromosoma[j];
+						}
+					}
+
+					i = 0;
+					while (true) {
+						hijo2c[i] = ((practica2.Cromosoma) cromosoma).m_cromosoma[i];
+						i = buscar(((practica2.Cromosoma) cromosoma).m_cromosoma, m_cromosoma[i]);
+						if (hijo2c[i] != -1) {
+							break;
+						}
+					}
+					for (int j = 0; j < ((practica2.Cromosoma) cromosoma).m_cromosoma.length; ++j) {
+						if (hijo2c[j] == -1) {
+							hijo2c[j] = m_cromosoma[j];
+						}
+					}
+				}
 				break;
-			case 4: {// ERX
+			case 4: { // ERX
 				
 					ArrayList<Integer>[] tabla1 = new ArrayList[tamCromosoma];
 					ArrayList<Integer>[] tabla2 = new ArrayList[tamCromosoma];
@@ -363,6 +395,7 @@ public class Cromosoma extends ag.Cromosoma {
 		hijo2.setCromosoma(hijo2c);
 		hijo2.setMadre(this);
 		hijo2.setPadre(cromosoma);
+
 		return new Cruce(hijo1, hijo2);
 	}
 
@@ -480,7 +513,7 @@ public class Cromosoma extends ag.Cromosoma {
 		m_cromosoma = cromosoma;
 	}
 	
-	public int buscar(int[] vector, int elem) {
+	private int buscar(int[] vector, int elem) {
 		int i = 0;
 		while (i < vector.length) {
 			if (vector[i] == elem) {
@@ -490,6 +523,7 @@ public class Cromosoma extends ag.Cromosoma {
 		}
 		return -1;
 	}
+
 	public int devuelvePos(int[] crom, int ciudad){
         for(int i = 0; i< Problema.self().tamCromosoma(); i++){
             	if(crom[i] == ciudad){
