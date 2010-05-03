@@ -389,7 +389,8 @@ public class Cromosoma extends ag.Cromosoma {
 				int hijo2cc[] = new int[tamCromosoma];
 
 				ArrayList<Integer> dinamica = new ArrayList<Integer>();
-				for (int i = 1; i < m_cromosoma.length; ++i) {
+
+				for (int i = 1; i <= m_cromosoma.length; ++i) {
 					dinamica.add(i);
 				}
 
@@ -397,17 +398,17 @@ public class Cromosoma extends ag.Cromosoma {
 				ArrayList<Integer> codificada1 = new ArrayList<Integer>();
 				for (int i = 0; i < m_cromosoma.length; ++i) {
 					codificada1.add(dinamica.indexOf(m_cromosoma[i]));
-					dinamica.remove((Object) i);
+					dinamica.remove((Object) m_cromosoma[i]);
 				}
 
-				for (int i = 0; i < m_cromosoma.length; ++i) {
+				for (int i = 1; i <= m_cromosoma.length; ++i) {
 					dinamica.add(i);
 				}
 
 				ArrayList<Integer> codificada2 = new ArrayList<Integer>();
 				for (int i = 0; i < m_cromosoma.length; ++i) {
 					codificada2.add(dinamica.indexOf(((practica2.Cromosoma) cromosoma).m_cromosoma[i]));
-					dinamica.remove((Object) i);
+					dinamica.remove((Object) ((practica2.Cromosoma) cromosoma).m_cromosoma[i]);
 				}
 
 				int posCruce = (int) (Math.random() * (m_cromosoma.length - 2));
@@ -426,7 +427,7 @@ public class Cromosoma extends ag.Cromosoma {
 				}
 
 				// Descodificamos los resultados del cruce
-				for (int i = 0; i < m_cromosoma.length; ++i) {
+				for (int i = 1; i <= m_cromosoma.length; ++i) {
 					dinamica.add(i);
 				}
 
@@ -434,7 +435,7 @@ public class Cromosoma extends ag.Cromosoma {
 					hijo1c[i] = dinamica.remove(hijo1cc[i]);
 				}
 
-				for (int i = 0; i < m_cromosoma.length; ++i) {
+				for (int i = 1; i <= m_cromosoma.length; ++i) {
 					dinamica.add(i);
 				}
 
