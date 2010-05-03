@@ -28,6 +28,7 @@ public abstract class Poblacion {
 	protected ArrayList<Double>    m_puntuacionesAcumuladas;
 	protected Cromosoma            m_mejor;
 	protected Double               m_aptitudMedia;
+	protected int                  m_numGeneracion;
 
 	public Poblacion() {
 		m_poblacion = new ArrayList<Cromosoma>();
@@ -170,6 +171,14 @@ public abstract class Poblacion {
 		for (int i = 0; i < poblacion.length; ++i) {
 			m_poblacion.add(poblacion[i]);
 		}
+	}
+
+	public int numGeneracion() {
+		return m_numGeneracion;
+	}
+
+	public void setNumGeneracion(int numGeneracion) {
+		m_numGeneracion = numGeneracion;
 	}
 
 }

@@ -79,6 +79,7 @@ public class Problema extends Thread {
 
 	public void lanzar(boolean limpiaAnterior) {
 		Poblacion p = Factoria.genPoblacionVacia();
+		p.setNumGeneracion(0);
 		p.genPoblacionInicial();
 		p.evaluarPoblacion();
 		int gen = 0;
@@ -119,6 +120,7 @@ public class Problema extends Thread {
 
 			res.poblacion().addAll(m_elite);
 			
+			res.setNumGeneracion(gen);
 			res.cruzar();
 			res.mutar();
 			res.evaluarPoblacion();
