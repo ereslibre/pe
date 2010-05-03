@@ -201,7 +201,7 @@ public class Cromosoma extends ag.Cromosoma {
 					}
 				}
 				break;
-			case 2: { // Variante 1 OX
+			case 2: { // Variante OX
 					for (int i = 0; i < tamCromosoma; ++i) {
 						hijo1c[i] = -1;
 						hijo2c[i] = -1;
@@ -243,10 +243,7 @@ public class Cromosoma extends ag.Cromosoma {
 					}
 				}
 				break;
-			case 3: { // Variante 2 OX
-				}
-				break;
-			case 4: { // Ciclos
+			case 3: { // Ciclos
 					for (int i = 0; i < tamCromosoma; ++i) {
 						hijo1c[i] = -1;
 						hijo2c[i] = -1;
@@ -281,7 +278,7 @@ public class Cromosoma extends ag.Cromosoma {
 					}
 				}
 				break;
-			case 5: { // ERX
+			case 4: { // ERX
 					ArrayList<ArrayList<Integer>> tabla1 = new ArrayList<ArrayList<Integer>>();
 					ArrayList<ArrayList<Integer>> tabla2 = new ArrayList<ArrayList<Integer>>();
 		        
@@ -412,7 +409,7 @@ public class Cromosoma extends ag.Cromosoma {
 					}
 					}				
 				break;
-			case 6: // Codificación Ordinal
+			case 5: // Codificación Ordinal
 				int hijo1cc[] = new int[tamCromosoma];
 				int hijo2cc[] = new int[tamCromosoma];
 
@@ -471,7 +468,7 @@ public class Cromosoma extends ag.Cromosoma {
 					hijo2c[i] = dinamica.remove(hijo2cc[i]);
 				}
 				break;
-			case 7: { // Propio (Cruce por parejas)
+			case 6: { // Propio (Cruce por parejas)
 					for (int i = 0; i < m_cromosoma.length; ++i) {
 						hijo1c[i] = -1;
 						hijo2c[i] = -1;
@@ -632,9 +629,10 @@ public class Cromosoma extends ag.Cromosoma {
 	}
 
 	public void escalar() {
-		float a = (float) (-0.5 * poblacion().aptitudMedia() / poblacion().getMejor().aptitud() - poblacion().aptitudMedia());
-		float b = (float) ((1.0 - a) * poblacion().aptitudMedia());
-		m_aptitud = aptitud() * a + b;
+		double a = (double) (-0.5 * (double) poblacion().aptitudMedia() / ((double) poblacion().getMejor().aptitud() - (double) poblacion().aptitudMedia()));
+		double b = (double) ((1.0 - a) * (double) poblacion().aptitudMedia());
+		m_aptitud = (aptitud() * a + b) * ((double) Problema.self().numMaxGen() / (double) (poblacion().numGeneracion() + 1));
+		m_aptitud = 1.0 / m_aptitud;
 	}
 
 	private int buscar(int[] vector, int elem) {
