@@ -116,16 +116,16 @@ public abstract class Poblacion {
 					while (it2.hasNext()) {
 						final Cromosoma e = it2.next();
 						if (c.aptitud() > e.aptitud()) {
-							//it2.set((Cromosoma) c.clone());
+							it2.set((Cromosoma) c.clone());
 							Collections.sort(elite);
 						}
 					}
 				}
 				Problema.self().setElite(elite);
-				if (m_mejor == null || m_mejor.aptitud() < c.aptitud()) {
+				if (m_mejor == null || m_mejor.evaluacion() > c.evaluacion()) {
 					m_mejor = (Cromosoma) c.clone();
 				}
-				if (Problema.self().getMejor() == null || Problema.self().getMejor().aptitud() < c.aptitud()) {
+				if (Problema.self().getMejor() == null || Problema.self().getMejor().evaluacion() > c.evaluacion()) {
 					Problema.self().setMejor((Cromosoma) c.clone());
 				}
 				punt += c.puntuacion();

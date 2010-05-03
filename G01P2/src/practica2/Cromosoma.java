@@ -24,7 +24,8 @@ import ag.Problema;
 
 public class Cromosoma extends ag.Cromosoma {
 
-	private int[] m_cromosoma = null;
+	private int[]  m_cromosoma = null;
+	private double m_aptitud = -1;
 
 	Cromosoma() {
 		super();
@@ -33,12 +34,15 @@ public class Cromosoma extends ag.Cromosoma {
 
 	@Override
 	public double aptitud() {
+		if (m_aptitud != -1) {
+			return m_aptitud;
+		}
 		double res = Utilidades.getDist(0, m_cromosoma[0]);
 		for (int i = 0; i < m_cromosoma.length - 1; ++i) {
 			res += Utilidades.getDist(m_cromosoma[i], m_cromosoma[i + 1]);
 		}
 		res += Utilidades.getDist(m_cromosoma[m_cromosoma.length - 1], 0);
-		return (3000 * m_cromosoma.length - res);
+		return res;
 	}
 
 	@Override
@@ -626,7 +630,13 @@ public class Cromosoma extends ag.Cromosoma {
 	public void setCromosoma(int[] cromosoma) {
 		m_cromosoma = cromosoma;
 	}
-	
+
+	public void escalar() {
+		float a = (float) (-0.5 * poblacion().aptitudMedia() / poblacion().getMejor().aptitud() - poblacion().aptitudMedia());
+		float b = (float) ((1.0 - a) * poblacion().aptitudMedia());
+		m_aptitud = aptitud() * a + b;
+	}
+
 	private int buscar(int[] vector, int elem) {
 		int i = 0;
 		while (i < vector.length) {

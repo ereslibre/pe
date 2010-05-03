@@ -82,6 +82,9 @@ public class Problema extends Thread {
 		p.setNumGeneracion(0);
 		p.genPoblacionInicial();
 		p.evaluarPoblacion();
+		for (int i = 0; i < p.poblacion().size(); ++i) {
+			((practica2.Cromosoma) p.poblacion().get(i)).escalar();
+		}
 		int gen = 0;
 
 		if (limpiaAnterior) {
@@ -124,6 +127,12 @@ public class Problema extends Thread {
 			res.cruzar();
 			res.mutar();
 			res.evaluarPoblacion();
+
+			for (int i = 0; i < res.poblacion().size(); ++i) {
+				((practica2.Cromosoma) res.poblacion().get(i)).escalar();
+			}
+			
+
 			p = res;
 			++gen;
 
