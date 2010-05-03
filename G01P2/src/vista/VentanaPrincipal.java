@@ -109,13 +109,13 @@ public class VentanaPrincipal extends JFrame {
 		setLocationRelativeTo(getRootPane());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		m_maxGen.setText("100");
-		m_probCruce.setText("0.7");
-		m_probMutacion.setText("0.01");
+		m_maxGen.setText("300");
+		m_probCruce.setText("0.5");
+		m_probMutacion.setText("0.15");
 		m_tamPoblacion.setText("100");
-		m_elitismo.setText("0.1");
+		m_elitismo.setText("0.02");
 
-		m_maxGen2.setText("200");
+		m_maxGen2.setText("400");
 		m_maxGen2.setVisible(false);
 		m_probCruce2.setText("0.8");
 		m_probCruce2.setVisible(false);
@@ -398,6 +398,7 @@ public class VentanaPrincipal extends JFrame {
 		gridBagConstraints.gridwidth = 4;
 		final String[] metodoSeleccion = { "Ruleta", "Torneo", "Ranking" };
 		m_seleccion = new JComboBox(metodoSeleccion);
+		m_seleccion.setSelectedIndex(1);
 		p.add(m_seleccion, gridBagConstraints);
 
 		gridBagConstraints.gridx = 0;
@@ -410,6 +411,7 @@ public class VentanaPrincipal extends JFrame {
 		final String[] metodoCruce = { "PMX", "OX", "Variante 1 de OX", "Variante 2 de OX", "Ciclos (CX)",
 									   "Recombinación de rutas (ERX)", "Codificación Ordinal", "Propio" };
 		m_cruce = new JComboBox(metodoCruce);
+		m_cruce.setSelectedIndex(5);
 		p.add(m_cruce, gridBagConstraints);
 
 		gridBagConstraints.gridx = 0;
@@ -421,6 +423,7 @@ public class VentanaPrincipal extends JFrame {
 		gridBagConstraints.gridwidth = 4;
 		final String[] metodoMutacion = { "Inserción", "Intercambio", "Inversión", "Propio"};
 		m_mutacion = new JComboBox(metodoMutacion);
+		m_mutacion.setSelectedIndex(2);
 		p.add(m_mutacion, gridBagConstraints);
 
 		m_version.addActionListener(new ActionListener() {
