@@ -19,6 +19,7 @@
 package practica2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import ag.Cruce;
 import ag.Problema;
@@ -198,10 +199,13 @@ public class Cromosoma extends ag.Cromosoma {
 					}
 				}
 				break;
-			case 2: { // Variante OX
+			case 2: { // Variante 1 OX
 				}
 				break;
-			case 3: { // Ciclos
+			case 3: { // Variante 2 OX
+				}
+				break;
+			case 4: { // Ciclos
 					for (int i = 0; i < tamCromosoma; ++i) {
 						hijo1c[i] = -1;
 						hijo2c[i] = -1;
@@ -236,7 +240,7 @@ public class Cromosoma extends ag.Cromosoma {
 					}
 				}
 				break;
-			case 4: { // ERX
+			case 5: { // ERX
 				
 					ArrayList<Integer>[] tabla1 = new ArrayList[tamCromosoma];
 					ArrayList<Integer>[] tabla2 = new ArrayList[tamCromosoma];
@@ -380,9 +384,65 @@ public class Cromosoma extends ag.Cromosoma {
 					}
 					}				
 				break;
-			case 5: // Codificación Ordinal
+			case 6: // Codificación Ordinal
+				int hijo1cc[] = new int[tamCromosoma];
+				int hijo2cc[] = new int[tamCromosoma];
+
+				ArrayList<Integer> dinamica = new ArrayList<Integer>();
+				for (int i = 1; i < m_cromosoma.length; ++i) {
+					dinamica.add(i);
+				}
+
+				// Codificamos las listas
+				ArrayList<Integer> codificada1 = new ArrayList<Integer>();
+				for (int i = 0; i < m_cromosoma.length; ++i) {
+					codificada1.add(dinamica.indexOf(m_cromosoma[i]));
+					dinamica.remove((Object) i);
+				}
+
+				for (int i = 0; i < m_cromosoma.length; ++i) {
+					dinamica.add(i);
+				}
+
+				ArrayList<Integer> codificada2 = new ArrayList<Integer>();
+				for (int i = 0; i < m_cromosoma.length; ++i) {
+					codificada2.add(dinamica.indexOf(((practica2.Cromosoma) cromosoma).m_cromosoma[i]));
+					dinamica.remove((Object) i);
+				}
+
+				int posCruce = (int) (Math.random() * (m_cromosoma.length - 2));
+				while (posCruce == 0) {
+					posCruce = (int) (Math.random() * (m_cromosoma.length - 2));
+				}
+
+				for (int i = 0; i <= posCruce; ++i) {
+					hijo1cc[i] = codificada1.get(i);
+					hijo2cc[i] = codificada2.get(i);
+				}
+
+				for (int i = posCruce + 1; i < m_cromosoma.length; ++i) {
+					hijo1cc[i] = codificada2.get(i);
+					hijo2cc[i] = codificada1.get(i);
+				}
+
+				// Descodificamos los resultados del cruce
+				for (int i = 0; i < m_cromosoma.length; ++i) {
+					dinamica.add(i);
+				}
+
+				for (int i = 0; i < m_cromosoma.length; ++i) {
+					hijo1c[i] = dinamica.remove(hijo1cc[i]);
+				}
+
+				for (int i = 0; i < m_cromosoma.length; ++i) {
+					dinamica.add(i);
+				}
+
+				for (int i = 0; i < m_cromosoma.length; ++i) {
+					hijo2c[i] = dinamica.remove(hijo2cc[i]);
+				}
 				break;
-			case 6: // Propio
+			case 7: // Propio
 				break;
 			default:
 				break;

@@ -407,7 +407,7 @@ public class VentanaPrincipal extends JFrame {
 
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridwidth = 4;
-		final String[] metodoCruce = { "PMX", "OX", "Variante de OX", "Ciclos (CX)",
+		final String[] metodoCruce = { "PMX", "OX", "Variante 1 de OX", "Variante 2 de OX", "Ciclos (CX)",
 									   "Recombinación de rutas (ERX)", "Codificación Ordinal", "Propio" };
 		m_cruce = new JComboBox(metodoCruce);
 		p.add(m_cruce, gridBagConstraints);
