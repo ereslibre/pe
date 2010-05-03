@@ -198,6 +198,45 @@ public class Cromosoma extends ag.Cromosoma {
 				}
 				break;
 			case 2: { // Variante 1 OX
+					for (int i = 0; i < tamCromosoma; ++i) {
+						hijo1c[i] = -1;
+						hijo2c[i] = -1;
+					}
+
+					ArrayList<Integer> posAleatorias = new ArrayList<Integer>();
+					int maxPosAleat = 0;
+
+					for (int i = 0; i < Math.random() * m_cromosoma.length; ++i) {
+						int pos = (int) (Math.random() * (m_cromosoma.length - 1));
+						if (!posAleatorias.contains(pos)) {
+							posAleatorias.add(pos);
+						}
+						maxPosAleat = Math.max(maxPosAleat, pos);
+					}
+
+					for (int i = 0; i < posAleatorias.size(); ++i) {
+						hijo1c[posAleatorias.get(i)] = m_cromosoma[posAleatorias.get(i)];
+						hijo2c[posAleatorias.get(i)] = ((practica2.Cromosoma) cromosoma).m_cromosoma[posAleatorias.get(i)];
+					}
+
+					int curr = (maxPosAleat + 1) % m_cromosoma.length;
+					int curr1 = curr;
+					int curr2 = curr;
+					for (int i = 0; i < m_cromosoma.length; ++i) {
+						if (hijo1c[curr] == -1) {
+							while (buscar(hijo1c, ((practica2.Cromosoma) cromosoma).m_cromosoma[curr1]) != -1) {
+								curr1 = (curr1 + 1) % m_cromosoma.length;
+							}
+							hijo1c[curr] = ((practica2.Cromosoma) cromosoma).m_cromosoma[curr1];
+						}
+						if (hijo2c[curr] == -1) {
+							while (buscar(hijo2c, m_cromosoma[curr2]) != -1) {
+								curr2 = (curr2 + 1) % m_cromosoma.length;
+							}
+							hijo2c[curr] = m_cromosoma[curr2];
+						}
+						curr = (curr + 1) % m_cromosoma.length;
+					}
 				}
 				break;
 			case 3: { // Variante 2 OX
