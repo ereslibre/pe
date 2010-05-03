@@ -91,18 +91,18 @@ public class Seleccion {
         double[] segmentosFitness = rankPopulation();
         double segmentoEntero = segmentosFitness[segmentosFitness.length - 1];
         while (numPadres < nuevaPoblacion.length) {
-                double x = (double) (Math.random() * segmentoEntero);
-                if (x <= segmentosFitness[0]) {
-                	nuevaPoblacion[numPadres] = (Cromosoma) p.get(0).clone();
-                	++numPadres;
-                } else {
-                        for (int i = 1; i < nuevaPoblacion.length; i++) {
-                                if (x > segmentosFitness[i - 1] && x <= segmentosFitness[i]) {
-                                		nuevaPoblacion[numPadres] = (Cromosoma) p.get(i).clone();
-                                		numPadres++;
-                                }
-                        }
-                }
+        	double x = (double) (Math.random() * segmentoEntero);
+        	if (x <= segmentosFitness[0]) {
+        		nuevaPoblacion[numPadres] = (Cromosoma) p.get(0).clone();
+        		++numPadres;
+        	} else {
+        		for (int i = 1; i < nuevaPoblacion.length; i++) {
+        			if (x > segmentosFitness[i - 1] && x <= segmentosFitness[i]) {
+        				nuevaPoblacion[numPadres] = (Cromosoma) p.get(i).clone();
+        				numPadres++;
+        			}
+        		}
+        	}
         }
 
         res.setPoblacion(nuevaPoblacion);
@@ -112,28 +112,17 @@ public class Seleccion {
 		final int tamPoblacion = (int) (Problema.self().tamPoblacion() * (1 - Problema.self().tamElite()));
         double[] segmentosFitness = new double[tamPoblacion];
         for (int i = 0; i < segmentosFitness.length; i++) {
-                double prob = (double) i / tamPoblacion;
-                prob = prob * 2 * (1.5 - 1);
-                prob = 1.5 - prob;
-                prob = (double) prob * ((double) 1 / tamPoblacion);
-                if (i != 0) {
-                        segmentosFitness[i] = segmentosFitness[i - 1] + prob;
-                } else {
-                        segmentosFitness[i] = prob;
-                }
+        	double prob = (double) i / tamPoblacion;
+        	prob = prob * 2 * (1.5 - 1);
+        	prob = 1.5 - prob;
+        	prob = (double) prob * ((double) 1 / tamPoblacion);
+        	if (i != 0) {
+        		segmentosFitness[i] = segmentosFitness[i - 1] + prob;
+        	} else {
+        		segmentosFitness[i] = prob;
+        	}
         }
         return segmentosFitness;
-}
-
-	private static int buscar(float[] vector, float valor) {
-	   	int pos = 0;
-	   	while(pos < vector.length && vector[pos] < valor){
-	   		pos++;
-	   	}
-	   	if(pos >= vector.length){
-	   		pos--;
-	   	}
-	   	return pos;
 	}
 
 }
