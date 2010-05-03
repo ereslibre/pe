@@ -64,6 +64,10 @@ public class Problema extends Thread {
 		return Utilidades.numCiudades();
 	}
 
+	public double tamElite() {
+		return Double.valueOf(m_ventanaPrincipal.elitismo());
+	}
+
 	public Cromosoma getMejor() {
 		return m_mejor;
 	}
@@ -118,7 +122,7 @@ public class Problema extends Thread {
 			}
 
 			res.poblacion().addAll(m_elite);
-
+			
 			res.cruzar();
 			res.mutar();
 			res.evaluarPoblacion();

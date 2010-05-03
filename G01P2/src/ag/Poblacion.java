@@ -137,7 +137,7 @@ public abstract class Poblacion {
      * Genera una población inicial.
      */
 	public void genPoblacionInicial() {
-		for (int i = 0; i < Problema.self().tamPoblacion(); ++i) {
+		for (int i = 0; i < Problema.self().tamPoblacion() * (1 - Problema.self().tamElite()); ++i) {
 			anadeCromosomaAleatorio();
 		}
 	}

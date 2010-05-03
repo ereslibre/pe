@@ -39,7 +39,7 @@ public class Cromosoma extends ag.Cromosoma {
 			res += Utilidades.getDist(m_cromosoma[i], m_cromosoma[i + 1]);
 		}
 		res += Utilidades.getDist(m_cromosoma[m_cromosoma.length - 1], 0);
-		return 10000000 - res;
+		return (2000 * m_cromosoma.length) - res;
 	}
 
 	@Override
