@@ -467,7 +467,36 @@ public class Cromosoma extends ag.Cromosoma {
 					hijo2c[i] = dinamica.remove(hijo2cc[i]);
 				}
 				break;
-			case 7: // Propio
+			case 7: { // Propio (Cruce por parejas)
+					for (int i = 0; i < m_cromosoma.length; ++i) {
+						hijo1c[i] = -1;
+						hijo2c[i] = -1;
+					}
+					for (int i = 0; i < m_cromosoma.length; i += 4) {
+						hijo1c[i] = m_cromosoma[i];
+						hijo1c[i + 1] = m_cromosoma[i + 1];
+						hijo2c[i] = ((practica2.Cromosoma) cromosoma).m_cromosoma[i];
+						hijo2c[i + 1] = ((practica2.Cromosoma) cromosoma).m_cromosoma[i + 1];
+					}
+					int k = 0;
+					for (int i = 0; i < m_cromosoma.length; ++i) {
+						if (buscar(hijo1c, ((practica2.Cromosoma) cromosoma).m_cromosoma[i]) == -1) {
+							while (hijo1c[k] != -1) {
+								++k;
+							}
+							hijo1c[k] = ((practica2.Cromosoma) cromosoma).m_cromosoma[i];
+						}
+					}
+					k = 0;
+					for (int i = 0; i < m_cromosoma.length; ++i) {
+						if (buscar(hijo2c, m_cromosoma[i]) == -1) {
+							while (hijo2c[k] != -1) {
+								++k;
+							}
+							hijo2c[k] = m_cromosoma[i];
+						}
+					}
+				}
 				break;
 			default:
 				break;

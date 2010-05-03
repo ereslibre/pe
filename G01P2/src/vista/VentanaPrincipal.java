@@ -423,7 +423,7 @@ public class VentanaPrincipal extends JFrame {
 		gridBagConstraints.gridwidth = 4;
 		final String[] metodoMutacion = { "Inserción", "Intercambio", "Inversión", "Propio"};
 		m_mutacion = new JComboBox(metodoMutacion);
-		m_mutacion.setSelectedIndex(2);
+		m_mutacion.setSelectedIndex(3);
 		p.add(m_mutacion, gridBagConstraints);
 
 		m_version.addActionListener(new ActionListener() {
