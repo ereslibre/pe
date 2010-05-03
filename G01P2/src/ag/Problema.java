@@ -56,10 +56,6 @@ public class Problema extends Thread {
 		return Double.valueOf(m_ventanaPrincipal.probMutacion());
 	}
 
-	public double precision() {
-		return Double.valueOf(m_ventanaPrincipal.precision());
-	}
-
 	public int tamCromosoma() {
 		return Utilidades.numCiudades();
 	}

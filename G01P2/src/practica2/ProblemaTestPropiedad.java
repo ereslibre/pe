@@ -59,14 +59,6 @@ public class ProblemaTestPropiedad extends ag.Problema {
 		}
 	}
 
-	public double precision() {
-		if (ventanaPrincipal().rangoSeleccionado() == 4) {
-			return m_pasoActual;
-		} else {
-			return super.precision();
-		}
-	}
-
 	public void lanzar(boolean limpiaAnterior) {
 		String atributo = null;
 
@@ -94,12 +86,6 @@ public class ProblemaTestPropiedad extends ag.Problema {
 				m_pasoActual = ventanaPrincipal().tamPoblacion();
 				m_paso = ventanaPrincipal().tamPoblacionp();
 				m_total = ventanaPrincipal().tamPoblacion2();
-				break;
-			case 4:
-				atributo = new String("Precisión: ");
-				m_pasoActual = ventanaPrincipal().precision();
-				m_paso = ventanaPrincipal().precisionp();
-				m_total = ventanaPrincipal().precision2();
 				break;
 			default:
 				break;

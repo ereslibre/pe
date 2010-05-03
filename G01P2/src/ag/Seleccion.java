@@ -70,9 +70,9 @@ public class Seleccion {
 		@Override
 		public int compare(Cromosoma o1, Cromosoma o2) {
 			if (o1.aptitud() > o2.aptitud()) {
-				return 1;
-			} else if (o1.aptitud() < o2.aptitud()) {
 				return -1;
+			} else if (o1.aptitud() < o2.aptitud()) {
+				return 1;
 			} else {
 				return 0;
 			}
@@ -83,27 +83,48 @@ public class Seleccion {
 		ArrayList<Cromosoma> p = poblacion.poblacion();
 		Collections.sort(p, new CriterioOrden());
 
-		float[] puntAcum = new float[(int) (Problema.self().tamPoblacion() * (1 - Problema.self().tamElite()))];
-		float puntTotal = 0;
-		ArrayList<Cromosoma> poblacionAux = new ArrayList<Cromosoma>();
-		for (int i = 0; i < Problema.self().tamPoblacion() * (1 - Problema.self().tamElite()); ++i){
-			puntAcum[i] = (float) ((1.5 - 2.0 * (1.5 - 1.0) * ((i - 1.0) / (Problema.self().tamPoblacion() - 1))) / Problema.self().tamPoblacion());
-			puntTotal += puntAcum[i];
-			poblacionAux.add((Cromosoma) (p.get(i)));
-		}
+		Cromosoma[] nuevaPoblacion = new Cromosoma[(int) (Problema.self().tamPoblacion() * (1 - Problema.self().tamElite()))];
+		nuevaPoblacion[0] = (Cromosoma) p.get(0).clone();
+		nuevaPoblacion[1] = (Cromosoma) p.get(1).clone();
 
-		puntAcum[0] = puntAcum[0] / puntTotal;
-		for (int i = 1; i < Problema.self().tamPoblacion() * (1 - Problema.self().tamElite()); ++i){
-			puntAcum[i] = puntAcum[i - 1] + (puntAcum[i] / puntTotal);
-		}
+		int numPadres = 2;
+        double[] segmentosFitness = rankPopulation();
+        double segmentoEntero = segmentosFitness[segmentosFitness.length - 1];
+        while (numPadres < nuevaPoblacion.length) {
+                double x = (double) (Math.random() * segmentoEntero);
+                if (x <= segmentosFitness[0]) {
+                	nuevaPoblacion[numPadres] = (Cromosoma) p.get(0).clone();
+                	++numPadres;
+                } else {
+                        for (int i = 1; i < nuevaPoblacion.length; i++) {
+                                if (x > segmentosFitness[i - 1] && x <= segmentosFitness[i]) {
+                                		nuevaPoblacion[numPadres] = (Cromosoma) p.get(i).clone();
+                                		numPadres++;
+                                }
+                        }
+                }
+        }
 
-		for (int i = 0; i < Problema.self().tamPoblacion() * (1 - Problema.self().tamElite()); ++i){
-			float prob = (float) Math.random();
-			int seleccionado = buscar(puntAcum, prob);
-			res.anadeCromosoma((Cromosoma) poblacion.poblacion().get(seleccionado).clone());
-		}
+        res.setPoblacion(nuevaPoblacion);
 	}
-	
+
+	static private double[] rankPopulation() {
+		final int tamPoblacion = (int) (Problema.self().tamPoblacion() * (1 - Problema.self().tamElite()));
+        double[] segmentosFitness = new double[tamPoblacion];
+        for (int i = 0; i < segmentosFitness.length; i++) {
+                double prob = (double) i / tamPoblacion;
+                prob = prob * 2 * (1.5 - 1);
+                prob = 1.5 - prob;
+                prob = (double) prob * ((double) 1 / tamPoblacion);
+                if (i != 0) {
+                        segmentosFitness[i] = segmentosFitness[i - 1] + prob;
+                } else {
+                        segmentosFitness[i] = prob;
+                }
+        }
+        return segmentosFitness;
+}
+
 	private static int buscar(float[] vector, float valor) {
 	   	int pos = 0;
 	   	while(pos < vector.length && vector[pos] < valor){

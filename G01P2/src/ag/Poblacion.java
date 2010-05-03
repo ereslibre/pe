@@ -24,10 +24,10 @@ import java.util.ListIterator;
 
 public abstract class Poblacion {
 
-	private ArrayList<Cromosoma> m_poblacion;
-	private ArrayList<Double>    m_puntuacionesAcumuladas;
-	private Cromosoma            m_mejor;
-	private Double               m_aptitudMedia;
+	protected ArrayList<Cromosoma> m_poblacion;
+	protected ArrayList<Double>    m_puntuacionesAcumuladas;
+	protected Cromosoma            m_mejor;
+	protected Double               m_aptitudMedia;
 
 	public Poblacion() {
 		m_poblacion = new ArrayList<Cromosoma>();
@@ -164,6 +164,12 @@ public abstract class Poblacion {
 	 */
 	public void setPoblacion(ArrayList<Cromosoma> poblacion) {
 		m_poblacion = poblacion;
+	}
+
+	public void setPoblacion(Cromosoma[] poblacion) {
+		for (int i = 0; i < poblacion.length; ++i) {
+			m_poblacion.add(poblacion[i]);
+		}
 	}
 
 }
