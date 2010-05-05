@@ -21,27 +21,126 @@
 \tableofcontents
 \newpage
 
-\section{Estudio Obligatorio de las Funciones}	
+\section{Estudio de la selección por Torneo}	
+
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|ccccc|} \hline
+	   & Inserción & Intercambio & Inversión & Propio \\  \hline
+PMX 	   &  7657 & 10591 & 8098 & 7581 \\ 
+OX 	   & 7418 & 9807 & 7955 & 6142  \\ 
+Variante OX & 7269 & 10380 & 7816 & 7573 \\
+Ciclos 	   & 7759 & 10330 & 7459 & 8953 \\
+ERX 	   & 6649 & 9937 & 6430 & 5550 \\
+Ordinal    & 8199 & 9409 & 8057 & 9415 \\
+Propio     & 7671 & 10245 & 8906 & 10441 \\  \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\section{Estudio de la selección por Ranking}	
+
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|ccccc|} \hline
+	   & Inserción & Intercambio & Inversión & Propio \\  \hline
+PMX 	   &  8541 & 10231 & 9192 & 7619 \\ 
+OX 	   & 9262 & 9988 & 8629 & 8089  \\ 
+Variante OX & 8834 & 10332 & 9537 & 7410 \\
+Ciclos 	   & 8530 & 10370 & 8208 & 9327 \\
+ERX 	   & 8653 & 10470 & 8050 & 7777 \\
+Ordinal    & 8990 & 10280 & 9287 & 8536 \\
+Propio     & 8763 & 9763 & 8803 & 9936 \\  \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\section{Estudio de la selección por Ruleta}	
+
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|ccccc|} \hline
+	   & Inserción & Intercambio & Inversión & Propio \\  \hline
+ERX    & 11769 & 11369 & 11807 & 11382 \\  \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\section{Estudio de los diferentes parámetros del Algoritmo Genético}
+
+	Estudio realizado con selección de Torneo, cruce ERX y mutación propia. Se han ido variando los diferentes parámetros, por defectos hemos tomados los siguientes valores:
 
 %tabla
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|cc|} \hline
-Precisión & Mínimo Obtenido \\  \hline
-0.00000001 & -1.954301 \\ 
-0.00000002 & -1.952432 \\ 
-0.00000003 & -1.956418 \\
-0.00000004 & -1.953366 \\
-0.00000005 & -1.918998 \\
-0.00000006 & -1.956360 \\
-0.00000007 & -1.935455 \\
-0.00000008 & -1.900311 \\ 
-0.00000009 & -1.917352 \\
-0.00000010 & -1.946798 \\  \hline
+Tamaño de la Población   & 100  \\  
+Número Máximo de Generaciones  &  300 \\
+Probabilidad de Cruce & 0.5 \\
+Probabilidad de Mutación & 0.15 \\
+Porcentaje de Elitismo & 0.02 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
-	
+
+\subsection{Tamaño de la Población}
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|ccccc|} \hline
+Tamaño	   & 50 & 100 & 150 & 200 \\  \hline
+Resultado  &  6415 & 5503 & 5644 & 5498 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection{Número Máximo de Generaciones}
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|ccccc|} \hline
+Num Generaciones  & 100 & 200 & 300 & 400 \\  \hline
+Resultado  &  5771 & 5419 & 5419 & 5733 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}	
+
+\subsection{Probabilidad de Cruce}
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|ccccc|} \hline
+Probabilidad   & 0.2 & 0.4 & 0.5 & 0.7 \\  \hline
+Resultado  &  6198 & 5668 & 5611 & 5480 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection{Probabilidad de Mutación}
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|ccccc|} \hline
+Probabilidad   & 0.05 & 0.1 & 0.15 & 0.2 \\  \hline
+Resultado  &  5713 & 5668 & 5514 & 5703 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection{Porcentaje de Elitismo}
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|ccccc|} \hline
+Porcentaje   & 0.0 & 0.02 & 0.1 & 0.3 \\  \hline
+Resultado  &  6795 & 5368 & 5514 & 5946 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
 
 \section{Conclusiones}
 Selección basada en Ruleta
@@ -68,7 +167,7 @@ Por último se habla de esta selección aunque en nuestra practica no esta imple
 Sobre valores de los parámetros:
 
 
-Las recomendaciones son a menudo los resultados de algunos estudios empíricos de gas, que se llevaron a cabo a menudo sólo en la codificación binaria.
+Las recomendaciones son a menudo los resultados de algunos estudios empíricos, que se llevaron a cabo a menudo sólo en la codificación binaria.
 
 Crossover tasa
 tasa de cruce en general debe ser alta, alrededor de 80-95\%. (Sin embargo, algunos resultados muestran que para algunos problemas de cruce tasa de alrededor del 60\% es el mejor.)
@@ -87,6 +186,12 @@ Codificación depende del problema y también en el tamaño de la instancia del 
 
 Crossover y tipo de mutación
 Los operadores dependen de la codificación y en el problema. Revise el capítulo sobre los operadores para algunas sugerencias. También puede consultar los otros sitios.
+
+El elitismo es un método que primero copia el mejor individuo (o varios) a la
+próxima generación. El elitismo puede aumentar rápidamente el desempeño de un
+algoritmo genético, ya que evita perder la mejor solución encontrada. Sin embargo,
+es posible que este método conduzca rápidamente a un óptimo local.
+
 
 
 

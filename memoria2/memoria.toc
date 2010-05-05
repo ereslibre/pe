@@ -1,3 +1,11 @@
 \select@language {spanish}
-\contentsline {section}{\numberline {1}Estudio Obligatorio de las Funciones}{3}
-\contentsline {section}{\numberline {2}Conclusiones}{3}
+\contentsline {section}{\numberline {1}Estudio de la selecci\IeC {\'o}n por Torneo}{3}
+\contentsline {section}{\numberline {2}Estudio de la selecci\IeC {\'o}n por Ranking}{3}
+\contentsline {section}{\numberline {3}Estudio de la selecci\IeC {\'o}n por Ruleta}{3}
+\contentsline {section}{\numberline {4}Estudio de los diferentes par\IeC {\'a}metros del Algoritmo Gen\IeC {\'e}tico}{4}
+\contentsline {subsection}{\numberline {4.1}Tama\IeC {\~n}o de la Poblaci\IeC {\'o}n}{4}
+\contentsline {subsection}{\numberline {4.2}N\IeC {\'u}mero M\IeC {\'a}ximo de Generaciones}{4}
+\contentsline {subsection}{\numberline {4.3}Probabilidad de Cruce}{4}
+\contentsline {subsection}{\numberline {4.4}Probabilidad de Mutaci\IeC {\'o}n}{5}
+\contentsline {subsection}{\numberline {4.5}Porcentaje de Elitismo}{5}
+\contentsline {section}{\numberline {5}Conclusiones}{5}
