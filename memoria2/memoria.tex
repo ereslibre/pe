@@ -3,13 +3,13 @@
 \usepackage[spanish]{babel}
 \usepackage{graphicx}
 \usepackage{float}
-\title{Práctica 1\\Programación Evolutiva}
+\title{Práctica 2\\Programación Evolutiva}
 \author{Grupo 01\\Rafael Fernández López\\Ángel Valero Picazo}
 \date{}
 
 \pdfinfo
 {
-  /Title       (PRACTICA1-PE)
+  /Title       (PRACTICA2-PE)
   /Author      (RAFAEL FERNANDEZ LOPEZ, ANGEL VALERO PICAZO)
 }
 
@@ -21,7 +21,40 @@
 \tableofcontents
 \newpage
 
-\section{Estudio de la selección por Torneo}	
+\section{Introducción}
+
+	En esta memoria se van a estudiar los diferentes métodos de selección, cruce y mutación para poder evaluar cuales se comportan mejor y cuales son menos preciso a la hora de tratar el problema del viajante implementado en esta práctica.
+
+\section{Métodos propios}
+
+	En este apartado se explican los dos métodos propios implementados en la práctica.
+
+\subsection{Cruce propio}
+
+	Este cruce se basa en el algoritmo de ciclos. En el vector se fijan pares cada dos posiciones, esos pares fijados se trataran de forma semejante al algoritmo de ciclos. Las posiciones que quedan sin tocar se rellenan de forma que no se existan repeticiones. 
+
+\subsection{Mutación propio}
+
+	El cruce propio es sencillo, consiste en ir intercambiando las ciudades dos a dos, de esta manera no se pierde mucha historia al intercambiarse por el vecino consecutivo.
+
+\section{Estudio de selección por Torneo}
+
+En este apartado se va a estudiar la selección por torneo, para ello hemos tomado por defecto los valores que se exponen en la tabla que se presenta a continuación.
+
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|cc|} \hline
+Tamaño de la Población   & 100  \\  
+Número Máximo de Generaciones  &  300 \\
+Probabilidad de Cruce & 0.5 \\
+Probabilidad de Mutación & 0.15 \\
+Porcentaje de Elitismo & 0.02 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Estudio de la selección por torneo probando los diferentes métodos de cruce y mutación.
 
 %tabla
 \begin{table}[H]
@@ -39,7 +72,27 @@ Propio     & 7671 & 10245 & 8906 & 10441 \\  \hline
 \end{center}
 \end{table}
 
-\section{Estudio de la selección por Ranking}	
+	Se observa referente a los cruces que los que mejores resultados se dan con ERX seguido por OX y su variante OX. En cambio los peores resultados se obtienen con el método de cruce propio.
+
+	Referente a las mutaciones se puede ver como inversión y la mutación propia obtienen generalmente buenos resultados, en contra la que peor se comporta es la de intercambio.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/fig1}
+\caption{Captura mejor resultado.}
+\label{fig}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/fig1graf}
+\caption{Evaluación}
+\label{fig}
+\end{figure} 
+
+\section{Estudio de selección por Ranking}
+
+A continuación se va a estudiar la selección por ranking, para ello hemos tomado por defecto los valores que anteriormente se han mencionado.	
 
 %tabla
 \begin{table}[H]
@@ -57,7 +110,27 @@ Propio     & 8763 & 9763 & 8803 & 9936 \\  \hline
 \end{center}
 \end{table}
 
-\section{Estudio de la selección por Ruleta}	
+	Se puede ver que los mejores cruces utilizado el método de selección de ranking siguen siendo ERX, OX y su variante , pero ahora destaca el PMX.
+
+	En las mutaciones se repite los resultados anteriores siendo la mejor la propia pero ahora se igualan la de inserción e inversión. Como antes la peor sigue siendo la de intercambio.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/fig2}
+\caption{Captura mejor resultado.}
+\label{fig}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/fig2graf}
+\caption{Evaluación}
+\label{fig}
+\end{figure}   
+
+\section{Estudio de selección por Ruleta}	
+
+	 Por último se estudia el método de selección por ruleta, en este caso sólo se ha estudiado con el método de cruce ERX y con sus cuatro correspondientes métodos de mutación.
 
 %tabla
 \begin{table}[H]
@@ -69,9 +142,27 @@ ERX    & 11769 & 11369 & 11807 & 11382 \\  \hline
 \end{center}
 \end{table}
 
+	Como se esperaba por el estudio teórico de dicha selección los valores resultantes no son nada buenos debido probablemente a una convergencia prematura.
+
+	En esta selección no existen diferencias notables entre los diferentes métodos de mutación.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/fig3}
+\caption{Captura mejor resultado.}
+\label{fig}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/fig3graf}
+\caption{Evaluación}
+\label{fig}
+\end{figure} 
+
 \section{Estudio de los diferentes parámetros del Algoritmo Genético}
 
-	Estudio realizado con selección de Torneo, cruce ERX y mutación propia. Se han ido variando los diferentes parámetros, por defectos hemos tomados los siguientes valores:
+	Estudio realizado con selección de torneo, cruce ERX y mutación propia. Se han ido variando los diferentes parámetros, por defecto hemos tomados los siguientes valores:
 
 %tabla
 \begin{table}[H]
@@ -86,7 +177,9 @@ Porcentaje de Elitismo & 0.02 \\ \hline
 \end{center}
 \end{table}
 
+
 \subsection{Tamaño de la Población}
+
 %tabla
 \begin{table}[H]
 \begin{center}
@@ -96,6 +189,8 @@ Resultado  &  6415 & 5503 & 5644 & 5498 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
+
+	Se puede observar como el valor óptimo esta en torno a 100 individuos en el tamaño de población. 
 
 \subsection{Número Máximo de Generaciones}
 %tabla
@@ -108,6 +203,8 @@ Resultado  &  5771 & 5419 & 5419 & 5733 \\ \hline
 \end{center}
 \end{table}	
 
+	En este caso el número máximo de generaciones está en torno al intervalo 200-300 el valor óptimo.
+
 \subsection{Probabilidad de Cruce}
 %tabla
 \begin{table}[H]
@@ -118,6 +215,8 @@ Resultado  &  6198 & 5668 & 5611 & 5480 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
+
+	La probabilidad de cruce adecuada para este problema converge entre 0.5 y 0.7.
 
 \subsection{Probabilidad de Mutación}
 %tabla
@@ -130,6 +229,8 @@ Resultado  &  5713 & 5668 & 5514 & 5703 \\ \hline
 \end{center}
 \end{table}
 
+	La mejor probabilidad de mutación se sitúa alrededor de 0.15.
+
 \subsection{Porcentaje de Elitismo}
 %tabla
 \begin{table}[H]
@@ -141,56 +242,26 @@ Resultado  &  6795 & 5368 & 5514 & 5946 \\ \hline
 \end{center}
 \end{table}
 
+	Se observa como al eliminar el elitismo poniéndolo a 0, el resultado empeora notablemente, el mejor porcentaje de elitismo se encuentra en torno a 0.02.
+
 
 \section{Conclusiones}
-Selección basada en Ruleta
-Esta selección permite que los mejores individuos sean elegidos con una mayor probabilidad, pero al mismo tiempo permite a los peores individuos ser elegidos, lo cual puede ayudar a mantener la diversidad de la población, en contraste con la selección por truncamiento.
-Un problema de la selección de ruleta se presenta cuando existe una pequeña fracción de la población (en el límite, sólo un individuo) que posee una medida de desempeño excesivamente superior al resto. Esto provoca pérdida de diversidad y puede conducir a una convergencia prematura pues la mayor parte de los individuos seleccionados será una copia de los pocos predominantes. En este caso es preferible utilizar selección basada en ranking o selección por torneo.
+
+Primero se van a exponer las conclusiones relacionadas con los diferentes métodos de selección.
+
+La selección por ruleta permite a los mejores individuos ser elegidos con una mayor probabilidad, pero también permite a los peores individuos ser elegidos, lo cual ayuda a mantener la diversidad de la población.
+Un problema que hemos observado con los diferentes estudios realizados es que dicha selección hace perder diversidad y puede conducir a una convergencia prematura ya que la mayor parte de los individuos seleccionados serán una copia de los pocos predominantes.
+
+En la selección por ranking los individuos se ordenan según su puntuación y luego son asignados con una segunda medida de puntuación, inversamente proporcional a su posición en el ranking. Los individuos son seleccionados proporcionalmente a esta probabilidad. Este método cómo se observa en los estudios realizados disminuye el riesgo de convergencia prematura que se produce cuando se utiliza selección de ruleta. Comentar que de los tres métodos implementados para la selección es el mas eficiente en cuanto a tiempo.
 
 
-Selección basada en ranking
-
-En esta selección los individuos se ordenan según su medida de desempeño y luego son asignados con una segunda medida de desempeño, inversamente proporcional a su posición en el ranking (esto es, otorgando una mayor probabilidad a los mejores). Los valores de esta segunda asignación pueden ser lineales o exponenciales. Finalmente, los individuos son seleccionados proporcionalmente a esta probabilidad.
-Este método disminuye el riesgo de convergencia prematura que se produce cuando se utiliza selección de ruleta en poblaciones con unos pocos individuos con medidas de desempeño muy superiores a las del resto.
+Por ultimo la selección por torneo se efectúa mediante una comparación entre un pequeño subconjunto de individuos elegidos al azar desde la población.
+Los beneficios de este tipo de selección son la velocidad de aplicación ya que no es necesario evaluar ni comparar la totalidad de la población y la capacidad de prevenir la convergencia prematura. La principal desventaja es la necesidad de establecer el parámetro correspondiente al tamaño del subconjunto , en nuestro caso son 3 individuos y da buenos resultados.
 
 
-Selección por torneo
-
-Esta selección se efectúa mediante un torneo (comparación) entre un pequeño subconjunto de individuos elegidos al azar desde la población.
-Los beneficios de este tipo de selección son la velocidad de aplicación (dado que no es necesario evaluar ni comparar la totalidad de la población) y la capacidad de prevenir, en cierto grado, la convergencia prematura. La principal desventaja es la necesidad de establecer el parámetro correspondiente al tamaño del subconjunto.	 
-
-Selección por truncamiento
-
-Por último se habla de esta selección aunque en nuestra practica no esta implentada. En esta selección las soluciones candidatas son ordenadas según su función de desempeño, y una proporción p (por ejemplo =1/2, 1/3, 1/4, ...) de los individuos con mejor desempeño es seleccionada y reproducida 1/p veces. Esta selección es menos sofisticada que la mayoría de los métodos de selección, y generalmente no es usada en la práctica
-
-
-Sobre valores de los parámetros:
-
-
-Las recomendaciones son a menudo los resultados de algunos estudios empíricos, que se llevaron a cabo a menudo sólo en la codificación binaria.
-
-Crossover tasa
-tasa de cruce en general debe ser alta, alrededor de 80-95\%. (Sin embargo, algunos resultados muestran que para algunos problemas de cruce tasa de alrededor del 60\% es el mejor.)
-
-Mutación tasa
-Por otro lado, la tasa de mutación debe ser muy baja. Las mejores tarifas se informó acerca de un 0,5\% -1\%.
-
-Tamaño de la población
-Puede ser sorprendente, que la población de tamaño muy grande por lo general no mejora el rendimiento de los GA (en el sentido de la velocidad de búsqueda de solución). Buen tamaño de la población es de aproximadamente 20-30, a veces los tamaños 50-100 sin embargo se presentan como la mejor. Cierta investigación muestra, que mejor tamaño de la población depende de la codificación, el tamaño de cadena codificada. Es decir, si tiene el cromosoma con 32 bits, la población debe ser que el 32, pero sin duda dos veces más que la población en mejor tamaño para el cromosoma con 16 bits.
-
-Selección
-Básico ruleta de selección de la rueda puede ser utilizado, pero rango de selección a veces puede ser mejor. Revise el capítulo sobre la selección de ventajas y desventajas. También hay algunas método más sofisticado, que cambia los parámetros de la selección durante la marcha de la Asamblea General. Básicamente, se comporta como el recocido simulado. Pero sin duda el elitismo se debe utilizar (si no utiliza otro método para guardar la mejor solución encontrada). También puede probar el estado de equilibrio de selección.
-
-Codificación
-Codificación depende del problema y también en el tamaño de la instancia del problema. Revise el capítulo sobre la codificación de algunas sugerencias o mirar a otros recursos.
-
-Crossover y tipo de mutación
-Los operadores dependen de la codificación y en el problema. Revise el capítulo sobre los operadores para algunas sugerencias. También puede consultar los otros sitios.
-
-El elitismo es un método que primero copia el mejor individuo (o varios) a la
-próxima generación. El elitismo puede aumentar rápidamente el desempeño de un
-algoritmo genético, ya que evita perder la mejor solución encontrada. Sin embargo,
-es posible que este método conduzca rápidamente a un óptimo local.
+Sobre las mejoras introducidas en la práctica hay que destacar el elitismo, método que copia los mejores individuos a la
+próxima generación. El elitismo puede aumentar rápidamente hacia buenos individuos, ya que evita perder la mejor solución encontrada. Sin embargo,
+es posible que este método haga converger rápidamente a un óptimo local.
 
 
 
