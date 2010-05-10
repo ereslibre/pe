@@ -1,8 +1,4 @@
-<<<<<<< local
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Arch Linux) (format=pdflatex 2010.4.29)  6 MAY 2010 22:43
-=======
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.4.29)  7 MAY 2010 02:16
->>>>>>> other
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Arch Linux) (format=pdflatex 2010.4.29)  7 MAY 2010 19:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -302,23 +298,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box26
 \@float@everytoks=\toks19
 \@floatcapt=\box27
-) (./memoria.aux
-
-LaTeX Warning: Label `fig' multiply defined.
-
-
-LaTeX Warning: Label `fig' multiply defined.
-
-
-LaTeX Warning: Label `fig' multiply defined.
-
-
-LaTeX Warning: Label `fig' multiply defined.
-
-
-LaTeX Warning: Label `fig' multiply defined.
-
-)
+) (./memoria.aux)
 \openout1 = `memoria.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
@@ -333,12 +313,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
 LaTeX Font Info:    ... okay on input line 16.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
 LaTeX Font Info:    ... okay on input line 16.
-<<<<<<< local
 
 (/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
-=======
- (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
->>>>>>> other
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count92
 \scratchdimen=\dimen106
@@ -372,15 +348,15 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [2] [3] <graficas/fig1.png, id=14, 800.9925pt x 570.13pt>
 File: graficas/fig1.png Graphic file (type png)
 
-<use graficas/fig1.png> <graficas/fig1graf.png, id=15, 800.9925pt x 570.13pt>
+<use graficas/fig1.png> [4]
+<graficas/fig1graf.png, id=18, 800.9925pt x 570.13pt>
 File: graficas/fig1graf.png Graphic file (type png)
 
-<use graficas/fig1graf.png> [4 <./graficas/fig1.png (PNG copy)>]
-<graficas/fig2.png, id=19, 800.9925pt x 570.13pt>
+<use graficas/fig1graf.png> [5 <./graficas/fig1.png (PNG copy)> <./graficas/fig
+1graf.png (PNG copy)>] <graficas/fig2.png, id=22, 800.9925pt x 570.13pt>
 File: graficas/fig2.png Graphic file (type png)
- <use graficas/fig2.png>
-[5 <./graficas/fig1graf.png (PNG copy)>]
-<graficas/fig2graf.png, id=23, 800.9925pt x 570.13pt>
+
+<use graficas/fig2.png> <graficas/fig2graf.png, id=23, 800.9925pt x 570.13pt>
 File: graficas/fig2graf.png Graphic file (type png)
 
 <use graficas/fig2graf.png> [6 <./graficas/fig2.png (PNG copy)>]
@@ -392,39 +368,20 @@ File: graficas/fig3.png Graphic file (type png)
 File: graficas/fig3graf.png Graphic file (type png)
 
 <use graficas/fig3graf.png> [8 <./graficas/fig3.png (PNG copy)> <./graficas/fig
-3graf.png (PNG copy)>] [9] [10] [11] (./memoria.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+3graf.png (PNG copy)>] [9] [10] [11] (./memoria.aux) ) 
 Here is how much of TeX's memory you used:
-<<<<<<< local
- 1784 strings out of 493847
- 21095 string characters out of 3153979
- 81226 words of memory out of 3000000
- 5079 multiletter control sequences out of 15000+200000
-=======
- 1821 strings out of 495061
- 21891 string characters out of 1182621
- 79286 words of memory out of 3000000
- 5008 multiletter control sequences out of 15000+50000
->>>>>>> other
+ 1818 strings out of 493847
+ 21763 string characters out of 3153979
+ 80226 words of memory out of 3000000
+ 5105 multiletter control sequences out of 15000+200000
  8808 words of font info for 31 fonts, out of 3000000 for 9000
-<<<<<<< local
  714 hyphenation exceptions out of 8191
- 25i,8n,27p,624b,262s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on memoria.pdf (7 pages, 56741 bytes).
-=======
- 28 hyphenation exceptions out of 8191
  25i,8n,27p,553b,262s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-tex
-live/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on memoria.pdf (11 pages, 244901 bytes).
->>>>>>> other
+</usr/share/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr17.pfb>
+Output written on memoria.pdf (11 pages, 246487 bytes).
 PDF statistics:
  56 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

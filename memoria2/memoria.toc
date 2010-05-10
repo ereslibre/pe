@@ -4,7 +4,7 @@
 \contentsline {subsection}{\numberline {2.1}Cruce propio}{3}
 \contentsline {subsection}{\numberline {2.2}Mutaci\IeC {\'o}n propio}{3}
 \contentsline {section}{\numberline {3}Estudio de selecci\IeC {\'o}n por Torneo}{3}
-\contentsline {section}{\numberline {4}Estudio de selecci\IeC {\'o}n por Ranking}{5}
+\contentsline {section}{\numberline {4}Estudio de selecci\IeC {\'o}n por Ranking}{6}
 \contentsline {section}{\numberline {5}Estudio de selecci\IeC {\'o}n por Ruleta}{7}
 \contentsline {section}{\numberline {6}Estudio de los diferentes par\IeC {\'a}metros del Algoritmo Gen\IeC {\'e}tico}{9}
 \contentsline {subsection}{\numberline {6.1}Tama\IeC {\~n}o de la Poblaci\IeC {\'o}n}{9}

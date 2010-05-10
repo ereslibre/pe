@@ -23,7 +23,9 @@
 
 \section{Introducción}
 
-	En esta memoria se van a estudiar los diferentes métodos de selección, cruce y mutación para poder evaluar cuales se comportan mejor y cuales son menos preciso a la hora de tratar el problema del viajante implementado en esta práctica.
+	En esta memoria se van a estudiar los diferentes métodos de selección, cruce y mutación para poder
+    evaluar cuáles se comportan mejor y cuáles son menos precisos a la hora de tratar el problema del
+    viajante implementado en esta práctica.
 
 \section{Métodos propios}
 
@@ -31,15 +33,27 @@
 
 \subsection{Cruce propio}
 
-	Este cruce se basa en el algoritmo de ciclos. En el vector se fijan pares cada dos posiciones, esos pares fijados se trataran de forma semejante al algoritmo de ciclos. Las posiciones que quedan sin tocar se rellenan de forma que no se existan repeticiones. 
+	Este cruce se basa en el algoritmo de ciclos. En el vector se fijan pares cada dos posiciones,
+    esos pares fijados se trataran de forma semejante al algoritmo de ciclos, copiando del padre dos
+    a dos cada dos posiciones, quedando dos ciudades libres por cada dos ocupadas. Después, se rellenan
+    estas posiciones vacías utilizando el algoritmo por orden en la madre.
+
+    De esta manera, no existen repeticiones, y podemos decir que de alguna manera se mantiene un buen resultado, dado que no hay
+    demasiada permutación de las cuidades en los hijos, y aún así, se introduce diversidad suficiente
+    para innovar y crear nuevos individuos que tengan una muy buena aptitud.
 
 \subsection{Mutación propio}
 
-	El cruce propio es sencillo, consiste en ir intercambiando las ciudades dos a dos, de esta manera no se pierde mucha historia al intercambiarse por el vecino consecutivo.
+    Siguiendo la mentalidad de nuestro cruce propio, hemos escrito un tipo de mutación propia que lo
+    que hace es intercambiar ciudades de dos en dos y dos a dos.
 
+    Al igual que anteriormente, tenemos un buen compromiso entre innovación y conservación de buenos
+    individuos.
+    
 \section{Estudio de selección por Torneo}
 
-En este apartado se va a estudiar la selección por torneo, para ello hemos tomado por defecto los valores que se exponen en la tabla que se presenta a continuación.
+    En este apartado se va a estudiar la selección por torneo, para ello hemos tomado por defecto los
+    valores que se exponen en la tabla que se presenta a continuación.
 
 %tabla
 \begin{table}[H]
@@ -80,14 +94,12 @@ Propio     & 7671 & 10245 & 8906 & 10441 \\  \hline
 \centering
 \includegraphics[scale=0.4]{graficas/fig1}
 \caption{Captura mejor resultado.}
-\label{fig}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.4]{graficas/fig1graf}
 \caption{Evaluación}
-\label{fig}
 \end{figure} 
 
 \section{Estudio de selección por Ranking}
@@ -110,22 +122,22 @@ Propio     & 8763 & 9763 & 8803 & 9936 \\  \hline
 \end{center}
 \end{table}
 
-	Se puede ver que los mejores cruces utilizado el método de selección de ranking siguen siendo ERX, OX y su variante , pero ahora destaca el PMX.
+	Se puede ver que los mejores cruces utilizados el método de selección de ranking siguen siendo ERX,
+    OX y su variante, pero ahora destaca el PMX.
 
-	En las mutaciones se repite los resultados anteriores siendo la mejor la propia pero ahora se igualan la de inserción e inversión. Como antes la peor sigue siendo la de intercambio.
+	En las mutaciones se repite los resultados anteriores siendo la mejor la propia pero ahora se
+    igualan la de inserción e inversión. Como antes la peor sigue siendo la de intercambio.
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.4]{graficas/fig2}
 \caption{Captura mejor resultado.}
-\label{fig}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.4]{graficas/fig2graf}
 \caption{Evaluación}
-\label{fig}
 \end{figure}   
 
 \section{Estudio de selección por Ruleta}	
@@ -150,14 +162,12 @@ ERX    & 11769 & 11369 & 11807 & 11382 \\  \hline
 \centering
 \includegraphics[scale=0.4]{graficas/fig3}
 \caption{Captura mejor resultado.}
-\label{fig}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.4]{graficas/fig3graf}
 \caption{Evaluación}
-\label{fig}
 \end{figure} 
 
 \section{Estudio de los diferentes parámetros del Algoritmo Genético}
@@ -254,18 +264,18 @@ Un problema que hemos observado con los diferentes estudios realizados es que di
 
 En la selección por ranking los individuos se ordenan según su puntuación y luego son asignados con una segunda medida de puntuación, inversamente proporcional a su posición en el ranking. Los individuos son seleccionados proporcionalmente a esta probabilidad. Este método cómo se observa en los estudios realizados disminuye el riesgo de convergencia prematura que se produce cuando se utiliza selección de ruleta. Comentar que de los tres métodos implementados para la selección es el mas eficiente en cuanto a tiempo.
 
-
 Por ultimo la selección por torneo se efectúa mediante una comparación entre un pequeño subconjunto de individuos elegidos al azar desde la población.
 Los beneficios de este tipo de selección son la velocidad de aplicación ya que no es necesario evaluar ni comparar la totalidad de la población y la capacidad de prevenir la convergencia prematura. La principal desventaja es la necesidad de establecer el parámetro correspondiente al tamaño del subconjunto , en nuestro caso son 3 individuos y da buenos resultados.
-
 
 Sobre las mejoras introducidas en la práctica hay que destacar el elitismo, método que copia los mejores individuos a la
 próxima generación. El elitismo puede aumentar rápidamente hacia buenos individuos, ya que evita perder la mejor solución encontrada. Sin embargo,
 es posible que este método haga converger rápidamente a un óptimo local.
 
+También, para guiar correctamente al algoritmo, ha sido necesario escalar y adaptar la aptitud. De esta forma,
+al principio del algoritmo, tenemos una visión muy global de todos los individuos de las generaciones. Según
+avanza el algoritmo, esta aptitud es adaptada y escalada de tal manera que haya menos espacio entre los individuos,
+haciendo `zoom' en los resultantes, de manera que nos `centramos' en una determinada zona al final del algoritmo.
 
-
-
-
+Gracias a esto, conservamos una buena diversidad al principio (siempre y cuando no hablemos del método de selección de la Ruleta), y nos vamos centrando más al final del algoritmo.
 
 \end{document}
