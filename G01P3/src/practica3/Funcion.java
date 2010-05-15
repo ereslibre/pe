@@ -59,5 +59,21 @@ public class Funcion {
 		res.add(new Termino("D3"));
 		return res;
 	}
+
+	public static ArrayList<Termino> terminos() {
+		ArrayList<Termino> res = new ArrayList<Termino>();
+		res.addAll(terminosDatos());
+		res.addAll(terminosControl());
+		return res;
+	}
+
+	public static ArrayList<Funcion> funciones() {
+		ArrayList<Funcion> res = new ArrayList<Funcion>();
+		res.add(new Funcion(Not, 1));
+		res.add(new Funcion(And, 2));
+		res.add(new Funcion(Or, 2));
+		res.add(new Funcion(If, 3));
+		return res;
+	}
 	
 }
