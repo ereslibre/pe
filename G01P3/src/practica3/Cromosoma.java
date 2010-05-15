@@ -19,30 +19,67 @@
 package practica3;
 
 import ag.Cruce;
-import ag.Problema;
 
 public class Cromosoma extends ag.Cromosoma {
 
-	private int[]  m_cromosoma = null;
+	private Arbol m_arbol = null;
 
 	Cromosoma() {
 		super();
-		m_cromosoma = new int[Problema.self().tamCromosoma()];
+		m_arbol = new Arbol(Funcion.funciones(), Funcion.terminos(), null, 50, 0);
 	}
 
 	@Override
 	public double aptitud() {
-		return 0;
+		double res = 0;
+		boolean[] vec = new boolean[6];
+		for (int i = 0; i < 6; ++i) {
+			vec[i] = false;
+		}
+		for (int i = 0; i < 64; ++i) {
+			for (int j = 0; j < 6; ++j) {
+				if (!vec[j]) {
+					vec[j] = true;
+					break;
+				}
+				vec[j] = false; 
+			}
+			boolean nuestraRes = m_arbol.evaluar(vec[0], vec[1], vec[2], vec[3], vec[4], vec[5]);
+			if (BBDD.test(vec[0], vec[1], vec[2], vec[3], vec[4], vec[5], nuestraRes)) {
+				res += 1;
+			}
+		}
+		return res;
 	}
 
 	@Override
 	public double evaluacion() {
-		return 0;
+		double res = 0;
+		boolean[] vec = new boolean[6];
+		for (int i = 0; i < 6; ++i) {
+			vec[i] = false;
+		}
+		for (int i = 0; i < 64; ++i) {
+			for (int j = 0; j < 6; ++j) {
+				if (!vec[j]) {
+					vec[j] = true;
+					break;
+				}
+				vec[j] = false; 
+			}
+			boolean nuestraRes = m_arbol.evaluar(vec[0], vec[1], vec[2], vec[3], vec[4], vec[5]);
+			if (BBDD.test(vec[0], vec[1], vec[2], vec[3], vec[4], vec[5], nuestraRes)) {
+				res += 1;
+			}
+		}
+		return res;
 	}
 
 	@Override
 	public Object clone() {
-		return null;
+		Cromosoma c = new Cromosoma();
+		c.m_arbol = (Arbol) m_arbol.clone();
+		return c;
 	}
 
 	@Override
@@ -57,24 +94,24 @@ public class Cromosoma extends ag.Cromosoma {
 
 	@Override
 	public Object fenotipo() {
-		return null;
+		return m_arbol.toString();
 	}
 
 	@Override
 	public Object genotipo() {
-		return m_cromosoma;
+		return m_arbol;
 	}
 
 	@Override
 	public void mutar() {
 	}
 
-	public int[] cromosoma() {
-		return m_cromosoma;
+	public Arbol cromosoma() {
+		return m_arbol;
 	}
 
-	public void setCromosoma(int[] cromosoma) {
-		m_cromosoma = cromosoma;
+	public void setCromosoma(Arbol arbol) {
+		m_arbol = arbol;
 	}
 
 }

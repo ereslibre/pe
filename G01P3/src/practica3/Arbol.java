@@ -28,6 +28,9 @@ public class Arbol {
 	private Funcion    m_funcion = null;
 	private Termino    m_termino = null;
 
+	public Arbol() {
+	}
+
 	public Arbol(ArrayList<Termino> terminos, Arbol padre) {
 		m_padre = padre;
 		m_termino = terminos.get((int) Math.round(Math.random() * (terminos.size() - 1)));
@@ -131,6 +134,44 @@ public class Arbol {
 		return m_padre;
 	}
 
+
+	public boolean evaluar(boolean a0, boolean a1, boolean d0, boolean d1, boolean d2, boolean d3) {
+		if (m_funcion == null) {
+			if (m_termino.nombre() == "A0") {
+				return a0;
+			}
+			if (m_termino.nombre() == "A1") {
+				return a1;
+			}
+			if (m_termino.nombre() == "D0") {
+				return d0;
+			}
+			if (m_termino.nombre() == "D1") {
+				return d1;
+			}
+			if (m_termino.nombre() == "D2") {
+				return d2;
+			}
+			return d3;
+		}
+		switch (m_funcion.funcion()) {
+			case Funcion.Not:
+				return !m_hi.evaluar(a0, a1, d0, d1, d2, d3);
+			case Funcion.And:
+				return m_hi.evaluar(a0, a1, d0, d1, d2, d3) && m_hd.evaluar(a0, a1, d0, d1, d2, d3);
+			case Funcion.Or:
+				return m_hi.evaluar(a0, a1, d0, d1, d2, d3) || m_hd.evaluar(a0, a1, d0, d1, d2, d3);
+			case Funcion.If:
+				if (m_hi.evaluar(a0, a1, d0, d1, d2, d3)) {
+					return m_hc.evaluar(a0, a1, d0, d1, d2, d3);
+				}
+				return m_hd.evaluar(a0, a1, d0, d1, d2, d3);
+			default:
+				break;
+		}
+		return false; // no se alcanza nunca
+	}
+
 	public String toString() {
 		if (m_funcion == null) {
 			return m_termino.nombre();
@@ -152,6 +193,25 @@ public class Arbol {
 			default:
 				break;
 		}
+		return res;
+	}
+
+	public Object clone() {
+		Arbol res = new Arbol();
+		if (m_hi != null) {
+			res.m_hi = (Arbol) m_hi.clone();
+		}
+		if (m_hc != null) {
+			res.m_hc = (Arbol) m_hc.clone();
+		}
+		if (m_hd != null) {
+			res.m_hd = (Arbol) m_hd.clone();
+		}
+		if (m_padre != null) {
+			res.m_padre = (Arbol) m_padre.clone();
+		}
+		res.m_funcion = m_funcion;
+		res.m_termino = m_termino;
 		return res;
 	}
 }

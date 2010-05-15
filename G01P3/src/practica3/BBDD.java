@@ -16,34 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package agsimple;
+package practica3;
 
-import java.util.ListIterator;
+public class BBDD {
 
-import practica3.Cromosoma;
-import practica3.Factoria;
-
-public class Poblacion extends ag.Poblacion {
-
-	public Poblacion() {
-		super();
-	}
-
-	@Override
-	public void anadeCromosomaAleatorio() {
-		Cromosoma res = Factoria.generaCromosoma(this);
-		res.setPoblacion(this);
-		poblacion().add(res);
-	}
-
-	public double puntuacionTotal() {
-		double res = 0;
-		ListIterator<ag.Cromosoma> it = poblacion().listIterator();
-		while (it.hasNext()) {
-			final Cromosoma cromosoma = (Cromosoma) it.next();
-			res += cromosoma.aptitud();
+	public static boolean test(boolean a0, boolean a1, boolean d0, boolean d1, boolean d2, boolean d3, boolean res) {
+		if (a0 && a1) {
+			return d3 == res;
+		} else if (a0) {
+			return d1 == res;
+		} else if (a1) {
+			return d2 == res;
 		}
-		return res;
+		return d0 == res;
 	}
 
 }
