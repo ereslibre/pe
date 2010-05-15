@@ -1,6 +1,3 @@
-package practica3;
-import java.util.ArrayList;
-
 /**
  * Copyright 2010 Rafael Fernández López <ereslibre@ereslibre.es>
  * Copyright 2010 Ángel Valero Picazo <valeropc@gmail.com>
@@ -19,14 +16,18 @@ import java.util.ArrayList;
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package practica3;
+import java.util.ArrayList;
+
 public class Arbol {
 
-	private Arbol      m_hi = null;
-	private Arbol      m_hc = null;
-	private Arbol      m_hd = null;
-	private Arbol      m_padre = null;
-	private Funcion    m_funcion = null;
-	private Termino    m_termino = null;
+	private Arbol   m_hi = null;
+	private Arbol   m_hc = null;
+	private Arbol   m_hd = null;
+	private Arbol   m_padre = null;
+	private Funcion m_funcion = null;
+	private Termino m_termino = null;
+	private int     m_alturaMaxima = 0;
 
 	public Arbol() {
 	}
@@ -39,6 +40,7 @@ public class Arbol {
 	public Arbol(ArrayList<Funcion> funciones, ArrayList<Termino> terminos, Arbol padre, int alturaMaxima, int altura) {
 		m_padre = padre;
 		m_funcion = funciones.get((int) Math.round(Math.random() * Funcion.TotalFunciones));
+		m_alturaMaxima = alturaMaxima;
 		if (altura == alturaMaxima) {
 			switch (m_funcion.aridad()) {
 				case 2:
@@ -104,6 +106,13 @@ public class Arbol {
 			res += m_hd.numNodos();
 		}
 		return res;
+	}
+
+	public int profundidad() {
+		if (m_padre == null) {
+			return 0;
+		}
+		return m_padre.profundidad() + 1;
 	}
 
 	public Arbol hijoIzq() {
@@ -200,18 +209,104 @@ public class Arbol {
 		Arbol res = new Arbol();
 		if (m_hi != null) {
 			res.m_hi = (Arbol) m_hi.clone();
+			res.m_hi.m_padre = this;
 		}
 		if (m_hc != null) {
 			res.m_hc = (Arbol) m_hc.clone();
+			res.m_hc.m_padre = this;
 		}
 		if (m_hd != null) {
 			res.m_hd = (Arbol) m_hd.clone();
-		}
-		if (m_padre != null) {
-			res.m_padre = (Arbol) m_padre.clone();
+			res.m_hd.m_padre = this;
 		}
 		res.m_funcion = m_funcion;
 		res.m_termino = m_termino;
 		return res;
+	}
+
+	private double probCruce() {
+		if (m_funcion == null) {
+			return 1.0;
+		}
+		return 0.2;
+		//return (double) profundidad() / (double) m_alturaMaxima;
+	}
+
+	public ArrayList<Arbol> cruzar(Arbol arbol) {
+		ArrayList<Arbol> res = new ArrayList<Arbol>();
+		Arbol hijo1 = (Arbol) clone();
+		Arbol hijo2 = (Arbol) arbol.clone();
+		Arbol nodo1 = hijo1.nodoAleatorio();
+		while (nodo1.m_padre == null) {
+			nodo1 = hijo1.nodoAleatorio();
+		}
+		Arbol nodo2 = hijo2.nodoAleatorio();
+		while (nodo2.m_padre == null) {
+			nodo2 = hijo2.nodoAleatorio();
+		}
+		switch (numHijo(nodo1, nodo1.padre())) {
+			case 0:
+				nodo1.padre().setHijoIzq((Arbol) nodo2.clone());
+				break;
+			case 1:
+				nodo1.padre().setHijoDer((Arbol) nodo2.clone());
+				break;
+			case 2:
+				nodo1.padre().setHijoCen((Arbol) nodo2.clone());
+				break;
+			default:
+				break;
+		}
+		switch (numHijo(nodo2, nodo2.padre())) {
+			case 0:
+				nodo2.padre().setHijoIzq((Arbol) nodo1.clone());
+				break;
+			case 1:
+				nodo2.padre().setHijoDer((Arbol) nodo1.clone());
+				break;
+			case 2:
+				nodo2.padre().setHijoCen((Arbol) nodo1.clone());
+				break;
+			default:
+				break;
+		}
+		res.add(hijo1);
+		res.add(hijo2);
+		return res;
+	}
+
+	private int numHijo(Arbol arbol, Arbol padre) {
+		if (padre.m_hi == arbol) {
+			return 0;
+		}
+		if (padre.m_hc == arbol) {
+			return 1;
+		}
+		return 2;
+	}
+
+	private Arbol nodoAleatorio() {
+		Arbol nodoAct = this;
+		while (Math.random() > nodoAct.probCruce()) {
+			int hijoSeleccionado = (int) Math.round(Math.random() * (m_funcion.aridad() - 1));
+			switch (hijoSeleccionado) {
+				case 0:
+					nodoAct = m_hi;
+					break;
+				case 1:
+					nodoAct = m_hd;
+					break;
+				case 2:
+					nodoAct = m_hc;
+					break;
+				default:
+					break;
+			}
+		}
+		return nodoAct;
+	}
+
+	public void mutar() {
+
 	}
 }

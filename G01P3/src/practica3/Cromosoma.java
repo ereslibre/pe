@@ -18,6 +18,8 @@
 
 package practica3;
 
+import java.util.ArrayList;
+
 import ag.Cruce;
 
 public class Cromosoma extends ag.Cromosoma {
@@ -26,7 +28,12 @@ public class Cromosoma extends ag.Cromosoma {
 
 	Cromosoma() {
 		super();
-		m_arbol = new Arbol(Funcion.funciones(), Funcion.terminos(), null, 50, 0);
+		m_arbol = new Arbol(Funcion.funciones(), Funcion.terminos(), null, 3, 0);
+	}
+
+	Cromosoma(Arbol arbol) {
+		super();
+		m_arbol = arbol;
 	}
 
 	@Override
@@ -45,7 +52,7 @@ public class Cromosoma extends ag.Cromosoma {
 				vec[j] = false; 
 			}
 			boolean nuestraRes = m_arbol.evaluar(vec[0], vec[1], vec[2], vec[3], vec[4], vec[5]);
-			if (BBDD.test(vec[0], vec[1], vec[2], vec[3], vec[4], vec[5], nuestraRes)) {
+			if (MUX.test(vec[0], vec[1], vec[2], vec[3], vec[4], vec[5], nuestraRes)) {
 				res += 1;
 			}
 		}
@@ -68,7 +75,7 @@ public class Cromosoma extends ag.Cromosoma {
 				vec[j] = false; 
 			}
 			boolean nuestraRes = m_arbol.evaluar(vec[0], vec[1], vec[2], vec[3], vec[4], vec[5]);
-			if (BBDD.test(vec[0], vec[1], vec[2], vec[3], vec[4], vec[5], nuestraRes)) {
+			if (MUX.test(vec[0], vec[1], vec[2], vec[3], vec[4], vec[5], nuestraRes)) {
 				res += 1;
 			}
 		}
@@ -84,7 +91,8 @@ public class Cromosoma extends ag.Cromosoma {
 
 	@Override
 	public Cruce cruzar(ag.Cromosoma cromosoma) {
-		return null;
+		ArrayList<Arbol> res = m_arbol.cruzar(((practica3.Cromosoma) cromosoma).m_arbol);
+		return new Cruce(new Cromosoma(res.get(0)), new Cromosoma(res.get(1)));
 	}
 
 	@Override
@@ -104,6 +112,7 @@ public class Cromosoma extends ag.Cromosoma {
 
 	@Override
 	public void mutar() {
+		m_arbol.mutar();
 	}
 
 	public Arbol cromosoma() {

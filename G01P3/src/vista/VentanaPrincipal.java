@@ -286,12 +286,12 @@ public class VentanaPrincipal extends JFrame {
 		m_lanzar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				ag.Problema p = new Problema();
-//				m_progressBar.setValue(0);
-//				m_resultado.setText("\tGenerando resultado...");
-//				activaODesactivaTodo(v.m_panelPrincipal, false);
-//				p.setVentanaPrincipal(v);
-//				p.start();
+				ag.Problema p = new Problema();
+				m_progressBar.setValue(0);
+				m_resultado.setText("\tGenerando resultado...");
+				activaODesactivaTodo(v.m_panelPrincipal, false);
+				p.setVentanaPrincipal(v);
+				p.start();
 			}
         });
 
