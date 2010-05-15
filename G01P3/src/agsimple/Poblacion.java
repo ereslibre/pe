@@ -31,9 +31,7 @@ public class Poblacion extends ag.Poblacion {
 
 	@Override
 	public void anadeCromosomaAleatorio() {
-		Cromosoma res = Factoria.generaCromosoma(this);
-		res.setPoblacion(this);
-		poblacion().add(res);
+		poblacion().add(Factoria.generaCromosoma(this));
 	}
 
 	public double puntuacionTotal() {

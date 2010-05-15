@@ -23,9 +23,11 @@ public class MUX {
 	public static boolean test(boolean a0, boolean a1, boolean d0, boolean d1, boolean d2, boolean d3, boolean res) {
 		if (a0 && a1) {
 			return d3 == res;
-		} else if (a0) {
+		}
+		if (a0) {
 			return d1 == res;
-		} else if (a1) {
+		}
+		if (a1) {
 			return d2 == res;
 		}
 		return d0 == res;

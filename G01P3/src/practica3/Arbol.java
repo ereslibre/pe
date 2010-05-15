@@ -19,6 +19,8 @@
 package practica3;
 import java.util.ArrayList;
 
+import ag.Problema;
+
 public class Arbol {
 
 	private Arbol   m_hi = null;
@@ -39,7 +41,7 @@ public class Arbol {
 
 	public Arbol(ArrayList<Funcion> funciones, ArrayList<Termino> terminos, Arbol padre, int alturaMaxima, int altura) {
 		m_padre = padre;
-		m_funcion = funciones.get((int) Math.round(Math.random() * Funcion.TotalFunciones));
+		m_funcion = funciones.get((int) Math.round(Math.random() * (Funcion.funciones().size() - 1)));
 		m_alturaMaxima = alturaMaxima;
 		if (altura == alturaMaxima) {
 			switch (m_funcion.aridad()) {
@@ -143,7 +145,6 @@ public class Arbol {
 		return m_padre;
 	}
 
-
 	public boolean evaluar(boolean a0, boolean a1, boolean d0, boolean d1, boolean d2, boolean d3) {
 		if (m_funcion == null) {
 			if (m_termino.nombre() == "A0") {
@@ -207,6 +208,7 @@ public class Arbol {
 
 	public Object clone() {
 		Arbol res = new Arbol();
+		res.m_alturaMaxima = m_alturaMaxima;
 		if (m_hi != null) {
 			res.m_hi = (Arbol) m_hi.clone();
 			res.m_hi.m_padre = this;
@@ -228,8 +230,8 @@ public class Arbol {
 		if (m_funcion == null) {
 			return 1.0;
 		}
-		return 0.2;
-		//return (double) profundidad() / (double) m_alturaMaxima;
+		return 0.7;
+		//return ((double) profundidad()) / ((double) m_alturaMaxima);
 	}
 
 	public ArrayList<Arbol> cruzar(Arbol arbol) {
@@ -307,6 +309,79 @@ public class Arbol {
 	}
 
 	public void mutar() {
+		if (m_hi != null) {
+			mutarAux(m_hi);
+		}
+		if (m_hc != null) {
+			mutarAux(m_hc);
+		}
+		if (m_hd != null) {
+			mutarAux(m_hd);
+		}
+	}
 
+	private void mutarAux(Arbol a) {
+		if (Math.random() < Problema.self().probMutacion()) {
+			if (a.m_termino != null) {
+				if (a.m_termino.nombre().equals("A0")) {
+					a.m_termino = new Termino("A1");
+					return;
+				} else if (a.m_termino.nombre().equals("A1")) {
+					a.m_termino = new Termino("A0");
+					return;
+				}
+				String dato = new String("D");
+				dato += Integer.valueOf((int) Math.round(Math.random() * 3));
+				Termino nuevoTermino = new Termino(dato);
+				while (nuevoTermino.nombre().equals(a.m_termino.nombre())) {
+					dato = new String("D");
+					dato += Integer.valueOf((int) Math.round(Math.random() * 3));
+					nuevoTermino = new Termino(dato);
+				}
+				a.m_termino = nuevoTermino;
+				return;
+			}
+			switch(a.m_funcion.funcion()) {
+				case Funcion.Not:
+					Arbol hijo = a.m_hi;
+					a.m_funcion = hijo.m_funcion;
+					a.m_termino = hijo.m_termino;
+					a.m_hi = hijo.m_hi;
+					a.m_hc = hijo.m_hc;
+					a.m_hd = hijo.m_hd;
+					if (a.m_hi != null) {
+						a.m_hi.m_padre = a.m_padre;
+					}
+					if (a.m_hc != null) {
+						a.m_hc.m_padre = a.m_padre;
+					}
+					if (a.m_hd != null) {
+						a.m_hd.m_padre = a.m_padre;
+					}
+					break;
+				case Funcion.And:
+					a.m_funcion = new Funcion(Funcion.Or);
+					break;
+				case Funcion.Or:
+					a.m_funcion = new Funcion(Funcion.And);
+					break;
+				case Funcion.If:
+					Arbol aux = a.m_hc;
+					a.m_hc = a.m_hd;
+					a.m_hd = aux;
+					break;
+				default:
+					break;
+			}
+		}
+		if (a.m_hi != null) {
+			mutarAux(a.m_hi);
+		}
+		if (a.m_hc != null) {
+			mutarAux(a.m_hc);
+		}
+		if (a.m_hd != null) {
+			mutarAux(a.m_hd);
+		}
 	}
 }

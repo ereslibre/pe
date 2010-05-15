@@ -122,14 +122,14 @@ public abstract class Poblacion {
 					}
 				}
 				Problema.self().setElite(elite);
-				if (m_mejor == null || m_mejor.evaluacion() > c.evaluacion()) {
+				if (m_mejor == null || c.aptitud() > m_mejor.aptitud()) {
 					m_mejor = (Cromosoma) c.clone();
-				}
-				if (Problema.self().getMejor() == null || Problema.self().getMejor().evaluacion() > c.evaluacion()) {
-					Problema.self().setMejor((Cromosoma) c.clone());
 				}
 				punt += c.puntuacion();
 				m_puntuacionesAcumuladas.add(punt);
+			}
+			if (Problema.self().getMejor() == null || m_mejor.aptitud() > Problema.self().getMejor().aptitud()) {
+				Problema.self().setMejor((Cromosoma) m_mejor.clone());
 			}
 		}
 	}

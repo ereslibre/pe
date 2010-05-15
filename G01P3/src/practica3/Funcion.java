@@ -20,20 +20,19 @@ package practica3;
 
 import java.util.ArrayList;
 
+import ag.Problema;
+
 public class Funcion {
 
 	public static final int Not = 0;
 	public static final int And = 1;
 	public static final int Or  = 2;
 	public static final int If  = 3;
-	public static final int TotalFunciones = If;
 
 	private int m_funcion;
-	private int m_aridad;
 
-	public Funcion(int funcion, int aridad) {
+	public Funcion(int funcion) {
 		m_funcion = funcion;
-		m_aridad = aridad;
 	}
 
 	public int funcion() {
@@ -41,7 +40,19 @@ public class Funcion {
 	}
 
 	public int aridad() {
-		return m_aridad;
+		switch (m_funcion) {
+			case Not:
+				return 1;
+			case And:
+				return 2;
+			case Or:
+				return 2;
+			case If:
+				return 3;
+			default:
+				break;
+		}
+		return 0; // nunca deberíamos llegar aquí
 	}
 
 	public static ArrayList<Termino> terminosControl() {
@@ -69,10 +80,12 @@ public class Funcion {
 
 	public static ArrayList<Funcion> funciones() {
 		ArrayList<Funcion> res = new ArrayList<Funcion>();
-		res.add(new Funcion(Not, 1));
-		res.add(new Funcion(And, 2));
-		res.add(new Funcion(Or, 2));
-		res.add(new Funcion(If, 3));
+		res.add(new Funcion(Not));
+		res.add(new Funcion(And));
+		res.add(new Funcion(Or));
+		if (Problema.self().tieneIf()) {
+			res.add(new Funcion(If));
+		}
 		return res;
 	}
 	

@@ -20,6 +20,8 @@ package practica3;
 
 import java.util.ArrayList;
 
+import practica3.Factoria;
+
 import ag.Cruce;
 
 public class Cromosoma extends ag.Cromosoma {
@@ -28,12 +30,7 @@ public class Cromosoma extends ag.Cromosoma {
 
 	Cromosoma() {
 		super();
-		m_arbol = new Arbol(Funcion.funciones(), Funcion.terminos(), null, 3, 0);
-	}
-
-	Cromosoma(Arbol arbol) {
-		super();
-		m_arbol = arbol;
+		m_arbol = new Arbol(Funcion.funciones(), Funcion.terminos(), null, 20, 0);
 	}
 
 	@Override
@@ -85,6 +82,9 @@ public class Cromosoma extends ag.Cromosoma {
 	@Override
 	public Object clone() {
 		Cromosoma c = new Cromosoma();
+		c.m_madre = m_madre;
+		c.m_padre = m_padre;
+		c.m_poblacion = m_poblacion;
 		c.m_arbol = (Arbol) m_arbol.clone();
 		return c;
 	}
@@ -92,7 +92,15 @@ public class Cromosoma extends ag.Cromosoma {
 	@Override
 	public Cruce cruzar(ag.Cromosoma cromosoma) {
 		ArrayList<Arbol> res = m_arbol.cruzar(((practica3.Cromosoma) cromosoma).m_arbol);
-		return new Cruce(new Cromosoma(res.get(0)), new Cromosoma(res.get(1)));
+		Cromosoma h1 = Factoria.generaCromosoma(m_poblacion);
+		h1.setPadre(this);
+		h1.setMadre(cromosoma);
+		h1.setCromosoma(res.get(0));
+		Cromosoma h2 = Factoria.generaCromosoma(m_poblacion);
+		h2.setPadre(this);
+		h2.setMadre(cromosoma);
+		h2.setCromosoma(res.get(1));
+		return new Cruce(h1, h2);
 	}
 
 	@Override
