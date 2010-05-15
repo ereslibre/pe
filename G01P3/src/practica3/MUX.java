@@ -18,7 +18,7 @@
 
 package practica3;
 
-public class BBDD {
+public class MUX {
 
 	public static boolean test(boolean a0, boolean a1, boolean d0, boolean d1, boolean d2, boolean d3, boolean res) {
 		if (a0 && a1) {
