@@ -1,0 +1,51 @@
+Creciente
+=========
+
+inicializarC(nodo, prof)
+    case prof
+        1. seleccionar una funcion
+        maxp. seleccionar un terminal
+        resto. seleccionar de F U T
+    end
+if nodo EF then
+    for i = 1 to aridad de nodo do
+        inicializarC(hijo i, prof + 1)
+else return
+
+
+Completa
+========
+
+inicializarC(nodo, prof)
+    if prof < maxp then
+        seleccionar nodo de tipo F
+        for i = 1 to aridad de nodo do
+            inicializarC(hijo i, prof + 1)
+    else
+        seleccionar un nodo de tipo T
+        return
+
+Ramped and half => mezcla de ambos, buenos resultados
+===============
+
+
+
+
+PRACTICA
+========
+
+IF = AND, D3, IF = A0, A1, A0, D1, IF = A1, D2 D0
+
+(IF (AND A0 A1) D3 (IF A0 D1 (IF A1 D2 D0)))
+
+A0 A1 D0 D1 D2 D3 Y
+0  0  0  0  0  0  0
+0  0  1  0  0  0  1
+
+(IF D1 D2 D3) => restringir a terminales válidos (A0, A1)
+              => también con and, or, not
+
+300     P. Corte    90% función
+100                 10% terminal
+
+Mutación baja (menor que otros algoritmos evolutivos)
