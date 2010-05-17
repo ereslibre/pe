@@ -292,21 +292,6 @@ public class VentanaPrincipal extends JFrame {
 				activaODesactivaTodo(v.m_panelPrincipal, false);
 				p.setVentanaPrincipal(v);
 				p.start();
-
-				double res = 0;
-				boolean[] vec = new boolean[6];
-				for (int i = 0; i < 6; ++i) {
-					vec[i] = false;
-				}
-				for (int i = 0; i < 64; ++i) {
-					for (int j = 0; j < 6; ++j) {
-						if (!vec[j]) {
-							vec[j] = true;
-							break;
-						}
-						vec[j] = false; 
-					}
-				}
 			}
         });
 
