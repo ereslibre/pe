@@ -226,10 +226,6 @@ public class Arbol {
 		return res;
 	}
 
-	private double probCruce() {
-		return Math.random();
-	}
-
 	public ArrayList<Arbol> cruzar(Arbol arbol) {
 		ArrayList<Arbol> res = new ArrayList<Arbol>();
 		Arbol hijo1 = (Arbol) clone();
@@ -270,6 +266,11 @@ public class Arbol {
 		}
 		res.add(hijo1);
 		res.add(hijo2);
+//		System.out.println("Padre " + toString());
+//		System.out.println("Madre " + arbol.toString());
+//		System.out.println("Hijo 1 " + hijo1.toString());
+//		System.out.println("Hijo 2 " + hijo2.toString());
+//		System.out.println("================");
 		return res;
 	}
 
@@ -284,24 +285,14 @@ public class Arbol {
 	}
 
 	private Arbol nodoAleatorio() {
-		Arbol nodoAct = this;
-		while (Math.random() > nodoAct.probCruce()) {
-			int hijoSeleccionado = (int) Math.round(Math.random() * (m_funcion.aridad() - 1));
-			switch (hijoSeleccionado) {
-				case 0:
-					nodoAct = m_hi;
-					break;
-				case 1:
-					nodoAct = m_hd;
-					break;
-				case 2:
-					nodoAct = m_hc;
-					break;
-				default:
-					break;
-			}
+		Arbol res = null;
+		Par<ArrayList<Arbol>, ArrayList<Arbol>> par = nodos();
+		if (Math.random() < 0.9) {
+			res = par.primero().get((int) Math.round(Math.random() * (par.primero().size() - 1)));
+		} else {
+			res = par.segundo().get((int) Math.round(Math.random() * (par.segundo().size() - 1)));
 		}
-		return nodoAct;
+		return res;
 	}
 
 	public void mutar() {
@@ -378,6 +369,38 @@ public class Arbol {
 		}
 		if (a.m_hd != null) {
 			mutarAux(a.m_hd);
+		}
+	}
+
+	// funciones, terminos
+	public Par<ArrayList<Arbol>, ArrayList<Arbol>> nodos() {
+		Par<ArrayList<Arbol>, ArrayList<Arbol>> res = new Par<ArrayList<Arbol>, ArrayList<Arbol>>();
+
+		ArrayList<Arbol> funciones = new ArrayList<Arbol>();
+		ArrayList<Arbol> terminos = new ArrayList<Arbol>();
+
+		nodosAux(this, funciones, terminos);
+
+		res.setPrimero(funciones);
+		res.setSegundo(terminos);
+
+		return res;
+	}
+
+	private void nodosAux(Arbol a, ArrayList<Arbol> funciones, ArrayList<Arbol> terminos) {
+		if (a.m_funcion != null) {
+			funciones.add(a);
+			if (a.m_hi != null) {
+				nodosAux(a.m_hi, funciones, terminos);
+			}
+			if (a.m_hc != null) {
+				nodosAux(a.m_hc, funciones, terminos);
+			}
+			if (a.m_hd != null) {
+				nodosAux(a.m_hd, funciones, terminos);
+			}
+		} else {
+			terminos.add(a);
 		}
 	}
 }

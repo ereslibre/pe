@@ -59,7 +59,7 @@ public class VentanaPrincipal extends JFrame {
 	private JTextField   m_probMutacion      = new JTextField();
 	private JTextField   m_tamPoblacion      = new JTextField();
 	private JTextField   m_elitismo          = new JTextField();
-	private JCheckBox    m_tieneIf           = new JCheckBox();
+	private JCheckBox    m_tieneIf           = new JCheckBox("IF");
 
 	private JButton      m_lanzar            = new JButton();
 	private JPanel       m_panelPrincipal    = null;
@@ -269,7 +269,7 @@ public class VentanaPrincipal extends JFrame {
 
 		gridBagConstraints.gridy = 12;
 		gridBagConstraints.gridx = 1;
-		p.add(m_tieneIf);
+		p.add(m_tieneIf, gridBagConstraints);
 
 		gridBagConstraints.gridx = 2;
 
