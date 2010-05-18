@@ -123,6 +123,7 @@ public class Arbol {
 
 	public void setHijoIzq(Arbol hijoIzq) {
 		m_hi = hijoIzq;
+		m_hi.setPadre(this);
 	}
 
 	public Arbol hijoCen() {
@@ -131,6 +132,7 @@ public class Arbol {
 
 	public void setHijoCen(Arbol hijoCen) {
 		m_hc = hijoCen;
+		m_hc.setPadre(this);
 	}
 
 	public Arbol hijoDer() {
@@ -139,10 +141,15 @@ public class Arbol {
 
 	public void setHijoDer(Arbol hijoDer) {
 		m_hd = hijoDer;
+		m_hd.setPadre(this);
 	}
 
 	public Arbol padre() {
 		return m_padre;
+	}
+
+	public void setPadre(Arbol padre) {
+		m_padre = padre;
 	}
 
 	public boolean evaluar(boolean a0, boolean a1, boolean d0, boolean d1, boolean d2, boolean d3) {
@@ -266,11 +273,6 @@ public class Arbol {
 		}
 		res.add(hijo1);
 		res.add(hijo2);
-//		System.out.println("Padre " + toString());
-//		System.out.println("Madre " + arbol.toString());
-//		System.out.println("Hijo 1 " + hijo1.toString());
-//		System.out.println("Hijo 2 " + hijo2.toString());
-//		System.out.println("================");
 		return res;
 	}
 
