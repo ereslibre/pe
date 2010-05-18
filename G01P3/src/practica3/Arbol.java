@@ -211,15 +211,15 @@ public class Arbol {
 		res.m_alturaMaxima = m_alturaMaxima;
 		if (m_hi != null) {
 			res.m_hi = (Arbol) m_hi.clone();
-			res.m_hi.m_padre = this;
+			res.m_hi.m_padre = res;
 		}
 		if (m_hc != null) {
 			res.m_hc = (Arbol) m_hc.clone();
-			res.m_hc.m_padre = this;
+			res.m_hc.m_padre = res;
 		}
 		if (m_hd != null) {
 			res.m_hd = (Arbol) m_hd.clone();
-			res.m_hd.m_padre = this;
+			res.m_hd.m_padre = res;
 		}
 		res.m_funcion = m_funcion;
 		res.m_termino = m_termino;
@@ -227,11 +227,7 @@ public class Arbol {
 	}
 
 	private double probCruce() {
-		if (m_funcion == null) {
-			return 1.0;
-		}
-		return 0.7;
-		//return ((double) profundidad()) / ((double) m_alturaMaxima);
+		return Math.random();
 	}
 
 	public ArrayList<Arbol> cruzar(Arbol arbol) {
@@ -251,10 +247,10 @@ public class Arbol {
 				nodo1.padre().setHijoIzq((Arbol) nodo2.clone());
 				break;
 			case 1:
-				nodo1.padre().setHijoDer((Arbol) nodo2.clone());
+				nodo1.padre().setHijoCen((Arbol) nodo2.clone());
 				break;
 			case 2:
-				nodo1.padre().setHijoCen((Arbol) nodo2.clone());
+				nodo1.padre().setHijoDer((Arbol) nodo2.clone());
 				break;
 			default:
 				break;
@@ -264,10 +260,10 @@ public class Arbol {
 				nodo2.padre().setHijoIzq((Arbol) nodo1.clone());
 				break;
 			case 1:
-				nodo2.padre().setHijoDer((Arbol) nodo1.clone());
+				nodo2.padre().setHijoCen((Arbol) nodo1.clone());
 				break;
 			case 2:
-				nodo2.padre().setHijoCen((Arbol) nodo1.clone());
+				nodo2.padre().setHijoDer((Arbol) nodo1.clone());
 				break;
 			default:
 				break;

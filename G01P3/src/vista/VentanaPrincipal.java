@@ -28,6 +28,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -58,6 +59,7 @@ public class VentanaPrincipal extends JFrame {
 	private JTextField   m_probMutacion      = new JTextField();
 	private JTextField   m_tamPoblacion      = new JTextField();
 	private JTextField   m_elitismo          = new JTextField();
+	private JCheckBox    m_tieneIf           = new JCheckBox();
 
 	private JButton      m_lanzar            = new JButton();
 	private JPanel       m_panelPrincipal    = null;
@@ -82,6 +84,8 @@ public class VentanaPrincipal extends JFrame {
 		m_probMutacion.setText("0.15");
 		m_tamPoblacion.setText("100");
 		m_elitismo.setText("0.02");
+
+		m_tieneIf.setSelected(true);
 
 		m_resultado.setOpaque(false);
 		m_resultado.setEditable(false);
@@ -127,6 +131,10 @@ public class VentanaPrincipal extends JFrame {
 
 	public double elitismo() {
 		return Double.valueOf(m_elitismo.getText());
+	}
+
+	public boolean tieneIf() {
+		return m_tieneIf.isSelected();
 	}
 
 	public JTextArea resultado() {
@@ -261,6 +269,7 @@ public class VentanaPrincipal extends JFrame {
 
 		gridBagConstraints.gridy = 12;
 		gridBagConstraints.gridx = 1;
+		p.add(m_tieneIf);
 
 		gridBagConstraints.gridx = 2;
 

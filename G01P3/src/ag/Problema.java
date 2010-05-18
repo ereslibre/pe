@@ -68,7 +68,7 @@ public class Problema extends Thread {
 	}
 
 	public boolean tieneIf() {
-		return true;
+		return m_ventanaPrincipal.tieneIf();
 	}
 
 	@Override
