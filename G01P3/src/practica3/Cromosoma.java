@@ -30,7 +30,7 @@ public class Cromosoma extends ag.Cromosoma {
 
 	Cromosoma() {
 		super();
-		m_arbol = new Arbol(Funcion.funciones(), Funcion.terminos(), null, 3, 0);
+		m_arbol = new Arbol(Funcion.funciones(), Funcion.terminos(), null, 10, 0);
 	}
 
 	@Override
