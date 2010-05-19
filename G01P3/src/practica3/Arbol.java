@@ -247,26 +247,26 @@ public class Arbol {
 		}
 		switch (numHijo(nodo1, nodo1.padre())) {
 			case 0:
-				nodo1.padre().setHijoIzq((Arbol) nodo2.clone());
+				nodo1.padre().setHijoIzq((Arbol) nodo2);
 				break;
 			case 1:
-				nodo1.padre().setHijoCen((Arbol) nodo2.clone());
+				nodo1.padre().setHijoCen((Arbol) nodo2);
 				break;
 			case 2:
-				nodo1.padre().setHijoDer((Arbol) nodo2.clone());
+				nodo1.padre().setHijoDer((Arbol) nodo2);
 				break;
 			default:
 				break;
 		}
 		switch (numHijo(nodo2, nodo2.padre())) {
 			case 0:
-				nodo2.padre().setHijoIzq((Arbol) nodo1.clone());
+				nodo2.padre().setHijoIzq((Arbol) nodo1);
 				break;
 			case 1:
-				nodo2.padre().setHijoCen((Arbol) nodo1.clone());
+				nodo2.padre().setHijoCen((Arbol) nodo1);
 				break;
 			case 2:
-				nodo2.padre().setHijoDer((Arbol) nodo1.clone());
+				nodo2.padre().setHijoDer((Arbol) nodo1);
 				break;
 			default:
 				break;
