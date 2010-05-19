@@ -95,7 +95,19 @@ public class Arbol {
 				break;
 		}
 	}
-	
+
+	public int desequilibrio() {
+		if (m_hi != null && m_hd != null && m_hc == null) {
+			return Math.abs(m_hi.numNodos() - m_hd.numNodos());
+		} else if (m_hi != null && m_hd != null && m_hc != null) {
+			int numHijosi = m_hi.numNodos();
+			int numHijosc = m_hc.numNodos();
+			int numHijosd = m_hd.numNodos();
+			return Math.abs(Math.abs(numHijosi - numHijosc) - Math.abs(numHijosi - numHijosd) - Math.abs(numHijosc - numHijosd));
+		}
+		return 0;
+	}
+
 	public int numNodos() {
 		int res = 0;
 		if (m_hi != null) {
@@ -107,7 +119,7 @@ public class Arbol {
 		if (m_hd != null) {
 			res += m_hd.numNodos();
 		}
-		return res;
+		return res + 1;
 	}
 
 	public int profundidad() {

@@ -140,7 +140,7 @@ public class Problema extends Thread {
 		if (limpiaAnterior) {
 			m_ventanaPrincipal.terminado();
 			ventanaPrincipal().resultado().setText("\tEl mejor es:\t" + getMejor().fenotipo());
-			ventanaPrincipal().resultado().append("\n\tAptitud:\t" + getMejor().aptitud());
+			ventanaPrincipal().resultado().append("\n\tEvaluacion:\t" + getMejor().evaluacion());
 		}
 	}
 

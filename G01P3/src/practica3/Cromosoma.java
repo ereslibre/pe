@@ -53,6 +53,7 @@ public class Cromosoma extends ag.Cromosoma {
 				res += 1;
 			}
 		}
+		res -= m_arbol.desequilibrio();
 		return res;
 	}
 
