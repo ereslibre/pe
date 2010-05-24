@@ -28,6 +28,7 @@ import ag.Problema;
 public class Cromosoma extends ag.Cromosoma {
 
 	private Arbol m_arbol = null;
+	private double m_aptitud = -1;
 
 	Cromosoma() {
 		super();
@@ -35,10 +36,15 @@ public class Cromosoma extends ag.Cromosoma {
 
 	@Override
 	public double aptitud() {
-		if (m_arbol.funcion() != null && m_arbol.funcion().funcion() == Funcion.If) {
-			return evaluacion() + 10;
+		if (m_aptitud != -1) {
+			return m_aptitud;
 		}
-		return evaluacion();
+		if (m_arbol.funcion() != null && m_arbol.funcion().funcion() == Funcion.If) {
+			m_aptitud = evaluacion() + 10;
+			return m_aptitud;
+		}
+		m_aptitud = evaluacion();
+		return m_aptitud;
 	}
 
 	@Override

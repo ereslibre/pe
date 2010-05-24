@@ -64,7 +64,7 @@ public abstract class Poblacion {
 				cruce.remove(0);
 			}
 			++intentos;
-		} while (cruce.size() == 0 && intentos < 100);
+		} while (cruce.isEmpty() && intentos < 100);
 		ListIterator<Cromosoma> it = cruce.listIterator();
 		while (it.hasNext()) {
 			Cromosoma c1 = it.next();
@@ -93,44 +93,38 @@ public abstract class Poblacion {
 	}
 
 	public void evaluarPoblacion() {
-		{
-			m_aptitudMedia = 0.0;
-			ListIterator<Cromosoma> it = m_poblacion.listIterator();
-			while (it.hasNext()) {
-				m_aptitudMedia += it.next().aptitud();
-			}
-			m_aptitudMedia /= Problema.self().tamPoblacion();
-		}
-		{
-			m_puntuacionesAcumuladas = new ArrayList<Double>();
-			Double punt = 0.0;
-			ArrayList<Cromosoma> elite = Problema.self().elite();
-			ListIterator<Cromosoma> it = m_poblacion.listIterator();
-			while (it.hasNext()) {
-				final Cromosoma c = it.next();
-				if (elite.size() < Problema.self().tamPoblacion() * Problema.self().ventanaPrincipal().elitismo()) {
-					elite.add((Cromosoma) c.clone());
-					Collections.sort(elite);
-				} else {
-					ListIterator<Cromosoma> it2 = elite.listIterator();
-					while (it2.hasNext()) {
-						final Cromosoma e = it2.next();
-						if (c.aptitud() > e.aptitud()) {
-							it2.set((Cromosoma) c.clone());
-							Collections.sort(elite);
-						}
+		m_aptitudMedia = 0.0;
+		m_puntuacionesAcumuladas = new ArrayList<Double>();
+		Double punt = 0.0;
+		ArrayList<Cromosoma> elite = Problema.self().elite();
+		ListIterator<Cromosoma> it = m_poblacion.listIterator();
+		while (it.hasNext()) {
+			final Cromosoma c = it.next();
+			m_aptitudMedia += c.aptitud();
+			if (elite.size() < Problema.self().tamPoblacion() * Problema.self().ventanaPrincipal().elitismo()) {
+				elite.add((Cromosoma) c.clone());
+				Collections.sort(elite);
+			} else {
+				ListIterator<Cromosoma> it2 = elite.listIterator();
+				while (it2.hasNext()) {
+					final Cromosoma e = it2.next();
+					if (c.aptitud() > e.aptitud()) {
+						it2.set((Cromosoma) c.clone());
+						Collections.sort(elite);
+						break;
 					}
 				}
-				Problema.self().setElite(elite);
-				if (m_mejor == null || c.aptitud() > m_mejor.aptitud()) {
-					m_mejor = (Cromosoma) c.clone();
-				}
-				punt += c.puntuacion();
-				m_puntuacionesAcumuladas.add(punt);
 			}
-			if (Problema.self().getMejor() == null || m_mejor.aptitud() > Problema.self().getMejor().aptitud()) {
-				Problema.self().setMejor((Cromosoma) m_mejor.clone());
+			if (m_mejor == null || c.aptitud() > m_mejor.aptitud()) {
+				m_mejor = (Cromosoma) c.clone();
 			}
+			punt += c.puntuacion();
+			m_puntuacionesAcumuladas.add(punt);
+		}
+		Problema.self().setElite(elite);
+		m_aptitudMedia /= Problema.self().tamPoblacion();
+		if (Problema.self().getMejor() == null || m_mejor.aptitud() > Problema.self().getMejor().aptitud()) {
+			Problema.self().setMejor((Cromosoma) m_mejor.clone());
 		}
 	}
 

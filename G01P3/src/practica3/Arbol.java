@@ -62,30 +62,30 @@ public class Arbol {
 		}
 		switch (m_funcion.aridad()) {
 			case 2:
-				if (Math.random() < 0.2) {
+				if (Math.random() < 0.1) {
 					m_hd = new Arbol(Funcion.terminosControl(), this);
 				} else {
 					m_hd = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				} // fall-through
 			case 1:
-				if (Math.random() < 0.2) {
+				if (Math.random() < 0.1) {
 					m_hi = new Arbol(Funcion.terminosControl(), this);
 				} else {
 					m_hi = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				}
 				break;
 			case 3:
-				if (Math.random() < 0.2) {
+				if (Math.random() < 0.1) {
 					m_hi = new Arbol(Funcion.terminosControl(), this);
 				} else {
 					m_hi = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				}
-				if (Math.random() < 0.2) {
+				if (Math.random() < 0.1) {
 					m_hc = new Arbol(Funcion.terminosDatos(), this);
 				} else {
 					m_hc = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				}
-				if (Math.random() < 0.2) {
+				if (Math.random() < 0.1) {
 					m_hd = new Arbol(Funcion.terminosDatos(), this);
 				} else {
 					m_hd = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
