@@ -142,6 +142,8 @@ public class Problema extends Thread {
 		m_ventanaPrincipal.grafica2().addLinePlot("Máxima por Generación", ejex, grafica2yMaximaAptitud);
 		m_ventanaPrincipal.grafica3().addLinePlot("Presión Selectiva", ejex, grafica3yPresionSelectiva);
 
+		m_ventanaPrincipal.progressBar().setValue(m_ventanaPrincipal.progressBar().getMaximum());
+
 		if (limpiaAnterior) {
 			m_ventanaPrincipal.terminado();
 			ventanaPrincipal().resultado().setText("\tEl mejor es:\t" + getMejor().fenotipo());
