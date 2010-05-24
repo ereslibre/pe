@@ -77,6 +77,7 @@ public class Cromosoma extends ag.Cromosoma {
 		c.m_padre = m_padre;
 		c.m_poblacion = m_poblacion;
 		c.m_arbol = (Arbol) m_arbol.clone();
+		c.m_aptitud = m_aptitud;
 		return c;
 	}
 

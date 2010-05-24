@@ -93,14 +93,20 @@ public abstract class Poblacion {
 	}
 
 	public void evaluarPoblacion() {
-		m_aptitudMedia = 0.0;
+		{
+			m_aptitudMedia = 0.0;
+			ListIterator<Cromosoma> it = m_poblacion.listIterator();
+			while (it.hasNext()) {
+				m_aptitudMedia += it.next().aptitud();
+			}
+			m_aptitudMedia /= Problema.self().tamPoblacion();
+		}
 		m_puntuacionesAcumuladas = new ArrayList<Double>();
 		Double punt = 0.0;
 		ArrayList<Cromosoma> elite = Problema.self().elite();
 		ListIterator<Cromosoma> it = m_poblacion.listIterator();
 		while (it.hasNext()) {
 			final Cromosoma c = it.next();
-			m_aptitudMedia += c.aptitud();
 			if (elite.size() < Problema.self().tamPoblacion() * Problema.self().ventanaPrincipal().elitismo()) {
 				elite.add((Cromosoma) c.clone());
 				Collections.sort(elite);
@@ -122,7 +128,6 @@ public abstract class Poblacion {
 			m_puntuacionesAcumuladas.add(punt);
 		}
 		Problema.self().setElite(elite);
-		m_aptitudMedia /= Problema.self().tamPoblacion();
 		if (Problema.self().getMejor() == null || m_mejor.aptitud() > Problema.self().getMejor().aptitud()) {
 			Problema.self().setMejor((Cromosoma) m_mejor.clone());
 		}
