@@ -138,7 +138,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public int profundidadMaxima() {
-		return 20;
+		return 3;
 	}
 
 	public JTextArea resultado() {

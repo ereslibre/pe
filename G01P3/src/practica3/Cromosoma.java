@@ -35,7 +35,7 @@ public class Cromosoma extends ag.Cromosoma {
 
 	@Override
 	public double aptitud() {
-		return evaluacion();
+		return Math.max(evaluacion() - m_arbol.desequilibrio(), 0);
 	}
 
 	@Override

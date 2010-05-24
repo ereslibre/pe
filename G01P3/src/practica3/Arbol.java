@@ -41,13 +41,9 @@ public class Arbol {
 
 	public Arbol(ArrayList<Funcion> funciones, ArrayList<Termino> terminos, Arbol padre, int alturaMaxima, int altura) {
 		m_padre = padre;
-		if (Math.random() < 0.4 && altura > 0) {
-			m_termino = terminos.get((int) Math.round(Math.random() * (terminos.size() - 1)));
-			return;
-		}
 		m_funcion = funciones.get((int) Math.round(Math.random() * (Funcion.funciones().size() - 1)));
 		m_alturaMaxima = alturaMaxima;
-		if (altura == alturaMaxima) {
+		if (altura == alturaMaxima - 1) {
 			switch (m_funcion.aridad()) {
 				case 2:
 					m_hd = new Arbol(Funcion.terminosControl(), this); // fall-through
@@ -66,30 +62,30 @@ public class Arbol {
 		}
 		switch (m_funcion.aridad()) {
 			case 2:
-				if (Math.random() < 0.5) {
+				if (Math.random() < 0.2) {
 					m_hd = new Arbol(Funcion.terminosControl(), this);
 				} else {
 					m_hd = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				} // fall-through
 			case 1:
-				if (Math.random() < 0.5) {
+				if (Math.random() < 0.2) {
 					m_hi = new Arbol(Funcion.terminosControl(), this);
 				} else {
 					m_hi = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				}
 				break;
 			case 3:
-				if (Math.random() < 0.5) {
+				if (Math.random() < 0.2) {
 					m_hi = new Arbol(Funcion.terminosControl(), this);
 				} else {
 					m_hi = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				}
-				if (Math.random() < 0.5) {
+				if (Math.random() < 0.2) {
 					m_hc = new Arbol(Funcion.terminosDatos(), this);
 				} else {
 					m_hc = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				}
-				if (Math.random() < 0.5) {
+				if (Math.random() < 0.2) {
 					m_hd = new Arbol(Funcion.terminosDatos(), this);
 				} else {
 					m_hd = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
@@ -116,7 +112,7 @@ public class Arbol {
 
 	public int profundidad() {
 		if (m_termino != null) {
-			return 1;
+			return 0;
 		}
 		switch (m_funcion.funcion()) {
 			case Funcion.Not:
@@ -165,6 +161,17 @@ public class Arbol {
 
 	public void setPadre(Arbol padre) {
 		m_padre = padre;
+	}
+
+	public int desequilibrio() {
+		if (m_hi != null && m_hd != null && m_hc == null) {
+			return Math.abs(m_hi.profundidad() - m_hd.profundidad());
+		} else if (m_hi != null && m_hd != null && m_hc != null) {
+			int numHijosc = m_hc.profundidad();
+			int numHijosd = m_hd.profundidad();
+			return Math.abs(Math.abs(numHijosc - numHijosd));
+		}
+		return 0;
 	}
 
 	public boolean evaluar(boolean a0, boolean a1, boolean d0, boolean d1, boolean d2, boolean d3) {
@@ -254,40 +261,40 @@ public class Arbol {
 		Arbol hijo1 = (Arbol) clone();
 		Arbol hijo2 = (Arbol) arbol.clone();
 		Arbol nodo1 = hijo1.nodoAleatorio();
-		while (nodo1.m_padre == null) {
-			nodo1 = hijo1.nodoAleatorio();
-		}
 		Arbol nodo2 = hijo2.nodoAleatorio();
-		while (nodo2.m_padre == null) {
-			nodo2 = hijo2.nodoAleatorio();
+		if (nodo1.padre() != null) {
+			switch (numHijo(nodo1, nodo1.padre())) {
+				case 0:
+					nodo1.padre().setHijoIzq((Arbol) nodo2);
+					break;
+				case 1:
+					nodo1.padre().setHijoCen((Arbol) nodo2);
+					break;
+				case 2:
+					nodo1.padre().setHijoDer((Arbol) nodo2);
+					break;
+				default:
+					break;
+			}
+		} else {
+			hijo2 = nodo1;
 		}
-		nodo1 = (Arbol) nodo1.clone();
-		nodo2 = (Arbol) nodo2.clone();
-		switch (numHijo(nodo1, nodo1.padre())) {
-			case 0:
-				nodo1.padre().setHijoIzq((Arbol) nodo2);
-				break;
-			case 1:
-				nodo1.padre().setHijoCen((Arbol) nodo2);
-				break;
-			case 2:
-				nodo1.padre().setHijoDer((Arbol) nodo2);
-				break;
-			default:
-				break;
-		}
-		switch (numHijo(nodo2, nodo2.padre())) {
-			case 0:
-				nodo2.padre().setHijoIzq((Arbol) nodo1);
-				break;
-			case 1:
-				nodo2.padre().setHijoCen((Arbol) nodo1);
-				break;
-			case 2:
-				nodo2.padre().setHijoDer((Arbol) nodo1);
-				break;
-			default:
-				break;
+		if (nodo2.padre() != null) {
+			switch (numHijo(nodo2, nodo2.padre())) {
+				case 0:
+					nodo2.padre().setHijoIzq((Arbol) nodo1);
+					break;
+				case 1:
+					nodo2.padre().setHijoCen((Arbol) nodo1);
+					break;
+				case 2:
+					nodo2.padre().setHijoDer((Arbol) nodo1);
+					break;
+				default:
+					break;
+			}
+		} else {
+			hijo1 = nodo2;
 		}
 		res.add(hijo1);
 		res.add(hijo2);
