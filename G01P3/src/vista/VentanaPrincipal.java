@@ -80,11 +80,11 @@ public class VentanaPrincipal extends JFrame {
 		setLocationRelativeTo(getRootPane());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		m_maxGen.setText("300");
-		m_probCruce.setText("0.5");
-		m_probMutacion.setText("0.15");
-		m_tamPoblacion.setText("100");
-		m_elitismo.setText("0.02");
+		m_maxGen.setText("150");
+		m_probCruce.setText("0.7");
+		m_probMutacion.setText("0.02");
+		m_tamPoblacion.setText("150");
+		m_elitismo.setText("0.1");
 		m_profundidad.setText("3");
 
 		m_tieneIf.setSelected(true);
