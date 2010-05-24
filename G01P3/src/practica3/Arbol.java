@@ -62,30 +62,30 @@ public class Arbol {
 		}
 		switch (m_funcion.aridad()) {
 			case 2:
-				if (Math.random() < 0.4) {
+				if (Math.random() < 0.1) {
 					m_hd = new Arbol(Funcion.terminos(), this);
 				} else {
 					m_hd = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				} // fall-through
 			case 1:
-				if (Math.random() < 0.4) {
+				if (Math.random() < 0.1) {
 					m_hi = new Arbol(Funcion.terminos(), this);
 				} else {
 					m_hi = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				}
 				break;
 			case 3:
-				if (Math.random() < 0.4) {
+				if (Math.random() < 0.1) {
 					m_hi = new Arbol(Funcion.terminos(), this);
 				} else {
 					m_hi = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				}
-				if (Math.random() < 0.4) {
+				if (Math.random() < 0.1) {
 					m_hc = new Arbol(Funcion.terminos(), this);
 				} else {
 					m_hc = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				}
-				if (Math.random() < 0.4) {
+				if (Math.random() < 0.1) {
 					m_hd = new Arbol(Funcion.terminos(), this);
 				} else {
 					m_hd = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
@@ -164,12 +164,12 @@ public class Arbol {
 	}
 
 	public int desequilibrio() {
-		if (m_hi != null && m_hd != null && m_hc == null) {
+		if (m_hi != null && m_hd != null && m_hc != null) {
+			return Math.max(Math.max(m_hi.desequilibrio(), m_hc.desequilibrio()), m_hd.desequilibrio());
+		} else if (m_hi != null && m_hd != null) {
 			return Math.abs(m_hi.profundidad() - m_hd.profundidad());
-		} else if (m_hi != null && m_hd != null && m_hc != null) {
-			int numHijosc = m_hc.profundidad();
-			int numHijosd = m_hd.profundidad();
-			return Math.abs(Math.abs(numHijosc - numHijosd));
+		} else if (m_hi != null) {
+			return m_hi.desequilibrio();
 		}
 		return 0;
 	}
