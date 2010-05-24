@@ -33,6 +33,7 @@ public class Problema extends Thread {
 	public Problema() {
 		m_problemaActual = this;
 		m_elite = new ArrayList<Cromosoma>();
+		setPriority(MAX_PRIORITY);
 	}
 
 	public static Problema self() {

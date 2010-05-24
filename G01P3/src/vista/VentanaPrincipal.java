@@ -59,6 +59,7 @@ public class VentanaPrincipal extends JFrame {
 	private JTextField   m_probMutacion      = new JTextField();
 	private JTextField   m_tamPoblacion      = new JTextField();
 	private JTextField   m_elitismo          = new JTextField();
+	private JTextField   m_profundidad       = new JTextField();
 	private JCheckBox    m_tieneIf           = new JCheckBox("IF");
 
 	private JButton      m_lanzar            = new JButton();
@@ -84,6 +85,7 @@ public class VentanaPrincipal extends JFrame {
 		m_probMutacion.setText("0.15");
 		m_tamPoblacion.setText("100");
 		m_elitismo.setText("0.02");
+		m_profundidad.setText("3");
 
 		m_tieneIf.setSelected(true);
 
@@ -138,7 +140,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public int profundidadMaxima() {
-		return 3;
+		return Integer.valueOf(m_profundidad.getText());
 	}
 
 	public JTextArea resultado() {
@@ -267,29 +269,32 @@ public class VentanaPrincipal extends JFrame {
 		gridBagConstraints.gridx = 2;
 		p.add(m_elitismo, gridBagConstraints);
 
-		gridBagConstraints.gridx = 3;
-
-		gridBagConstraints.gridx = 4;
-
+		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 12;
+		p.add(new JLabel("Profundidad"), gridBagConstraints);
+
+		gridBagConstraints.gridx = 2;
+		p.add(m_profundidad, gridBagConstraints);
+
+		gridBagConstraints.gridy = 13;
 		gridBagConstraints.gridx = 1;
 		p.add(m_tieneIf, gridBagConstraints);
 
 		gridBagConstraints.gridx = 2;
 
-		gridBagConstraints.gridy = 13;
+		gridBagConstraints.gridy = 14;
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
 		p.add(new JLabel("Resultado:"), gridBagConstraints);
 
-		gridBagConstraints.gridy = 14;
+		gridBagConstraints.gridy = 15;
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.weighty = 10;
 		gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
 		JScrollPane resultado = new JScrollPane(m_resultado, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		p.add(resultado, gridBagConstraints);
 
-		gridBagConstraints.gridy = 15;
+		gridBagConstraints.gridy = 16;
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.weighty = 0;
 		m_lanzar = new JButton("Lanzar");

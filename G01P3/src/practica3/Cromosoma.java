@@ -36,7 +36,7 @@ public class Cromosoma extends ag.Cromosoma {
 	@Override
 	public double aptitud() {
 		if (m_arbol.funcion() != null && m_arbol.funcion().funcion() == Funcion.If) {
-			return evaluacion() + 1;
+			return evaluacion() + 10;
 		}
 		return evaluacion();
 	}
