@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.5.7)  23 MAY 2010 00:15
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.5.7)  24 MAY 2010 22:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -344,31 +344,74 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout3 = `memoria.toc'.
 
 
-[2] [3]
-Overfull \hbox (11.29779pt too wide) in paragraph at lines 122--122
+[2]
+Overfull \hbox (8.1903pt too wide) in paragraph at lines 41--42
+\OT1/cmr/m/n/12 entes par^^Samet-ros, por de-fec-to hemos toma-dos los sigu-ien
+tes val-ores:(suponemos
+ []
+
+[3] <graficas/tp64.png, id=14, 800.9925pt x 570.13pt>
+File: graficas/tp64.png Graphic file (type png)
+ <use graficas/tp64.png>
+<graficas/tpg64.png, id=15, 800.9925pt x 570.13pt>
+File: graficas/tpg64.png Graphic file (type png)
+ <use graficas/tpg64.png>
+[4 <./graficas/tp64.png (PNG copy)>]
+<graficas/nm56.png, id=19, 800.9925pt x 570.13pt>
+File: graficas/nm56.png Graphic file (type png)
+ <use graficas/nm56.png>
+[5 <./graficas/tpg64.png (PNG copy)>]
+<graficas/nmg56.png, id=23, 800.9925pt x 570.13pt>
+File: graficas/nmg56.png Graphic file (type png)
+ <use graficas/nmg56.png>
+[6 <./graficas/nm56.png (PNG copy)> <./graficas/nmg56.png (PNG copy)>]
+<graficas/pc64.png, id=27, 800.9925pt x 570.13pt>
+File: graficas/pc64.png Graphic file (type png)
+ <use graficas/pc64.png>
+<graficas/pcg64.png, id=28, 800.9925pt x 570.13pt>
+File: graficas/pcg64.png Graphic file (type png)
+ <use graficas/pcg64.png>
+[7 <./graficas/pc64.png (PNG copy)>]
+<graficas/pm60.png, id=33, 800.9925pt x 570.13pt>
+File: graficas/pm60.png Graphic file (type png)
+ <use graficas/pm60.png>
+[8 <./graficas/pcg64.png (PNG copy)>]
+<graficas/pmg60.png, id=37, 800.9925pt x 570.13pt>
+File: graficas/pmg60.png Graphic file (type png)
+ <use graficas/pmg60.png>
+[9 <./graficas/pm60.png (PNG copy)> <./graficas/pmg60.png (PNG copy)>]
+<graficas/e64.png, id=41, 800.9925pt x 570.13pt>
+File: graficas/e64.png Graphic file (type png)
+ <use graficas/e64.png>
+<graficas/eg64.png, id=42, 800.9925pt x 570.13pt>
+File: graficas/eg64.png Graphic file (type png)
+ <use graficas/eg64.png>
+[10 <./graficas/e64.png (PNG copy)>]
+Overfull \hbox (11.29779pt too wide) in paragraph at lines 183--183
 \OT1/cmr/bx/n/17.28 Al-go-rit-mo Gen^^Setico con se-lec-ci^^Son por Rank-
  []
 
-[4] [5]
-Overfull \hbox (5.85779pt too wide) in paragraph at lines 205--205
+[11 <./graficas/eg64.png (PNG copy)>]
+Overfull \hbox (5.85779pt too wide) in paragraph at lines 266--266
 \OT1/cmr/bx/n/17.28 Al-go-rit-mo Gen^^Setico con se-lec-ci^^Son por Rule-
  []
 
-[6] [7] [8] (./memoria.aux) ) 
+[12] [13] [14] [15] (./memoria.aux) ) 
 Here is how much of TeX's memory you used:
- 1787 strings out of 495061
- 21227 string characters out of 1182622
- 81239 words of memory out of 3000000
- 4982 multiletter control sequences out of 15000+50000
+ 1841 strings out of 495061
+ 22230 string characters out of 1182622
+ 80239 words of memory out of 3000000
+ 5024 multiletter control sequences out of 15000+50000
  8808 words of font info for 31 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  25i,8n,27p,614b,262s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfo
-nts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr1
-2.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on memoria.pdf (8 pages, 58362 bytes).
+</usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pf
+b>
+Output written on memoria.pdf (15 pages, 325344 bytes).
 PDF statistics:
- 41 PDF objects out of 1000 (max. 8388607)
+ 73 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
