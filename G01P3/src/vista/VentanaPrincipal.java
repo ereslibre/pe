@@ -137,6 +137,10 @@ public class VentanaPrincipal extends JFrame {
 		return m_tieneIf.isSelected();
 	}
 
+	public int profundidadMaxima() {
+		return 20;
+	}
+
 	public JTextArea resultado() {
 		return m_resultado;
 	}

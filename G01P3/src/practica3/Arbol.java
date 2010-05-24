@@ -41,6 +41,10 @@ public class Arbol {
 
 	public Arbol(ArrayList<Funcion> funciones, ArrayList<Termino> terminos, Arbol padre, int alturaMaxima, int altura) {
 		m_padre = padre;
+		if (Math.random() < 0.4 && altura > 0) {
+			m_termino = terminos.get((int) Math.round(Math.random() * (terminos.size() - 1)));
+			return;
+		}
 		m_funcion = funciones.get((int) Math.round(Math.random() * (Funcion.funciones().size() - 1)));
 		m_alturaMaxima = alturaMaxima;
 		if (altura == alturaMaxima) {
@@ -96,18 +100,6 @@ public class Arbol {
 		}
 	}
 
-	public int desequilibrio() {
-		if (m_hi != null && m_hd != null && m_hc == null) {
-			return Math.abs(m_hi.numNodos() - m_hd.numNodos());
-		} else if (m_hi != null && m_hd != null && m_hc != null) {
-			int numHijosi = m_hi.numNodos();
-			int numHijosc = m_hc.numNodos();
-			int numHijosd = m_hd.numNodos();
-			return Math.abs(Math.abs(numHijosi - numHijosc) - Math.abs(numHijosi - numHijosd) - Math.abs(numHijosc - numHijosd));
-		}
-		return 0;
-	}
-
 	public int numNodos() {
 		int res = 0;
 		if (m_hi != null) {
@@ -123,10 +115,21 @@ public class Arbol {
 	}
 
 	public int profundidad() {
-		if (m_padre == null) {
-			return 0;
+		if (m_termino != null) {
+			return 1;
 		}
-		return m_padre.profundidad() + 1;
+		switch (m_funcion.funcion()) {
+			case Funcion.Not:
+				return m_hi.profundidad() + 1;
+			case Funcion.And:
+			case Funcion.Or:
+				return Math.max(m_hi.profundidad(), m_hd.profundidad()) + 1;
+			case Funcion.If:
+				return Math.max(Math.max(m_hi.profundidad(), m_hc.profundidad()), m_hd.profundidad()) + 1;
+			default:
+				break;
+		}
+		return 0; // no se alcanza nunca
 	}
 
 	public Arbol hijoIzq() {
@@ -227,6 +230,7 @@ public class Arbol {
 
 	public Object clone() {
 		Arbol res = new Arbol();
+		res.m_padre = m_padre;
 		res.m_alturaMaxima = m_alturaMaxima;
 		if (m_hi != null) {
 			res.m_hi = (Arbol) m_hi.clone();
@@ -257,6 +261,8 @@ public class Arbol {
 		while (nodo2.m_padre == null) {
 			nodo2 = hijo2.nodoAleatorio();
 		}
+		nodo1 = (Arbol) nodo1.clone();
+		nodo2 = (Arbol) nodo2.clone();
 		switch (numHijo(nodo1, nodo1.padre())) {
 			case 0:
 				nodo1.padre().setHijoIzq((Arbol) nodo2);

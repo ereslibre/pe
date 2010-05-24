@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import practica3.Factoria;
 
 import ag.Cruce;
+import ag.Problema;
 
 public class Cromosoma extends ag.Cromosoma {
 
@@ -30,31 +31,11 @@ public class Cromosoma extends ag.Cromosoma {
 
 	Cromosoma() {
 		super();
-		m_arbol = new Arbol(Funcion.funciones(), Funcion.terminos(), null, 10, 0);
 	}
 
 	@Override
 	public double aptitud() {
-		double res = 0;
-		boolean[] vec = new boolean[6];
-		for (int i = 0; i < 6; ++i) {
-			vec[i] = false;
-		}
-		for (int i = 0; i < 64; ++i) {
-			for (int j = 0; j < 6; ++j) {
-				if (!vec[j]) {
-					vec[j] = true;
-					break;
-				}
-				vec[j] = false; 
-			}
-			boolean nuestraRes = m_arbol.evaluar(vec[0], vec[1], vec[2], vec[3], vec[4], vec[5]);
-			if (MUX.test(vec[0], vec[1], vec[2], vec[3], vec[4], vec[5], nuestraRes)) {
-				res += 1;
-			}
-		}
-		res -= m_arbol.desequilibrio();
-		return res;
+		return evaluacion();
 	}
 
 	@Override
@@ -92,12 +73,17 @@ public class Cromosoma extends ag.Cromosoma {
 
 	@Override
 	public Cruce cruzar(ag.Cromosoma cromosoma) {
-		ArrayList<Arbol> res = m_arbol.cruzar(((practica3.Cromosoma) cromosoma).m_arbol);
-		Cromosoma h1 = Factoria.generaCromosoma(m_poblacion);
+		ArrayList<Arbol> res = null;
+		Cromosoma h1, h2 = null;
+		do {
+			res = m_arbol.cruzar(((practica3.Cromosoma) cromosoma).m_arbol);
+		} while(res.get(0).profundidad() > Problema.self().profundidadMaxima() ||
+				res.get(1).profundidad() > Problema.self().profundidadMaxima());
+		h1 = Factoria.generaCromosoma(m_poblacion);
 		h1.setPadre(this);
 		h1.setMadre(cromosoma);
 		h1.setCromosoma(res.get(0));
-		Cromosoma h2 = Factoria.generaCromosoma(m_poblacion);
+		h2 = Factoria.generaCromosoma(m_poblacion);
 		h2.setPadre(this);
 		h2.setMadre(cromosoma);
 		h2.setCromosoma(res.get(1));

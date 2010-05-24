@@ -59,6 +59,10 @@ public class Problema extends Thread {
 		return Double.valueOf(m_ventanaPrincipal.elitismo());
 	}
 
+	public int profundidadMaxima() {
+		return Integer.valueOf(m_ventanaPrincipal.profundidadMaxima());
+	}
+
 	public Cromosoma getMejor() {
 		return m_mejor;
 	}

@@ -20,8 +20,12 @@ package agsimple;
 
 import java.util.ListIterator;
 
+import ag.Problema;
+
+import practica3.Arbol;
 import practica3.Cromosoma;
 import practica3.Factoria;
+import practica3.Funcion;
 
 public class Poblacion extends ag.Poblacion {
 
@@ -31,7 +35,9 @@ public class Poblacion extends ag.Poblacion {
 
 	@Override
 	public void anadeCromosomaAleatorio() {
-		poblacion().add(Factoria.generaCromosoma(this));
+		Cromosoma c = Factoria.generaCromosoma(this);
+		c.setCromosoma(new Arbol(Funcion.funciones(), Funcion.terminos(), null, Problema.self().profundidadMaxima(), 0));
+		poblacion().add(c);
 	}
 
 	public double puntuacionTotal() {
