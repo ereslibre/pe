@@ -301,6 +301,10 @@ public class Arbol {
 		return res;
 	}
 
+	public Funcion funcion() {
+		return m_funcion;
+	}
+
 	private int numHijo(Arbol arbol, Arbol padre) {
 		if (padre.m_hi == arbol) {
 			return 0;
