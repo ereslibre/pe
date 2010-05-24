@@ -46,14 +46,14 @@ public class Arbol {
 		if (altura == alturaMaxima - 1) {
 			switch (m_funcion.aridad()) {
 				case 2:
-					m_hd = new Arbol(Funcion.terminosControl(), this); // fall-through
+					m_hd = new Arbol(Funcion.terminos(), this); // fall-through
 				case 1:				
-					m_hi = new Arbol(Funcion.terminosControl(), this);
+					m_hi = new Arbol(Funcion.terminos(), this);
 					break;
 				case 3:
-					m_hi = new Arbol(Funcion.terminosControl(), this);
-					m_hc = new Arbol(Funcion.terminosDatos(), this);
-					m_hd = new Arbol(Funcion.terminosDatos(), this);
+					m_hi = new Arbol(Funcion.terminos(), this);
+					m_hc = new Arbol(Funcion.terminos(), this);
+					m_hd = new Arbol(Funcion.terminos(), this);
 					break;
 				default:
 					break;
@@ -62,31 +62,31 @@ public class Arbol {
 		}
 		switch (m_funcion.aridad()) {
 			case 2:
-				if (Math.random() < 0.1) {
-					m_hd = new Arbol(Funcion.terminosControl(), this);
+				if (Math.random() < 0.4) {
+					m_hd = new Arbol(Funcion.terminos(), this);
 				} else {
 					m_hd = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				} // fall-through
 			case 1:
-				if (Math.random() < 0.1) {
-					m_hi = new Arbol(Funcion.terminosControl(), this);
+				if (Math.random() < 0.4) {
+					m_hi = new Arbol(Funcion.terminos(), this);
 				} else {
 					m_hi = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				}
 				break;
 			case 3:
-				if (Math.random() < 0.1) {
-					m_hi = new Arbol(Funcion.terminosControl(), this);
+				if (Math.random() < 0.4) {
+					m_hi = new Arbol(Funcion.terminos(), this);
 				} else {
 					m_hi = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				}
-				if (Math.random() < 0.1) {
-					m_hc = new Arbol(Funcion.terminosDatos(), this);
+				if (Math.random() < 0.4) {
+					m_hc = new Arbol(Funcion.terminos(), this);
 				} else {
 					m_hc = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				}
-				if (Math.random() < 0.1) {
-					m_hd = new Arbol(Funcion.terminosDatos(), this);
+				if (Math.random() < 0.4) {
+					m_hd = new Arbol(Funcion.terminos(), this);
 				} else {
 					m_hd = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				}
@@ -260,8 +260,8 @@ public class Arbol {
 		ArrayList<Arbol> res = new ArrayList<Arbol>();
 		Arbol hijo1 = (Arbol) clone();
 		Arbol hijo2 = (Arbol) arbol.clone();
-		Arbol nodo1 = hijo1.nodoAleatorio();
-		Arbol nodo2 = hijo2.nodoAleatorio();
+		Arbol nodo1 = (Arbol) hijo1.nodoAleatorio().clone();
+		Arbol nodo2 = (Arbol) hijo2.nodoAleatorio().clone();
 		if (nodo1.padre() != null) {
 			switch (numHijo(nodo1, nodo1.padre())) {
 				case 0:

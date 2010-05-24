@@ -55,26 +55,14 @@ public class Funcion {
 		return 0; // nunca deberíamos llegar aquí
 	}
 
-	public static ArrayList<Termino> terminosControl() {
+	public static ArrayList<Termino> terminos() {
 		ArrayList<Termino> res = new ArrayList<Termino>();
 		res.add(new Termino("A0"));
 		res.add(new Termino("A1"));
-		return res;
-	}
-
-	public static ArrayList<Termino> terminosDatos() {
-		ArrayList<Termino> res = new ArrayList<Termino>();
 		res.add(new Termino("D0"));
 		res.add(new Termino("D1"));
 		res.add(new Termino("D2"));
 		res.add(new Termino("D3"));
-		return res;
-	}
-
-	public static ArrayList<Termino> terminos() {
-		ArrayList<Termino> res = new ArrayList<Termino>();
-		res.addAll(terminosDatos());
-		res.addAll(terminosControl());
 		return res;
 	}
 

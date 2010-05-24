@@ -39,10 +39,6 @@ public class Cromosoma extends ag.Cromosoma {
 		if (m_aptitud != -1) {
 			return m_aptitud;
 		}
-		if (m_arbol.funcion() != null && m_arbol.funcion().funcion() == Funcion.If) {
-			m_aptitud = evaluacion() + 10;
-			return m_aptitud;
-		}
 		m_aptitud = evaluacion();
 		return m_aptitud;
 	}
