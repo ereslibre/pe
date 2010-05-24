@@ -38,17 +38,18 @@
 
 \section{Estudio de los diferentes parámetros del Algoritmo Genético con selección por Torneo}
 
-	Estudio realizado con selección por torneo. Se han ido variando los diferentes parámetros, por defecto hemos tomados los siguientes valores:
+	Estudio realizado con selección por torneo. Se han ido variando los diferentes parámetros, por defecto hemos tomados los siguientes valores:(suponemos que se permite la utilización de IF)
 
 %tabla
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|cc|} \hline
-Tamaño de la Población   & 100  \\  
-Número Máximo de Generaciones  &  300 \\
-Probabilidad de Cruce & 0.5 \\
-Probabilidad de Mutación & 0.15 \\
-Porcentaje de Elitismo & 0.02 \\ \hline
+Tamaño de la Población   & 150  \\  
+Número Máximo de Generaciones  &  150 \\
+Probabilidad de Cruce & 0.6 \\
+Probabilidad de Mutación & 0.1 \\
+Porcentaje de Elitismo & 0.1 \\
+Profundidad & 3 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -61,10 +62,24 @@ Porcentaje de Elitismo & 0.02 \\ \hline
 \begin{center}
 \begin{tabular}{|ccccc|} \hline
 Tamaño	   & 50 & 100 & 150 & 200 \\  \hline
-Resultado  &   &  &  &  \\ \hline
+Resultado  & 52  & 56 &  56 &  64\\ \hline
 \end{tabular}
 \end{center}
 \end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/tp64}
+\caption{Captura mejor resultado.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/tpg64}
+\caption{Gráfica mejor resultado.}
+\end{figure}
+
+Podemos apreciar en la gráfica que contra mayor es el tamaño de población más se acerca al mejor resultado posible. De esta manera podemos decir que 200 de tamaño de población es una buena cifra para trabajar con el algoritmo conservando la eficiencia. 
 
 	
 
@@ -74,10 +89,24 @@ Resultado  &   &  &  &  \\ \hline
 \begin{center}
 \begin{tabular}{|ccccc|} \hline
 Num Generaciones  & 100 & 200 & 300 & 400 \\  \hline
-Resultado  &   &  &  &  \\ \hline
+Resultado  & 56  & 56 & 56 & 56 \\ \hline
 \end{tabular}
 \end{center}
-\end{table}	
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/nm56}
+\caption{Captura mejor resultado.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/nmg56}
+\caption{Gráfica mejor resultado.}
+\end{figure}
+
+En este caso al variar el número máximo de generaciones el resultado no experimenta grandes cambios y se mantiene mas o menos constante, cabe destacar que para una mayor eficiencia un resultado óptimo podría ser elegir el intervalo de 100 a 200.	
 
 	
 
@@ -87,10 +116,24 @@ Resultado  &   &  &  &  \\ \hline
 \begin{center}
 \begin{tabular}{|ccccc|} \hline
 Probabilidad   & 0.2 & 0.4 & 0.5 & 0.7 \\  \hline
-Resultado  &   &  &  &  \\ \hline
+Resultado  & 48  & 52 & 52 & 64 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/pc64}
+\caption{Captura mejor resultado.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/pcg64}
+\caption{Gráfica mejor resultado.}
+\end{figure}
+
+Relativo a la probabilidad de cruce se puede observar la mejora que sufre el resultado de nuestro algoritmo al ir aumentando poco a poco la probabilidad de cruce hasta llegar a 0.7 que es un buen valor para poder conseguir buenos resultados.	
 
 	
 
@@ -100,10 +143,24 @@ Resultado  &   &  &  &  \\ \hline
 \begin{center}
 \begin{tabular}{|ccccc|} \hline
 Probabilidad   & 0.05 & 0.1 & 0.15 & 0.2 \\  \hline
-Resultado  &   &  &  &  \\ \hline
+Resultado  &  60 & 56 & 56 & 52 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/pm60}
+\caption{Captura mejor resultado.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/pmg60}
+\caption{Gráfica mejor resultado.}
+\end{figure}
+
+En la probabilidad de mutación sucede lo contrario que la probabilidad de cruce. Aquí se comporta mejor contra más pequeña es la probabilidad y se puede apreciar que con 0.05 nos da buenos resultados, al ir aumentando se pierde un poco la mejora pero siguen siendo buenos valores.	
 
 	
 
@@ -113,10 +170,41 @@ Resultado  &   &  &  &  \\ \hline
 \begin{center}
 \begin{tabular}{|ccccc|} \hline
 Porcentaje   & 0.0 & 0.02 & 0.1 & 0.3 \\  \hline
-Resultado  &   &  &  &  \\ \hline
+Resultado  &  52 & 56 & 56 & 64\\ \hline
 \end{tabular}
 \end{center}
 \end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/e64}
+\caption{Captura mejor resultado.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{graficas/eg64}
+\caption{Gráfica mejor resultado.}
+\end{figure}
+
+EL elitismo se incluye para la mejora de nuestro algoritmo, al quedarse con los mejores de cada población cabe esperar una mejora de los resultados al aumentar dicho elitismo. En nuestras pruebas con un elitismo cercano a 0.3 nos da los mejores resultados.
+
+\subsection{Profundidad}
+%tabla
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|ccccc|} \hline
+Porcentaje   & 1 & 2 & 3 & 4 \\  \hline
+Resultado  &  48 & 56 & 56 & 56\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Referente a la profundidad con un 1 nivel no se pasa de 48 y al ir aumentando poco a poco se van dando mejores resultados pero haciendo media de ellos se nota un estancamiento a partir de 3 o 4 niveles, aumentando considerablemente el gasto de recursos de la maquina al tener que explorar mayor espacio de búsqueda. 
+
+Por ultimo al probar el algoritmo sin la inclusión de la función IF el resultado baja notablemente hasta situarse cercano a 32. 
+
+	
 
 
 \section{Estudio de los diferentes parámetros del Algoritmo Genético con selección por Ranking}
@@ -127,11 +215,12 @@ Resultado  &   &  &  &  \\ \hline
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|cc|} \hline
-Tamaño de la Población   & 100  \\  
-Número Máximo de Generaciones  &  300 \\
-Probabilidad de Cruce & 0.5 \\
-Probabilidad de Mutación & 0.15 \\
-Porcentaje de Elitismo & 0.02 \\ \hline
+Tamaño de la Población   & 150  \\  
+Número Máximo de Generaciones  &  150 \\
+Probabilidad de Cruce & 0.6 \\
+Probabilidad de Mutación & 0.1 \\
+Porcentaje de Elitismo & 0.1 \\
+Profundidad & 3 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
