@@ -27,7 +27,7 @@ public class Seleccion {
 
 	static public void ruleta(Poblacion poblacion, Poblacion res) {
 		ArrayList<Double> puntAcum = poblacion.getPuntuacionesAcumuladas();
-		for (int i = 0; i < Problema.self().tamPoblacion() * (1 - Problema.self().tamElite()); ++i) {
+		for (int i = 0; i < Problema.self().tamPoblacion(); ++i) {
 			final double r = Math.random();
 			ListIterator<Double> it2 = puntAcum.listIterator();
 			int k = 0;
@@ -43,7 +43,7 @@ public class Seleccion {
 	}
 	
 	static public void torneo(Poblacion poblacion, Poblacion res) {
-		for (int i = 0; i < Problema.self().tamPoblacion() * (1 - Problema.self().tamElite()); ++i) {
+		for (int i = 0; i < Problema.self().tamPoblacion(); ++i) {
 			int r1 = 0;
 			int r2 = 0;
 			int r3 = 0;

@@ -62,34 +62,14 @@ public class Arbol {
 		}
 		switch (m_funcion.aridad()) {
 			case 2:
-				if (Math.random() < 0.1) {
-					m_hd = new Arbol(Funcion.terminos(), this);
-				} else {
-					m_hd = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
-				} // fall-through
+				m_hd = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1); // fall-through
 			case 1:
-				if (Math.random() < 0.1) {
-					m_hi = new Arbol(Funcion.terminos(), this);
-				} else {
-					m_hi = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
-				}
+				m_hi = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				break;
 			case 3:
-				if (Math.random() < 0.1) {
-					m_hi = new Arbol(Funcion.terminos(), this);
-				} else {
-					m_hi = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
-				}
-				if (Math.random() < 0.1) {
-					m_hc = new Arbol(Funcion.terminos(), this);
-				} else {
-					m_hc = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
-				}
-				if (Math.random() < 0.1) {
-					m_hd = new Arbol(Funcion.terminos(), this);
-				} else {
-					m_hd = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
-				}
+				m_hi = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
+				m_hc = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
+				m_hd = new Arbol(funciones, terminos, this, alturaMaxima, altura + 1);
 				break;
 			default:
 				break;
@@ -341,42 +321,10 @@ public class Arbol {
 	private void mutarAux(Arbol a) {
 		if (Math.random() < Problema.self().probMutacion()) {
 			if (a.m_termino != null) {
-				if (a.m_termino.nombre().equals("A0")) {
-					a.m_termino = new Termino("A1");
-					return;
-				} else if (a.m_termino.nombre().equals("A1")) {
-					a.m_termino = new Termino("A0");
-					return;
-				}
-				String dato = new String("D");
-				dato += Integer.valueOf((int) Math.round(Math.random() * 3));
-				Termino nuevoTermino = new Termino(dato);
-				while (nuevoTermino.nombre().equals(a.m_termino.nombre())) {
-					dato = new String("D");
-					dato += Integer.valueOf((int) Math.round(Math.random() * 3));
-					nuevoTermino = new Termino(dato);
-				}
-				a.m_termino = nuevoTermino;
+				a.m_termino = Funcion.terminos().get((int) Math.round((Math.random() * (Funcion.terminos().size() - 1))));
 				return;
 			}
 			switch(a.m_funcion.funcion()) {
-				case Funcion.Not:
-					Arbol hijo = a.m_hi;
-					a.m_funcion = hijo.m_funcion;
-					a.m_termino = hijo.m_termino;
-					a.m_hi = hijo.m_hi;
-					a.m_hc = hijo.m_hc;
-					a.m_hd = hijo.m_hd;
-					if (a.m_hi != null) {
-						a.m_hi.m_padre = a.m_padre;
-					}
-					if (a.m_hc != null) {
-						a.m_hc.m_padre = a.m_padre;
-					}
-					if (a.m_hd != null) {
-						a.m_hd.m_padre = a.m_padre;
-					}
-					break;
 				case Funcion.And:
 					a.m_funcion = new Funcion(Funcion.Or);
 					break;

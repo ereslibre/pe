@@ -39,7 +39,7 @@ public class Cromosoma extends ag.Cromosoma {
 		if (m_aptitud != -1) {
 			return m_aptitud;
 		}
-		m_aptitud = evaluacion();
+		m_aptitud = Math.max(evaluacion() - m_arbol.desequilibrio(), 0);
 		return m_aptitud;
 	}
 
